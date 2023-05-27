@@ -13,19 +13,19 @@
             padding: 0;
         }
 
-        .container{
+        .container {
             min-height: 100vh;
             display: flex;
         }
 
         .sidebar {
             display: flex;
-            position: relative;
             flex-direction: column;
             align-items: center;
-            width: 388px;
+            width: 30%;
             min-height: 100vh;
             background-image: url('img/sidebarbackground.png');
+            background-repeat: no-repeat;
         }
 
         .sidebar .logo {
@@ -46,8 +46,10 @@
         }
 
         .sidebar .list-link {
-            margin: 40px auto;
-            width: 300px;
+            width:70%;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
         }
 
         .sidebar .list-link ul {
@@ -59,7 +61,7 @@
             height: 50px;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: space-evenly;
 
         }
 
@@ -70,32 +72,108 @@
 
         .sidebar .list-link ul li a {
             text-decoration: none;
-            width: 60%;
+            width: 70%;
             color: #000000;
+        }
+        .sidebar .list-link ul li a:hover{
+            color: #616161;
         }
 
         .sidebar .list-link ul li i {
             margin: 0 10px 0 30px;
 
         }
+
         .sidebar .logout {
             margin-top: 50px;
         }
-        .sidebar .logout a{
+
+        .sidebar .logout a {
             color: white;
             font-size: 20px;
             text-decoration: none;
         }
+        .sidebar .logout a:hover{
+            color: #616161;
+        }
 
         /*main*/
-        .container-main{
-            margin: 40px;
+        .container-main {
+            margin: 50px;
             display: flex;
-        }
-        .container-main .welcome{
             width: 100%;
+            flex-direction: column;
+            gap: 50px;
         }
-        
+        .container-main .section1 {
+            background-color: #0C697A;
+            border-radius: 20px;
+            height: 300px;
+            display : flex;
+            align-items: center;
+            justify-content: space-around;
+            
+        }
+        .container-main .section1 .greeting{
+            color: white;
+        }
+        .container-main .section1 .greeting h3{
+            margin: 5px 0;
+        }
+        .container-main .section1 .logo img{
+            height: 48px;
+        }
+        .container-main .section2{
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            gap: 50px;
+            height: 400px;
+            
+        }
+        .container-main .section2 .keuangan{
+            background-color: #15293C;
+            width: 40%;
+            color: white;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            
+        }
+        .container-main .section2 .keuangan .keuangan-detail{
+            margin: 30px;
+        }
+        .container-main .section2 .keuangan .keuangan-detail p{
+            margin: 5px 0;
+        }
+
+
+        .container-main .section2 .user-info{
+            background-color: #BA5151;
+            width: 100%;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            
+            color: white;
+            justify-content: space-evenly;
+        }
+        .container-main .section2 .user-info .user-info-detail{
+            display: flex;
+            flex-direction: row;
+            margin: 0 70px;
+        }
+        .container-main .section2 .user-info .user-info-detail .icon{
+            font-size: 70px;
+            width: 30%; 
+        }
+        .container-main .section2 .user-info .user-info-detail .information{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
     </style>
 </head>
 
@@ -112,50 +190,53 @@
                 <ul>
                     <li class="active"><i class="fa-solid fa-house"></i><a href="">Dashboard</a></li>
                     <li><i class="fa-solid fa-bag-shopping"></i><a href=""> Product</a></li>
-                    <li><i class="fa-solid fa-stopwatch"></i><a href=""> Recent Activity</a></li>
+                    <li class="active"><i class="fa-solid fa-stopwatch"></i><a href=""> Recent Activity</a></li>
                     <li><i class="fa-solid fa-flag"></i><a href="">Report</a></li>
                 </ul>
             </div>
             <div class="logout"><a href=""><i class="fa-solid fa-right-from-bracket"></i> Log Out</a></div>
         </div>
         <div class="container-main">
-            <div class="welcome">
+            <div class="section1">
                 <div class="greeting">
-                    <h4>Hello, Welcome Back</h4>
+                    <p>Hello, Welcome Back</p>
                     <h3>MANAGE YOUR MARKETPLACE</h3>
                 </div>
-                <div class="logo"><img src="" alt=""></div>
+                <div class="logo"><img src="img/Vape.png" alt=""></div>
             </div>
-            <div class="keuangan">
-                <div class="keuangan-detail">
-                    <p>Pemasukan</p>
-                    <h3>2.530.123.123</h3>
-                </div>
-                <div class="keuangan-detail">
-                    <p>Jumlah Produk</p>
-                    <h3>6</h3>
-                </div>
-                <div class="keuangan-detail">
-                    <p>Keuntungan</p>
-                    <h3>1.512.763.134</h3>
-                </div>
-            </div>
-            <div class="user-info">
-                <div class="user-info-detail">
-                    <div class="icon"></div>
-                    <div class="information">
-                        <p>user yang sudah registrasi</p>
-                        <h3>10</h3>
+            <div class="section2">
+                <div class="keuangan">
+                    <div class="keuangan-detail">
+                        <p>Pemasukan</p>
+                        <h2>2.530.123.123</h2>
+                    </div>
+                    <div class="keuangan-detail">
+                        <p>Jumlah Produk</p>
+                        <h2>6</h2>
+                    </div>
+                    <div class="keuangan-detail">
+                        <p>Keuntungan</p>
+                        <h2>1.512.762.124</h2>
                     </div>
                 </div>
-                <div class="user-info-detail">
-                    <div class="icon"></div>
-                    <div class="information">
-                        <p>Jumlah Pesanan</p>
-                        <h3>3</h3>
+                <div class="user-info">
+                    <div class="user-info-detail">
+                        <div class="icon"><i class="fa-solid fa-users"></i></div>
+                        <div class="information">
+                            <p>user yang sudah registrasi</p>
+                            <h2>10</h2>
+                        </div>
+                    </div>
+                    <div class="user-info-detail">
+                        <div class="icon"><i class="fa-solid fa-basket-shopping"></i></div>
+                        <div class="information">
+                            <p>Jumlah Pesanan</p>
+                            <h2>3</h2>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 
