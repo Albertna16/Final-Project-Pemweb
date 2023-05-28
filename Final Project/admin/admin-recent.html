@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADMIN PRODUCT</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            min-height: 100vh;
+            display: flex;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 30%;
+            min-height: 100vh;
+            background-image: url('img/sidebarbackground.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .sidebar .logo {
+            margin: 70px auto;
+        }
+
+        .sidebar .profile-preview {
+            align-items: center;
+            text-align: center;
+            color: white;
+            margin: 30px auto;
+        }
+
+        .sidebar .profile-preview img {
+            width: 170px;
+            border-radius: 50%;
+            border: 1px solid #000000;
+        }
+
+        .sidebar .list-link {
+            width:70%;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .sidebar .list-link ul {
+            list-style-type: none;
+
+        }
+
+        .sidebar .list-link ul li {
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+
+        }
+
+        .sidebar .list-link ul li.active {
+            background: #B5B0B0;
+            border-radius: 20px;
+        }
+
+        .sidebar .list-link ul li a {
+            text-decoration: none;
+            width: 70%;
+            color: #000000;
+        }
+        .sidebar .list-link ul li a:hover{
+            color: #616161;
+            
+        }
+
+        .sidebar .list-link ul li i {
+            margin: 0 10px 0 30px;
+
+        }
+
+        .sidebar .logout {
+            margin-top: 80px;
+            
+        }
+
+        .sidebar .logout a {
+            
+            color: white;
+            font-size: 20px;
+            text-decoration: none;
+        }
+        .sidebar .logout a:hover{
+            color: #616161;
+        }
+
+        /*main*/
+        .container-main {
+            padding: 50px;
+            width: 100%;
+        }
+        table{
+            width: 100%;
+            text-align: center;
+            border: 0.5px solid  #000000 ;
+            margin: 0;
+            border-collapse: collapse;
+            
+        }
+        table thead tr th{
+            border: 0.5px solid #000000 ;
+            font-size:24px ;
+            background-color: #0C697A;
+            color: white;
+            height: 50px;
+        }
+        
+        table tbody tr td{
+            
+            border-left: 0.5px solid #000000 ;
+            height: 45px;
+        }
+        
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="logo"><img src="img/Vape.png" alt=""></div>
+            <div class="profile-preview">
+                <img src="img/userprofile.jpg" alt="">
+                <h3>Jonathan Roy</h3>
+                <p>Admin</p>
+            </div>
+            <div class="list-link">
+                <ul>
+                    <li class=""><i class="fa-solid fa-house"></i><a href="">Dashboard</a></li>
+                    <li class=""><i class="fa-solid fa-bag-shopping"></i><a href=""> Product</a></li>
+                    <li class="active"><i class="fa-solid fa-stopwatch"></i><a href=""> Recent Activity</a></li>
+                    <li><i class="fa-solid fa-flag"></i><a href="">Report</a></li>
+                </ul>
+            </div>
+            <div class="logout"><a href=""><i class="fa-solid fa-right-from-bracket"></i> Log Out</a></div>
+        </div>
+        <div class="container-main">
+            <table>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>User</th>
+                        <th>Produk</th>
+                        <th>Harga</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Bryan Yang</td>
+                        <td>RDA Druga 24mm</td>
+                        <td>Rp. 115.000</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Bryan Yang</td>
+                        <td>RDA Druga 24mm</td>
+                        <td>Rp. 115.000</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Bryan Yang</td>
+                        <td>RDA Druga 24mm</td>
+                        <td>Rp. 115.000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/73bcd336f4.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
