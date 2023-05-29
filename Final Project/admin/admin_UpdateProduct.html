@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Report</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        .container{
+            min-height: 100vh;
+            display: flex;
+            background-color: #ffe4e4;
+        }
+
+        .sidebar{
+            display: flex;
+            position: relative;
+            flex-direction: column;
+            align-items: center;
+            width: 388px;
+            min-height: 100vh;
+            background-image: url('foto/sidebarbackground.png');
+        }
+
+        .sidebar .logo{
+            margin-top: 80px;
+        }
+
+        .sidebar .profile-preview{
+            align-items: center;
+            text-align: center;
+            color: white;
+            margin: 50px auto;
+        }
+
+        .sidebar .profile-preview img{
+            width: 170px;
+            border-radius: 50%;
+            border: 1px solid #000000;
+        }
+
+        .sidebar .list-link{
+            margin-left: 120px;
+            width: 300px;
+            margin-bottom: 50px;
+        }
+
+        .sidebar .list-link ul {
+            list-style-type: none;
+        }
+
+        .sidebar .list-link ul li a {
+            text-decoration: none;
+            width: 60%;
+            color: #000000;
+            padding-inline: 5px;
+        }
+
+        .sidebar .list-link ul li i {
+            margin: 0 10px 0 30px;
+
+        }
+
+        .sidebar .logout a{
+            color: white;
+            font-size: 18px;
+            text-decoration: none;
+        }
+
+        /*report user*/
+        .container-main{
+            margin: 50px;
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .container-main .update1{
+           display: flex;
+           flex-direction: row;
+           width: 100%;
+           height: auto;
+           justify-content: space-evenly;
+           gap: 5%;
+        }
+
+        .container-main .update1 .gmbr-konfr {
+            display: flex;
+            flex-direction: column;
+            width: 25%;
+            gap: 20px;
+        }
+
+        .container-main .update1 .gmbr-konfr .ganti-gambar {
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            border-radius: 10px;
+            border: 1px solid #000000;
+            width: auto;
+        }
+
+        .container-main .update1 .gmbr-konfr .ganti-gambar p{
+            margin-top: 10px;
+            margin-left: 23px;
+            margin-bottom: 20px;
+        }
+
+        .container-main .update1 .gmbr-konfr .ganti-gambar img {
+            margin: 18px;
+            width: 150px;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .container-main .update1 .isi-update {
+            display: flex;
+            flex-direction: column;
+            width: 75%;
+            gap: 20px;
+        }
+
+        .container-main .update1 .isi-update .update {
+            display: flex;
+            border-radius: 10px;
+            height: 40px;
+            width: 100%;
+            border: 1px solid #000000;
+            background-color: white;
+        }
+
+        .container-main .update1 .isi-update .update i{
+            margin: 13px;
+            margin-left: 20px;
+        }
+
+        .container-main .update1 .isi-update .update p{
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+
+        .container-main .update1 .isi-update .update-text {
+            display: flex;
+            border-radius: 10px;
+            height: auto;
+            width: 100%;
+            border: 1px solid #000000;
+            background-color: white;
+        }
+
+        .container-main .update1 .isi-update .update-text i{
+            margin: 13px;
+            margin-left: 20px;
+        }
+
+        .container-main .update1 .isi-update .update-text p{
+            margin-top: 10px;
+            margin-left: 10px;
+            text-align: justify;
+            margin-right: 20px;
+            margin-bottom: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="logo">
+                <img src="foto/Vape.png" alt="">
+            </div>
+            <div class="profile-preview">
+                <img src="foto/userprofile.jpg" alt="">
+                <h3>Jonathan Roy</h3>
+                <p>Admin</p>
+            </div>
+            <div class="list-link">
+                <ul>
+                    <li><i class="fa-solid fa-house"></i><a href="admin-dashboard.html">Dashboard</a></li>
+                    <li><i class="fa-solid fa-bag-shopping"></i><a href=""> Product</a></li>
+                    <li><i class="fa-solid fa-stopwatch"></i><a href=""> Recent Activity</a></li>
+                    <li><i class="fa-solid fa-flag"></i><a href=""> Report</a></li>
+                </ul>
+            </div>
+            <div class="logout"><a href=""><i class="fa-solid fa-right-from-bracket"></i> Log Out</a></div>
+        </div>
+
+        <div class="container-main">
+            <h1>Edit Produk</h1>
+            <div class="update1">
+                <div class="gmbr-konfr">
+                    <div class="ganti-gambar">
+                        <img src="foto/1639402921675.jpeg" alt="">
+                        <p>Ganti gambar produk</p>
+                    </div>
+                    <button>KONFIRMASI</button>
+                </div>
+
+                <div class="isi-update">
+                    <div class="update">
+                        <i class="fa-solid fa-pen"></i>
+                        <p>Mello III Mini</p>
+                    </div>
+                    <div class="update">
+                        <i class="fa-solid fa-pen"></i>
+                        <p>Rp 23.000</p>
+                    </div>
+                    <div class="update-text">
+                        <i class="fa-solid fa-pen"></i>
+                        <p>Melo III Mini adalah sebuah tank vape yang populer dan 
+                            inovatif. Tank ini dirancang oleh perusahaan terkenal, 
+                            dengan ukuran yang kompak dan kapasitas e-liquid sebesar 
+                            2ml. Desainnya yang elegan dan ramping membuatnya cocok 
+                            untuk digunakan dengan berbagai jenis mod vape. Melo III 
+                            Mini menggunakan sistem pengisian atas yang mudah, 
+                            sehingga pengguna dapat mengisi e-liquid dengan cepat 
+                            dan praktis.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://kit.fontawesome.com/73bcd336f4.js" crossorigin="anonymous"></script>
+</body>
+</html>
