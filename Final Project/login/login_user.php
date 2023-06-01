@@ -2,7 +2,7 @@
 //memanggil file conn.php yang berisi koneski ke database
 //dengan include, semua kode dalam file conn.php dapat digunakan pada file index.php
 include('connection/connections.php');
-
+$status = $_GET['status'];
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +25,13 @@ include('connection/connections.php');
                 <div class="user-type user">User</div>
                 <div class="user-type admin">Admin</div>
             </div>
-
+            <?php
+            if ($status == 'ok_gantipass') {
+                echo '<b>Password Berhasil diganti, Silahkan Login</b>';
+            } elseif ($status == 'ok_gantipass') {
+                echo '<b>Daftar Berhasil, Silahkan Login</b>';
+            }
+            ?>
             <div class="form-container">
                 <label for="username">Username/Email:</label><br>
                 <input type="text" id="username" name="username">
@@ -45,7 +51,7 @@ include('connection/connections.php');
             <button class="login-button">Login</button>
 
             <div class="account-text">
-                You don't have an account? <a href="../create_acc_user.html">Create account</a>
+                You don't have an account? <a href="create_acc_user.php">Create account</a>
             </div>
         </div>
     </div>

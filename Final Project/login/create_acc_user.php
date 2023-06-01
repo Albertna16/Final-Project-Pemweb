@@ -20,7 +20,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     //eksekusi query
     if ($query->execute()) {
-        $status = 'ok';
+        $status = 'ok_daftar';
+        header('Location: login_user.php?status='.$status);
+        exit();
     } else {
         $status = 'err';
     }
@@ -44,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="form-container">
         <div class="form">
             <?php
-            if ($status == 'ok') {
+            if ($status == 'ok_daftar') {
                 echo '<br><br><div class="alert alert-success" role="alert">Data user berhasil disimpan</div>';
             } elseif ($status == 'err') {
                 echo '<br><br><div class="alert alert-danger" role="alert">Data user gagal disimpan</div>';
