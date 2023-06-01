@@ -1,0 +1,163 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    min-height: 100vh;
+    display: flex;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+    min-height: 100vh;
+    background-image: url('../img/sidebarbackground.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.sidebar .logo {
+    margin: 70px auto;
+}
+
+.sidebar .profile-preview {
+    align-items: center;
+    text-align: center;
+    color: white;
+    margin: 30px auto;
+}
+
+.sidebar .profile-preview img {
+    width: 170px;
+    border-radius: 50%;
+    border: 1px solid #000000;
+}
+
+.sidebar .list-link {
+    width:70%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.sidebar .list-link ul {
+    list-style-type: none;
+
+}
+
+.sidebar .list-link ul li {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+}
+
+.sidebar .list-link ul li.active {
+    background: #B5B0B0;
+    border-radius: 20px;
+}
+
+.sidebar .list-link ul li a {
+    text-decoration: none;
+    width: 70%;
+    color: #000000;
+}
+.sidebar .list-link ul li a:hover{
+    color: #616161;
+}
+
+.sidebar .list-link ul li i {
+    margin: 0 10px 0 30px;
+
+}
+
+.sidebar .logout {
+    margin-top: 80px;
+    
+}
+
+.sidebar .logout a {
+    
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+}
+.sidebar .logout a:hover{
+    color: #616161;
+}
+
+/*main*/
+.container-main {
+    padding: 50px;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 50px;
+}
+.add-product{
+    background-color:#0C697A ;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    width: 150px;
+    border-radius: 15px;
+    justify-content: center;
+}
+.add-product a{
+    color: #FFFFFF;
+    text-decoration: none;
+}
+.add-product a:hover{
+    color: #a1a1a1;
+}
+.list-product{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.list-product .product{
+    width: 270px;
+    height: 400px;
+    padding: 30px;
+    border: 0.8px solid #0a0a0a;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.list-product .product .product-img{
+    background-color: #0C697A;
+    width: 270px;
+    height: 270px;
+    text-align: center;
+}
+.list-product .product .product-img img{
+    height: 100%;
+}
+.list-product .product .product-info{
+    margin: 10px 0;
+}
+.list-product .product .product-action{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: auto;
+}
+.list-product .product .product-action a{
+    color: #FFFFFF;
+    text-decoration: none;
+    background-color: #0C697A;
+    height: 40px;
+    width: 90px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+}
+.list-product .product .product-action a:hover{
+    color: #a1a1a1;
+}
+

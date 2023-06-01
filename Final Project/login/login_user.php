@@ -2,7 +2,12 @@
 //memanggil file conn.php yang berisi koneski ke database
 //dengan include, semua kode dalam file conn.php dapat digunakan pada file index.php
 include('connection/connections.php');
-$status = $_GET['status'];
+if (isset($_GET['status'])) {
+    $status = $_GET['status'];
+}else {
+    $status = '';
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +33,7 @@ $status = $_GET['status'];
             <?php
             if ($status == 'ok_gantipass') {
                 echo '<b>Password Berhasil diganti, Silahkan Login</b>';
-            } elseif ($status == 'ok_gantipass') {
+            } elseif ($status == 'ok_daftar') {
                 echo '<b>Daftar Berhasil, Silahkan Login</b>';
             }
             ?>
@@ -61,12 +66,10 @@ $status = $_GET['status'];
             const userTypes = document.querySelectorAll('.user-type');
             const accountText = document.querySelector('.account-text');
             const forgotPassword = document.querySelector('.forgot-password');
-
             userTypes.forEach(userType => {
                 userType.addEventListener('click', () => {
                     userTypes.forEach(userType => userType.classList.remove('clicked'));
                     userType.classList.add('clicked');
-
                     if (userType.classList.contains('admin')) {
                         const checkboxContainer = document.querySelector('.checkbox-container');
                         checkboxContainer.classList.add('hide-checkbox');
