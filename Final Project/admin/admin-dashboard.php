@@ -1,4 +1,4 @@
-<?php 
+<?php
 include('../connections.php');
 ?>
 
@@ -13,12 +13,11 @@ include('../connections.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ADMIN DASHBOARD</title>
     <link rel="stylesheet" href="css/admin-dashboard.css">
-    
 </head>
 
 <body>
     <div class="container">
-    <div class="sidebar">
+        <div class="sidebar">
             <div class="logo"><img src="img/Vape.png" alt=""></div>
             <div class="profile-preview">
                 <img src="img/userprofile.jpg" alt="">
@@ -30,7 +29,7 @@ include('../connections.php');
                     <li class="active"><i class="fa-solid fa-house"></i><a href="admin-dashboard.php">Dashboard</a></li>
                     <li class=""><i class="fa-solid fa-bag-shopping"></i><a href="admin-product.php"> Product</a></li>
                     <li class=""><i class="fa-solid fa-stopwatch"></i><a href="admin-recent.php"> Recent Activity</a></li>
-                    <li class=""><i class="fa-solid fa-flag"></i><a href="">Report</a></li>
+                    <li class=""><i class="fa-solid fa-flag"></i><a href="admin-report.php">Report</a></li>
                 </ul>
             </div>
             <div class="logout"><a href=""><i class="fa-solid fa-right-from-bracket"></i> Log Out</a></div>

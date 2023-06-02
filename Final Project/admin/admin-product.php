@@ -16,8 +16,6 @@ include('../connections.php');
     
 </head>
 
-
-
 <body>
     <div class="container">
         <div class="sidebar">
@@ -32,7 +30,7 @@ include('../connections.php');
                     <li class=""><i class="fa-solid fa-house"></i><a href="admin-dashboard.php">Dashboard</a></li>
                     <li class="active"><i class="fa-solid fa-bag-shopping"></i><a href="admin-product.php"> Product</a></li>
                     <li class=""><i class="fa-solid fa-stopwatch"></i><a href="admin-recent.php"> Recent Activity</a></li>
-                    <li><i class="fa-solid fa-flag"></i><a href="">Report</a></li>
+                    <li class=""><i class="fa-solid fa-flag"></i><a href="admin-report.php">Report</a></li>
                 </ul>
             </div>
             <div class="logout"><a href=""><i class="fa-solid fa-right-from-bracket"></i> Log Out</a></div>
