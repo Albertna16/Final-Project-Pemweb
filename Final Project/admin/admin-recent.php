@@ -27,7 +27,7 @@ include('../connections.php');
             </div>
             <div class="list-link">
                 <ul>
-                    <li class=""><i class="fa-solid fa-house"></i><a href="admin-dasboard.php">Dashboard</a></li>
+                    <li class=""><i class="fa-solid fa-house"></i><a href="admin-dashboard.php">Dashboard</a></li>
                     <li class=""><i class="fa-solid fa-bag-shopping"></i><a href="admin-product.php"> Product</a></li>
                     <li class="active"><i class="fa-solid fa-stopwatch"></i><a href="admin-recent.php"> Recent Activity</a></li>
                     <li><i class="fa-solid fa-flag"></i><a href="">Report</a></li>
