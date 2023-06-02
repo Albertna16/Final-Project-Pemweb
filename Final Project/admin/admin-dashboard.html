@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 370px;
+            padding: 40px 20px;
+            background-image: url("../admin/img/sidebarbackground.png");
+            background-color: black;
+        }
+
+        .sidebar .logo {
+            text-align: center;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .sidebar .logo img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .sidebar .profile {
+            text-align: center;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .sidebar .profile img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+
+        .sidebar .profile h4 {
+            margin: 5px 0;
+            font-size: 20px;
+        }
+
+        .sidebar .profile p {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .sidebar .menu {
+            margin-top: 50px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .sidebar .menu a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            margin-bottom: 10px;
+            margin-left: 10%;
+            color: black;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 10px;
+            background-color: transparent;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .sidebar .menu a.active {
+            background-color: #B5B0B0;
+            width: 220px;
+            border-radius: 20px;
+        }
+
+        .sidebar .menu a i {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        .sidebar .logout {
+            margin-top: 40px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .sidebar .logout a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            margin-bottom: 10px;
+            margin-left: 20%;
+            color: white;
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        .sidebar .logout a i {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        /* main */
+        .container-main {
+            margin: 30px 50px;
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+            gap: 50px;
+        }
+
+        .container-main .section1 {
+            background-color: #0C697A;
+            border-radius: 20px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 60px;
+
+        }
+
+        .container-main .section1 .greeting {
+            color: white;
+        }
+
+        .container-main .section1 .greeting p {
+            margin: 5px 0;
+            font-size: 20px;
+        }
+
+        .container-main .section1 .greeting h3 {
+            margin: 5px 0;
+            font-size: 28px;
+        }
+
+        .container-main .section1 .logo img {
+            height: 48px;
+        }
+
+        .container-main .section2 {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            gap: 50px;
+            height: 300px;
+
+        }
+
+        .container-main .section2 .keuangan {
+            background-color: #15293C;
+            width: 600px;
+            color: white;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 10px;
+
+        }
+
+        .container-main .section2 .keuangan .keuangan-detail {
+            margin: 0px 20px;
+        }
+
+        .container-main .section2 .keuangan .keuangan-detail p {
+            font-size: 16px;
+        }
+
+        .container-main .section2 .keuangan .keuangan-detail h2 {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .container-main .section2 .user-info {
+            background-color: #BA5151;
+            width: 100%;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            color: white;
+            justify-content: space-evenly;
+        }
+
+        .container-main .section2 .user-info .user-info-detail {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            margin: 0 70px;
+        }
+
+        .container-main .section2 .user-info .user-info-detail .icon {
+            font-size: 70px;
+            width: 30%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container-main .section2 .user-info .user-info-detail .icon i {
+            margin-top: 10px;
+        }
+
+        .container-main .section2 .user-info .user-info-detail .information {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 70%;
+        }
+
+        .container-main .section2 .user-info .user-info-detail .information p {
+            margin-bottom: 0;
+        }
+
+        .container-main .section2 .user-info .user-info-detail .information h2 {
+            margin-top: 5px;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="../admin/css/admin-dashboard.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="logo">
+                <img src="../admin/img/Vape.png" alt="Logo">
+            </div>
+            <div class="profile">
+                <img src="../admin/img/userprofile.jpg" alt="Profile Picture">
+                <h4>Jonathan Roy</h4>
+                <p>Admin</p>
+            </div>
+            <div class="menu">
+                <a href="#" class="active"><i class="fa-solid fa-house-chimney"></i>Dashboard</a>
+                <a href="admin-product.php"><i class="fas fa-shopping-cart"></i>Product</a>
+                <a href="admin-recent.php"><i class="fa-solid fa-history"></i>Recent Activity</a>
+                <a href="admin_report.html"><i class="fas fa-chart-bar"></i>Report</a>
+            </div>
+
+            <div class="logout">
+                <a href="#"><i class="fa-solid fa-right-from-bracket"></i>Log out</a>
+            </div>
+        </div>
+        <div class="container-main">
+            <div class="section1">
+                <div class="greeting">
+                    <p>Hello, Welcome Back</p>
+                    <h3>MANAGE YOUR MARKETPLACE</h3>
+                </div>
+                <div class="logo"><img src="../admin/img/Vape.png" alt=""></div>
+            </div>
+            <div class="section2">
+                <div class="keuangan">
+                    <div class="keuangan-detail">
+                        <p>Pemasukan</p>
+                        <h2>2.530.123.123</h2>
+                    </div>
+                    <div class="keuangan-detail">
+                        <p>Jumlah Produk</p>
+                        <h2>6</h2>
+                    </div>
+                    <div class="keuangan-detail">
+                        <p>Keuntungan</p>
+                        <h2>1.512.762.124</h2>
+                    </div>
+                </div>
+                <div class="user-info">
+                    <div class="user-info-detail">
+                        <div class="icon"><i class="fa-solid fa-users"></i></div>
+                        <div class="information">
+                            <p>user yang sudah registrasi</p>
+                            <h2>10</h2>
+                        </div>
+                    </div>
+                    <div class="user-info-detail">
+                        <div class="icon"><i class="fa-solid fa-basket-shopping"></i></div>
+                        <div class="information">
+                            <p>Jumlah Pesanan</p>
+                            <h2>3</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/73bcd336f4.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
