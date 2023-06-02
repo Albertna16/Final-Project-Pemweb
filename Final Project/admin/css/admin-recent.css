@@ -5,16 +5,20 @@ body {
 }
 
 .container {
+    position: relative;
     display: flex;
-    min-height: 100vh;
 }
 
 .sidebar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 30%;
-    min-height: 100vh;
+    height: 100%;
     background-image: url('../img/sidebarbackground.png');
     background-repeat: no-repeat;
     background-size: cover;
@@ -81,7 +85,8 @@ body {
 }
 
 .sidebar .logout {
-    margin-top: 80px;
+    margin-top: 70px;
+    margin-bottom: 9px;
 
 }
 
