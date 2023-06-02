@@ -1,0 +1,301 @@
+body{
+    background-color: black;
+}
+
+/*navbar dan header*/
+.navbar.sticky-top {
+    background-color: #f8f9fa;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+}
+
+.container-fluid .logo a{
+    padding-left: 30px;
+    font-size: 30px;
+}
+
+.bgheader{
+    background-color: black;
+}
+
+header{
+    background-image: url('image/header.png');
+    height: 70px;
+    font-family: 'Inter', sans-serif;
+}
+
+header p{
+    color: white;
+    font-size: 24px;
+    text-align: center;
+    padding: 10px;
+}
+
+/*jumbotron*/
+.jumbotron{
+    background-color: white;
+}
+
+.vape img{
+    height: 570px;
+    width: 100%;
+}
+
+.profile{
+    padding-left: 20px;
+    font-size: 23px;
+}
+
+
+.logout{
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 23px;
+}
+
+.fa-solid{
+    color: black;
+}
+
+/*about us*/
+.aboutus{
+    background-color: white;
+    height: 700px;
+}
+
+.aboutus .container1{
+    padding: 70px;
+    display: grid;
+    grid-template-areas: "box1 box2";
+    grid-template-columns: 0.2fr 0.8fr ;
+}
+
+.container1 .box1{
+    grid-area: box1;
+}
+
+.box1 img{
+    margin-left: 50px;
+    width: 450px;
+    height: 580px;
+}
+
+.box2 h2{
+    margin-top: 20px;
+    margin-left: 260px;
+    font-family: 'inter', sans-serif;
+    font-size: 40px;
+}
+
+.box2 p{
+    font-family: 'inter', sans-serif;
+    text-align: justify;
+    margin-left: 200px;
+    font-size: 17px;
+}
+
+/*product*/
+.product{
+    background-color: black;
+    background-image: url('image/product.png');
+    height: 700px;
+    color: white;
+}
+
+.product h1{
+    padding-top: 50px;
+    text-align: center;
+    font-family: 'inter', sans-serif;
+    font-size: 40px;
+}
+
+.product p{
+    font-family: 'inter', sans-serif;
+    text-align: center;
+    margin-left: 200px;
+    margin-right: 200px;
+    font-size: 17px;
+}
+
+.product img{
+    height: 335px;
+    margin: 33px;
+}
+
+.button-product{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+
+.button-product a{
+    background-color: rgba(181, 176, 176, 0.7);
+    padding: 12px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+}
+
+/*report*/
+.report{
+    padding-top: 100px;
+    background-color: white;
+    height: 700px;
+}
+
+.report .container2{
+    padding-top: 30px;
+    padding-left: 50px;
+    display: grid;
+    grid-template-areas: "box1 box2";
+    grid-template-columns: 0.4fr 0.6fr ;
+}
+
+.container2{
+    color: black;
+    height: 500px;
+    width: 1000px;
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+    border-radius: 20px;
+    margin-left: 170px;
+}
+
+.container2 .box1{
+    grid-area: box1;
+    margin: 70px;
+}
+
+.container2 .box1 h1{
+    text-align: center;
+    font-family: 'inter', sans-serif;
+    font-size: 40px
+}
+
+.container2 .box1 p{
+    margin-top: 20px;
+    text-align: justify;
+    font-family: 'inter', sans-serif;
+    font-size: 17px;
+}
+
+.container2 .box2-1{
+    display: flex;
+    justify-content: center;
+    margin-top: 70px;
+}
+
+.box2-1 input{
+    height: 40px;
+    border: 0.5;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: black;
+}
+
+.container2 .box2-2{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.box2-2 input{
+    border: 0.5;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: black;
+    height: 40px;
+    width: 380px;
+}
+
+.container2 .box2-3{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.box2-3 input{
+    border: 0.5;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: black;
+    height: 150px;
+    width: 380px;
+}
+
+.button-report{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+
+.button-report a{
+    width: 380px;
+    background-color: #0c6974;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    text-align: center;
+}
+
+/*footer*/
+.bgfooter{
+    background-image: url('image/backgroundfooter.png');
+    height: 80px;
+}
+
+.bgfooter .container3{
+    display: grid;
+    grid-template-areas: "box1 box2";
+    grid-template-columns: 0.5fr 0.5fr ;
+}
+
+.container3 .box1{
+    grid-area: box1;
+    display: flex;
+    justify-content: right;
+    padding-top: 20px;
+    padding-right: 100px;
+}
+
+.container3 .box1 img{
+    height: 40px;
+    width: 80px;
+}
+
+.container3 .box2{
+    color: #ffffff;
+    padding-top: 7px;
+    padding-left: 70px;
+}
+
+.container3 .box2 i{
+    color: #ffffff;
+}
+
+.container3 .box2 a{
+    text-decoration: none;
+    padding-left: 10px;
+}
+
+.container3 .box2 p{
+    margin-left: 0px;
+}
+
+footer{
+    background-color:white;
+    height: 30px;
+    padding-right: 20px;
+}
+
+footer p{
+    display: flex;
+    justify-content: center;
+    font-family: 'inter', sans-serif;
+}
