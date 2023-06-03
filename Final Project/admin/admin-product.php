@@ -37,7 +37,7 @@ include('../connections.php');
         </div>
         <div class="container-main">
             <div class="add-product">
-                <a href="">Add Product <i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="admin-AddProduct.php">Add Product <i class="fa-solid fa-cart-shopping"></i></a>
             </div>
             <div class="list-product">
                 <div class="product">
