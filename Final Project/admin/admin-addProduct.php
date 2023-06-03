@@ -36,7 +36,9 @@
                         <i class="fa-regular fa-image"></i>
                         <p>Tambah gambar produk</p>
                     </div>
-                    <button>Add Produk</button>
+                    <div class="button-choice">
+                        <a href="#">Add Produk</a>
+                    </div>
                 </div>
 
                 <div class="addPrdct">
