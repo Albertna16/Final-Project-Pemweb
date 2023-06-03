@@ -11,7 +11,7 @@
 
 <body>
     <div class="container">
-    <div class="sidebar">
+        <div class="sidebar">
             <div class="logo"><img src="img/Vape.png" alt=""></div>
             <div class="profile-preview">
                 <img src="img/userprofile.jpg" alt="">
@@ -30,33 +30,35 @@
         </div>
         <div class="add-product">
             <h1>Tambah Produk</h1>
-            <div class="add1">
-                <div class="add-gambar-konfr">
-                    <div class="add-gambar">
-                        <i class="fa-regular fa-image"></i>
-                        <p>Tambah gambar produk</p>
+            <form action="">
+                <div class="add1">
+                    <div class="add-gambar-konfr">
+                        <div class="add-gambar">
+                            <i class="fa-regular fa-image"></i>
+                            <p>Tambah gambar produk</p>
+                        </div>
+                        <div class="button-choice">
+                            <a href="#">Add Produk</a>
+                        </div>
                     </div>
-                    <div class="button-choice">
-                        <a href="#">Add Produk</a>
-                    </div>
-                </div>
 
-                <div class="addPrdct">
-                    <div class="add2">
-                        <i class="fa-solid fa-pen"></i>
-                        <p>Nama Produk</p>
+                    <div class="addPrdct">
+                        <div class="add2">
+                            <i class="fa-solid fa-pen"></i>
+                            <input type="text" class="form-control" name="nama_produk" id="nama_produk" placeholder="Nama produk">
+                        </div>
+                        <div class="add2">
+                            <i class="fa-solid fa-pen"></i>
+                            <input type="text" class="form-control" name="harga_produk" id="harga_produk" placeholder="Harga produk">
+                        </div>
+                        <div class="add3">
+                            <i class="fa-solid fa-pen"></i>
+                            <textarea class="form-control" name="deskripsi_produk" id="deskripsi_produk" placeholder="Deskripsi produk"></textarea>
+                        </div>
+                        <i class="fa-solid fa-pen-line"></i>
                     </div>
-                    <div class="add2">
-                        <i class="fa-solid fa-pen"></i>
-                        <p>Harga Produk</p>
-                    </div>
-                    <div class="add3">
-                        <i class="fa-solid fa-pen"></i>
-                        <p>Deskripsi Produk</p>
-                    </div>
-                    <i class="fa-solid fa-pen-line"></i>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 
