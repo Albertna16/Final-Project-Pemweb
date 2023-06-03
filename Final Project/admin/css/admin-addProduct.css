@@ -105,6 +105,10 @@ body {
     gap: 20px;
 }
 
+.add-product h1{
+    font-size: 33px;
+}
+
 .add-product .add1 {
     display: flex;
     flex-direction: row;
@@ -121,21 +125,46 @@ body {
     gap: 20px;
 }
 
+.add-product .add1 .add-gambar-konfr .button-choice a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 230px;
+    border-radius: 10px;
+    margin-top: 20px;
+    background-color: #0C697A;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    text-decoration: none;
+    color: white;
+    transition: 0.2s;
+}
+
+.add-product .add1 .add-gambar-konfr .button-choice a:hover{
+    background-color: white;
+    color: black;
+}
+
 .add-product .add1 .add-gambar-konfr .add-gambar {
     display: flex;
     flex-direction: column;
-    border: 1px solid #000000;
-    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
     background-color: white;
+    height: 300px;
+    width: 230px;
 }
 
 .add-product .add1 .add-gambar-konfr .add-gambar i {
-    margin: 90px;
+    margin-top: 80px;
+    text-align: center;
+    font-size: 100px;
+    color: rgba(0, 0, 0, 0.5);
 }
 
 .add-product .add1 .add-gambar-konfr .add-gambar p {
-    margin-left: 20px;
-    margin-bottom: 20px;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.5);
 }
 
 .add-product .add1 .addPrdct {
@@ -148,35 +177,39 @@ body {
 
 .add-product .add1 .addPrdct .add2 {
     display: flex;
-    border: 1px solid #000000;
-    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
     width: 100%;
     background-color: white;
 }
 
 .add-product .add1 .addPrdct .add2 i {
     margin: 15px;
+    color: rgba(0, 0, 0, 0.5);
 }
 
 .add-product .add1 .addPrdct .add2 p {
-    margin-top: 13px;
+    margin-top: 15px;
     margin-left: 8px;
+    color: rgba(0, 0, 0, 0.5);
 }
 
 .add-product .add1 .addPrdct .add3 {
     display: flex;
     width: 100%;
-    height: 140px;
-    border: 1px solid #000000;
-    border-radius: 5px;
+    height: 235px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
     background-color: white;
 }
 
 .add-product .add1 .addPrdct .add3 i {
     margin: 15px;
+    color: rgba(0, 0, 0, 0.5);
 }
 
 .add-product .add1 .addPrdct .add3 p {
-    margin-top: 13px;
+    margin-top: 15px;
     margin-left: 8px;
+    color: rgba(0, 0, 0, 0.5);
 }
