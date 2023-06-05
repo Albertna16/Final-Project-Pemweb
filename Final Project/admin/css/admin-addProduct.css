@@ -125,7 +125,7 @@ body {
     gap: 20px;
 }
 
-.add-product .add1 .add-gambar-konfr .button-choice a{
+.add-product .add1 .add-gambar-konfr .button-choice button{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -140,7 +140,7 @@ body {
     transition: 0.2s;
 }
 
-.add-product .add1 .add-gambar-konfr .button-choice a:hover{
+.add-product .add1 .add-gambar-konfr .button-choice button:hover{
     background-color: white;
     color: black;
 }
@@ -153,13 +153,22 @@ body {
     background-color: white;
     height: 300px;
     width: 230px;
+    justify-content: center;
+}
+.add-product .add1 .add-gambar-konfr .add-gambar label {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
-.add-product .add1 .add-gambar-konfr .add-gambar i {
-    margin-top: 80px;
+.add-product .add1 .add-gambar-konfr .add-gambar label i {
+    
     text-align: center;
     font-size: 100px;
     color: rgba(0, 0, 0, 0.5);
+}
+.add-product .add1 .add-gambar-konfr .add-gambar input{
+    display: none;
 }
 
 .add-product .add1 .add-gambar-konfr .add-gambar p {

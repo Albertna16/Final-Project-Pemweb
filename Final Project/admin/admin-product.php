@@ -1,5 +1,10 @@
 <?php 
 include('../connections.php');
+if (isset($_GET['status'])) {
+    $status = $_GET['status'];
+} else {
+    $status = '';
+}
 ?>
 
 
@@ -36,6 +41,13 @@ include('../connections.php');
             <div class="logout"><a href=""><i class="fa-solid fa-right-from-bracket"></i> Log Out</a></div>
         </div>
         <div class="container-main">
+            <?php
+            if ($status == 'ok') {
+                echo '<b>Berhasil ditambahkan</b>';
+            } elseif ($status == 'ok_daftar') {
+                echo '<b>gagal ditambahkan</b>';
+            }
+            ?>
             <div class="add-product">
                 <a href="admin-AddProduct.php">Add Product <i class="fa-solid fa-cart-shopping"></i></a>
             </div>

@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,6 +10,52 @@
     <title>Admin Add Product</title>
     <link rel="stylesheet" href="css/admin-addProduct.css">
 </head>
+
+<?php
+include('../connections.php');
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $nameProduct = $_POST['nama_produk'];
+    $priceProduct = $_POST['harga_produk'];
+    $deskProduct = $_POST['deskripsi_produk'];
+
+
+    $namaGambar = $_FILES['gambar_produk']['name'];
+    $errorGambar = $_FILES['gambar_produk']['error'];
+    $tmpGambar = $_FILES["gambar_produk"]["tmp_name"];
+    $ekstensiGambar = explode('.', $namaGambar);
+    $ekstensiGambar = strtolower(end($ekstensiGambar));
+    $namaGambarBaru = uniqid() . '.' . $ekstensiGambar;
+
+    if ($errorGambar === 0) {
+        $query = $connection->prepare("INSERT INTO product (name_product, price_product, desk_product, gambar_product) VALUES(:NAME_PRODUCT, :PRICE_PRODUCT, :DESK_PRODUCT , :GAMBAR_PRODUCT)");
+
+        //binding data
+        $query->bindParam(':NAME_PRODUCT', $nameProduct);
+        $query->bindParam(':PRICE_PRODUCT', $priceProduct);
+        $query->bindParam(':DESK_PRODUCT',  $deskProduct);
+        $query->bindParam(':GAMBAR_PRODUCT',  $namaGambarBaru);
+
+        if ($query->execute()) {
+            
+            move_uploaded_file($tmpGambar, '../resource/product/img/' . $namaGambarBaru);
+            $status = 'ok';
+            header('location: admin-product.php?status=' . $status);
+            exit;
+        } else {
+            $status = 'err';
+            header('location: admin-product.php?status=' . $status);
+            exit;
+        }
+    } else {
+        $status = 'err';
+        header('location: admin-product.php?status=' . $status);
+        exit;
+    }
+}
+
+?>
+
+
 
 <body>
     <div class="container">
@@ -28,17 +76,21 @@
             </div>
             <div class="logout"><a href=""><i class="fa-solid fa-right-from-bracket"></i> Log Out</a></div>
         </div>
+
         <div class="add-product">
             <h1>Tambah Produk</h1>
-            <form action="">
+            <form action="admin-addProduct.php" method="post" enctype="multipart/form-data">
                 <div class="add1">
                     <div class="add-gambar-konfr">
                         <div class="add-gambar">
-                            <i class="fa-regular fa-image"></i>
-                            <p>Tambah gambar produk</p>
+                            <label for="inputGambar">
+                                <i class="fa-regular fa-image"></i>
+                                <p>Tambah gambar produk</p>
+                            </label>
+                            <input type="file" name="gambar_produk" id="inputGambar" accept="image/*">
                         </div>
                         <div class="button-choice">
-                            <a href="#">Add Produk</a>
+                            <button type="submit">Add Produk</button>
                         </div>
                     </div>
 
