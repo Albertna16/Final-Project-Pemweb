@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -76,42 +74,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <div class="logout"><a href=""><i class="fa-solid fa-right-from-bracket"></i> Log Out</a></div>
         </div>
-
         <div class="add-product">
             <h1>Tambah Produk</h1>
-            <form action="admin-addProduct.php" method="post" enctype="multipart/form-data">
+            <form action="">
                 <div class="add1">
                     <div class="add-gambar-konfr">
                         <div class="add-gambar">
-                            <label for="inputGambar">
-                                <i class="fa-regular fa-image"></i>
-                                <p>Tambah gambar produk</p>
-                            </label>
-                            <input type="file" name="gambar_produk" id="inputGambar" accept="image/*">
+                            <i class="fa-regular fa-image"></i>
+                            <p>Tambah gambar produk</p>
                         </div>
                         <div class="button-choice">
-                            <button type="submit">Add Produk</button>
+                            <a href="#">Add Produk</a>
                         </div>
-                    </div>
 
-                    <div class="addPrdct">
-                        <div class="add2">
-                            <i class="fa-solid fa-pen"></i>
-                            <input type="text" class="form-control" name="nama_produk" id="nama_produk" placeholder="Nama produk">
+                        <div class="addPrdct">
+                            <div class="add2">
+                                <i class="fa-solid fa-pen"></i>
+                                <input type="text" class="form-control" name="NAME_PRODUCT" id="NAME_PRODUCT" placeholder="Nama produk">
+                            </div>
+                            <div class="add2">
+                                <i class="fa-solid fa-pen"></i>
+                                <input type="text" class="form-control" name="PRICE_PRODUCT" id="PRICE_PRODUCT" placeholder="Harga produk">
+                            </div>
+                            <div class="add3">
+                                <i class="fa-solid fa-pen"></i>
+                                <textarea class="form-control" name="DESK_PRODUCT" id="DESK_PRODUCT" placeholder="Deskripsi produk"></textarea>
+                            </div>
+                            <i class="fa-solid fa-pen-line"></i>
                         </div>
-                        <div class="add2">
-                            <i class="fa-solid fa-pen"></i>
-                            <input type="text" class="form-control" name="harga_produk" id="harga_produk" placeholder="Harga produk">
-                        </div>
-                        <div class="add3">
-                            <i class="fa-solid fa-pen"></i>
-                            <textarea class="form-control" name="deskripsi_produk" id="deskripsi_produk" placeholder="Deskripsi produk"></textarea>
-                        </div>
-                        <i class="fa-solid fa-pen-line"></i>
                     </div>
-                </div>
-            </form>
-        </div>
+                </form>
+            </div>
+        </form>
     </div>
 
     <script src="https://kit.fontawesome.com/73bcd336f4.js" crossorigin="anonymous"></script>
