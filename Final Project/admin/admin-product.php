@@ -52,71 +52,28 @@ if (isset($_GET['status'])) {
                 <a href="admin-AddProduct.php">Add Product <i class="fa-solid fa-cart-shopping"></i></a>
             </div>
             <div class="list-product">
+                <?php $query = "SELECT * FROM product";
+                $result = $connection->query($query);
+                $i = 1;
+
+                ?>
+                <?php while ($data = $result->fetch(PDO::FETCH_ASSOC)) : ?>
+                    
                 <div class="product">
                     <div class="product-img">
-                        <img src="img/icelandmango30ml.png" alt="">
+                        <img src="../resource/product/img/<?php echo $data['GAMBAR_PRODUCT']; ?>" alt="">
                     </div>
                     <div class="product-info">
-                        <h2>Iceland Mango 30ml</h2>
-                        <p>Rp. 110.000</p>
+                        <h2><?php echo $data['NAME_PRODUCT']; ?></h2>
+                        <p>Rp. <?php echo $data['PRICE_PRODUCT']; ?></p>
                     </div>
                     <div class="product-action">
                         <a href="">Delete</a>
                         <a href="">Edit</a>
                     </div>
                 </div>
-                <div class="product">
-                    <div class="product-img">
-                        <img src="img/icelandmango30ml.png" alt="">
-                    </div>
-                    <div class="product-info">
-                        <h2>Iceland Mango 30ml</h2>
-                        <p>Rp. 110.000</p>
-                    </div>
-                    <div class="product-action">
-                        <a href="">Delete</a>
-                        <a href="">Edit</a>
-                    </div>
-                </div>
-                <div class="product">
-                    <div class="product-img">
-                        <img src="img/icelandmango30ml.png" alt="">
-                    </div>
-                    <div class="product-info">
-                        <h2>Iceland Mango 30ml</h2>
-                        <p>Rp. 110.000</p>
-                    </div>
-                    <div class="product-action">
-                        <a href="">Delete</a>
-                        <a href="">Edit</a>
-                    </div>
-                </div>
-                <div class="product">
-                    <div class="product-img">
-                        <img src="img/icelandmango30ml.png" alt="">
-                    </div>
-                    <div class="product-info">
-                        <h2>Iceland Mango 30ml</h2>
-                        <p>Rp. 110.000</p>
-                    </div>
-                    <div class="product-action">
-                        <a href="">Delete</a>
-                        <a href="">Edit</a>
-                    </div>
-                </div>
-                <div class="product">
-                    <div class="product-img">
-                        <img src="img/icelandmango30ml.png" alt="">
-                    </div>
-                    <div class="product-info">
-                        <h2>Iceland Mango 30ml</h2>
-                        <p>Rp. 110.000</p>
-                    </div>
-                    <div class="product-action">
-                        <a href="">Delete</a>
-                        <a href="">Edit</a>
-                    </div>
-                </div>
+                <?php endwhile ?>
+                
             </div>
         </div>
     </div>
