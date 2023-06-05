@@ -4,7 +4,7 @@
 include('connection/connections.php');
 if (isset($_GET['status'])) {
     $status = $_GET['status'];
-}else {
+} else {
     $status = '';
 }
 
@@ -37,23 +37,25 @@ if (isset($_GET['status'])) {
                 echo '<b>Daftar Berhasil, Silahkan Login</b>';
             }
             ?>
-            <div class="form-container">
-                <label for="username">Username/Email:</label><br>
-                <input type="text" id="username" name="username">
-            </div>
+            <form action="loginAction.php" method="post">
+                <div class="form-container">
+                    <label for="username">Username/Email:</label><br>
+                    <input type="text" id="username" name="username">
+                </div>
 
-            <div class="form-container">
-                <label for="password">Password:</label><br>
-                <input type="password" id="password" name="password">
-                <div class="forgot-password"><a href="../login/forgot_pass_user.php">Forgot Password</a></div>
-            </div>
+                <div class="form-container">
+                    <label for="password">Password:</label><br>
+                    <input type="password" id="password" name="password">
+                    <div class="forgot-password"><a href="../login/forgot_pass_user.php">Forgot Password</a></div>
+                </div>
 
-            <div class="checkbox-container">
-                <input type="checkbox" id="age-check" name="age-check">
-                <label for="age-check">I am 18 years or older</label>
-            </div>
-
-            <button class="login-button">Login</button>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="age-check" name="age-check">
+                    <label for="age-check">I am 18 years or older</label>
+                </div>
+                <input type="hidden" name="typeUser" value="user">
+                <button class="login-button" type="submit">Login</button>
+            </form>
 
             <div class="account-text">
                 You don't have an account? <a href="create_acc_user.php">Create account</a>
@@ -66,6 +68,7 @@ if (isset($_GET['status'])) {
             const userTypes = document.querySelectorAll('.user-type');
             const accountText = document.querySelector('.account-text');
             const forgotPassword = document.querySelector('.forgot-password');
+            const typeUserInput = document.querySelector('input[name="typeUser"]');
             userTypes.forEach(userType => {
                 userType.addEventListener('click', () => {
                     userTypes.forEach(userType => userType.classList.remove('clicked'));
@@ -75,11 +78,15 @@ if (isset($_GET['status'])) {
                         checkboxContainer.classList.add('hide-checkbox');
                         accountText.style.display = 'none';
                         forgotPassword.style.display = 'none';
+                        typeUserInput.value = 'admin';
+                        console.log(typeUserInput.value);
                     } else {
                         const checkboxContainer = document.querySelector('.checkbox-container');
                         checkboxContainer.classList.remove('hide-checkbox');
                         accountText.style.display = 'block';
                         forgotPassword.style.display = 'block';
+                        typeUserInput.value = 'user';
+                        console.log(typeUserInput.value);
                     }
                 });
             });
