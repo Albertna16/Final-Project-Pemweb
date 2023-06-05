@@ -98,7 +98,7 @@ body {
 
 /*tambah produk*/
 .add-product {
-    margin: 50px;
+    margin: 0px 50px 50px 50px;
     display: flex;
     width: 100%;
     flex-direction: column;
@@ -107,7 +107,6 @@ body {
 
 .add-product h1{
     font-size: 33px;
-    margin-top: 60px;
 }
 
 .add-product .add1 {
@@ -172,7 +171,6 @@ body {
     display: flex;
     flex-direction: column;
     width: 75%;
-
     gap: 20px;
 }
 
@@ -189,14 +187,20 @@ body {
     color: rgba(0, 0, 0, 0.5);
 }
 
-.add-product .add1 .addPrdct .add2 p {
-    margin-top: 15px;
+.add-product .add1 .addPrdct .add2 input {
     margin-left: 8px;
+    margin-top: 3px;
+    margin-bottom: 3px;
     color: rgba(0, 0, 0, 0.5);
+    border: none;
+    font-size: 16px;
+    width: 90%;
+    outline: none;
 }
 
 .add-product .add1 .addPrdct .add3 {
     display: flex;
+    flex-direction: row;
     width: 100%;
     height: 235px;
     border: 1px solid rgba(0, 0, 0, 0.5);
@@ -209,8 +213,12 @@ body {
     color: rgba(0, 0, 0, 0.5);
 }
 
-.add-product .add1 .addPrdct .add3 p {
-    margin-top: 15px;
-    margin-left: 8px;
+.add-product .add1 .addPrdct .add3 textarea {
     color: rgba(0, 0, 0, 0.5);
+    border: none;
+    font-size: 16px;
+    margin: 10px 8px;
+    width: 90%;
+    height: 90%;
+    outline: none;
 }

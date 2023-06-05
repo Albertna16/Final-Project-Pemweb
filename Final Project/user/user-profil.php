@@ -1,5 +1,31 @@
-<?php 
-    include('../connections.php');
+<?php
+    include('conn.php');
+?>
+
+<?php
+    $query = "SELECT * FROM user";
+    // data user
+    $result = $conn->query($query);
+    $data = $result->fetch(PDO::FETCH_ASSOC);
+?>
+
+<?php
+    $query_pesanan = "SELECT 
+    product.name_product, 
+    transaksi.id_transaksi, 
+    transaksi.tanggal_transaksi, 
+    transaksi_item.jumlah, 
+    transaksi_item.harga
+    FROM 
+        product
+    JOIN 
+        transaksi_item ON product.id_product = transaksi_item.id_product
+    JOIN 
+        transaksi ON transaksi.id_transaksi = transaksi_item.id_transaksi;";
+    
+    // data pesanan-user
+    $result_pesanan = $conn->query($query_pesanan);
+    $data_pesanan = $result_pesanan->fetch(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -10,23 +36,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>USER PROFIL</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
-    <link rel="stylesheet" href="user-profil-style.css">
+    <link rel="stylesheet" href="user-profile-style.css">
 </head>
 <body>
-
+    
+    <?php if (!empty($result)): ?>
     <div class="sidebar">
         <div class="logo">
             <img src="image/Vape.png" alt="">
         </div>
         <center>
-            <img class="user-photo" src=image/profil.jpg>
+            <?php if ($data['FOTO_USER'] == "") { ?>
+                <img class="user-photo" src="https://via.placeholder.com/500x500.png?text=TIDAK+ADA+FOTO">
+            <?php }else{ ?>
+                <img class="user-photo" src="foto-profil-user/<?php echo $data['FOTO_USER']; ?>">
+            <?php } ?>
+
             <div class="name">
-                <p>Brian Yang</p>
+                <p><?php echo $data['USERNAME_USER'];  ?></p>
             </div>
             <div class="balance">
                 <i class="fas fa-wallet balance-icon"></i>
                 <span>Saldo</span>
-                <span class="balance-amount">Rp0</span>
+                <span class="balance-amount">Rp<?php echo $data['SALDO'];  ?></span>
             </div>
         </center>
         <div class="navigation">
@@ -42,7 +74,7 @@
     </div>
 
     <div class="content">
-        <h1 class="welcome-text">Hello, Welcome Brian Yang</h1>
+        <h1 class="welcome-text">Hello, Welcome <?php echo $data['USERNAME_USER'];  ?></h1>
 
         <div class="box">
             <div class="box-row">
@@ -50,8 +82,8 @@
                 <button class="box-button" onclick="openPopup('popup-akun')">Ubah</button>
             </div>
             <div class="box-content">
-                <p class="box-text">Brian Yang</p>
-                <p class="box-text">brianyang@gmail.com</p>
+                <p class="box-text"><?php echo $data['USERNAME_USER'];  ?></p>
+                <p class="box-text"><?php echo $data['EMAIL_USER'];  ?></p>
             </div>
         </div>
 
@@ -61,12 +93,14 @@
                 <button class="box-button" onclick="openPopup('popup-alamat')">Ubah</button>
             </div>
             <div class="box-content">
-                <p class="box-text">Brian Yang</p>
-                <p class="box-text">Jln. Medokan Asri No. 35 Kec Rungkut, Surabaya, Jawa Timur</p>
-                <p class="box-text">085129863457</p>
+                <p class="box-text"><?php echo $data['NAMA_USER'];  ?></p>
+                <p class="box-text"><?php echo $data['ADDRESS'];  ?></p>
+                <p class="box-text"><?php echo $data['NUMBER_PHONE'];  ?></p>
             </div>
         </div>
+    <?php endif; ?>
 
+    <?php if (!empty($result_pesanan)): ?>
         <div class="box">
             <h2 class="box-title">Pesanan Saya</h2>
             <div class="box-content">
@@ -76,51 +110,26 @@
                             <th>No Pesanan</th>
                             <th>Dipesan pada</th>
                             <th>Barang</th>
+                            <th>Jumlah</th>
                             <th>Total</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>001</td>
-                            <td>2023-01-15</td>
-                            <td>Swag Vape</td>
-                            <td>Rp450.000</td>
+                            <td><?php echo $data_pesanan['id_transaksi'];  ?></td>
+                            <td><?php echo $data_pesanan['tanggal_transaksi'];  ?></td>
+                            <td><?php echo $data_pesanan['name_product'];  ?></td>
+                            <td><?php echo $data_pesanan['jumlah'];  ?></td>
+                            <td><?php echo $data_pesanan['harga'];  ?></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
+    <?php endif; ?>
 
-        <div class="popup-overlay" id="popup-akun">
-            <div class="popup-content">
-                <h2 class="popup-title">Akun Saya</h2>
-                <span class="popup-close" onclick="closePopup('popup-akun')"><i class="fas fa-times"></i></span>
-                <form class="popup-form">
-                    <label for="upload-foto">Foto Profil</label>
-                    <input type="file" id="upload-foto">
-                    <label for="ubah-nama">Nama</label>
-                    <input type="text" id="ubah-nama">
-                    <button class="btn-save" type="submit">Simpan</button>
-                </form>
-            </div>
-        </div>
-
-
-        <div class="popup-overlay" id="popup-alamat">
-            <div class="popup-content">
-                <h2 class="popup-title">Alamat Saya</h2>
-                <span class="popup-close" onclick="closePopup('popup-alamat')"><i class="fa fa-times"></i></span>
-                <form class="popup-form">
-                    <label for="ubah-nama-penerima">Nama Penerima</label>
-                    <input type="text" id="ubah-nama-penerima">
-                    <label for="ubah-alamat">Alamat</label>
-                    <input type="text" id="ubah-alamat">
-                    <label for="ubah-no-telepon">Nomor telepon</label>
-                    <input type="text" id="ubah-no-telepon">
-                    <button class="btn-save" type="submit">Simpan</button>
-                </form>
-            </div>
-        </div>
+        <?php include('pop-up-akun.php'); ?>
+        <?php include('pop-up-alamat.php'); ?>
 
     </div>
 
@@ -135,6 +144,7 @@
             popup.style.display = "none";
         }
     </script>
+
 
 </body>
 </html>
