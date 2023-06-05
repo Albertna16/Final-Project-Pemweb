@@ -25,6 +25,11 @@ body {
     opacity: 70%;
     border-radius: 30px;
 }
+.login-box form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
 .logo {
     width: 150px;
@@ -106,7 +111,7 @@ body {
     border-radius: 20px;
     width: 120px;
     height: 40px;
-    margin-bottom: 10px;
+    margin: 10px auto;
 }
 
 .account-text {
