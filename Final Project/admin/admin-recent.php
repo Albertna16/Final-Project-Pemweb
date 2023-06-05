@@ -1,8 +1,25 @@
-<?php 
-include('../connections.php');
+<?php
+include("../connections.php");
+
+// Mengambil data dari tabel transaksi_item
+$query = "SELECT transaksi_item.ID, user.NAMA_USER, product.NAME_PRODUCT, transaksi_item.JUMLAH, transaksi_item.HARGA, (transaksi_item.JUMLAH * transaksi_item.HARGA) AS TOTAL_HARGA, transaksi.TANGGAL_TRANSAKSI
+FROM transaksi_item
+INNER JOIN transaksi ON transaksi_item.id_transaksi = transaksi.id_transaksi
+INNER JOIN user ON transaksi.id_user = user.id_user
+INNER JOIN product ON transaksi_item.id_product = product.id_product";
+
+$results = []; // Inisialisasi variabel $results dengan array kosong
+
+try {
+    // Menjalankan query
+    $stmt = $connection->query($query);
+
+    // Mengambil semua hasil query
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $err) {
+    echo "Failed to retrieve data: " . $err->getMessage();
+}
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +30,6 @@ include('../connections.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Recent</title>
     <link rel="stylesheet" href="css/admin-recent.css">
-
 </head>
 
 <body>
@@ -42,28 +58,22 @@ include('../connections.php');
                         <th>No</th>
                         <th>User</th>
                         <th>Produk</th>
-                        <th>Harga</th>
+                        <th>Jumlah</th>
+                        <th>Total harga</th>
+                        <th>Tanggal</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Bryan Yang</td>
-                        <td>RDA Druga 24mm</td>
-                        <td>Rp. 115.000</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Bryan Yang</td>
-                        <td>RDA Druga 24mm</td>
-                        <td>Rp. 115.000</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Bryan Yang</td>
-                        <td>RDA Druga 24mm</td>
-                        <td>Rp. 115.000</td>
-                    </tr>
+                    <?php foreach ($results as $row) : ?>
+                        <tr>
+                            <td><?php echo $row['ID']; ?></td>
+                            <td><?php echo $row['NAMA_USER']; ?></td>
+                            <td><?php echo $row['NAME_PRODUCT']; ?></td>
+                            <td><?php echo $row['JUMLAH']; ?></td>
+                            <td><?php echo 'Rp. ' . number_format($row['TOTAL_HARGA'], 0, ',', '.'); ?></td>
+                            <td><?php echo $row['TANGGAL_TRANSAKSI']; ?></td>
+                        </tr>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
