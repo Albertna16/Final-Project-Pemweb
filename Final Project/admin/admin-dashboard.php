@@ -1,8 +1,58 @@
 <?php
-include('../connections.php');
+
+// membuat koneksi ke system
+$dbServer = 'localhost';
+$dbUser = 'root';
+$dbPass = '';
+$dbName = "pemwebvape";
+
+try {
+    // membuat object PDO untuk koneksi ke database
+    $connection = new PDO("mysql:host=$dbServer;dbname=$dbName", $dbUser, $dbPass);
+    // setting ERROR mode PDO: ada tiga mode error mode silent, warning, exception
+    $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $err) {
+    echo "Failed Connect to Database Server : " . $err->getMessage();
+}
+
+// Mengambil data jumlah produk dari tabel product
+$query = "SELECT COUNT(*) AS jumlah_produk FROM product";
+$stmt = $connection->prepare($query);
+$stmt->execute();
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
+$jumlahProduk = $result['jumlah_produk'];
+
+// Mengambil total pemasukan dari tabel transaksi_item
+$query = "SELECT SUM(HARGA * JUMLAH) AS total_pemasukan FROM transaksi_item";
+$stmt = $connection->prepare($query);
+$stmt->execute();
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
+$totalPemasukan = $result['total_pemasukan'];
+
+// Mengambil total keuntungan dari tabel transaksi_item
+$query = "SELECT SUM((PRICE_PRODUCT * JUMLAH) * 0.1) AS total_keuntungan 
+          FROM transaksi_item 
+          INNER JOIN product ON transaksi_item.ID_PRODUCT = product.ID_PRODUCT";
+$stmt = $connection->prepare($query);
+$stmt->execute();
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
+$totalKeuntungan = $result['total_keuntungan'];
+
+// Mengambil jumlah pengguna dari tabel user
+$query = "SELECT COUNT(*) AS jumlah_pengguna FROM user";
+$stmt = $connection->prepare($query);
+$stmt->execute();
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
+$jumlahPengguna = $result['jumlah_pengguna'];
+
+// Mengambil jumlah pesanan dari tabel transaksi_item
+$query = "SELECT COUNT(*) AS jumlah_pesanan FROM transaksi";
+$stmt = $connection->prepare($query);
+$stmt->execute();
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
+$jumlahPesanan = $result['jumlah_pesanan'];
+
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -46,15 +96,15 @@ include('../connections.php');
                 <div class="keuangan">
                     <div class="keuangan-detail">
                         <p>Pemasukan</p>
-                        <h2>2.530.123.123</h2>
+                        <h2><?php echo number_format($totalPemasukan, 0, ',', '.'); ?></h2>
                     </div>
                     <div class="keuangan-detail">
                         <p>Jumlah Produk</p>
-                        <h2>6</h2>
+                        <h2><?php echo $jumlahProduk; ?></h2>
                     </div>
                     <div class="keuangan-detail">
                         <p>Keuntungan</p>
-                        <h2>1.512.762.124</h2>
+                        <h2><?php echo number_format($totalKeuntungan, 0, ',', '.'); ?></h2>
                     </div>
                 </div>
                 <div class="user-info">
@@ -62,14 +112,14 @@ include('../connections.php');
                         <div class="icon"><i class="fa-solid fa-users"></i></div>
                         <div class="information">
                             <p>user yang sudah registrasi</p>
-                            <h2>10</h2>
+                            <h2><?php echo $jumlahPengguna; ?></h2>
                         </div>
                     </div>
                     <div class="user-info-detail">
                         <div class="icon"><i class="fa-solid fa-basket-shopping"></i></div>
                         <div class="information">
                             <p>Jumlah Pesanan</p>
-                            <h2>3</h2>
+                            <h2><?php echo $jumlahPesanan; ?></h2>
                         </div>
                     </div>
                 </div>

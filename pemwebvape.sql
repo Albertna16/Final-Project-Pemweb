@@ -11,6 +11,8 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
+create database pemwebvape;
+use pemwebvape;
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -35,6 +37,7 @@ CREATE TABLE `admin` (
   `PASSWORD_ADMIN` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+insert into admin (id_admin, nama_admin, email_admin, username_admin, password_admin) values (1, 'Albert', 'albertna16@gmail.com', 'alberttnaa', 'yagaga');
 -- --------------------------------------------------------
 
 --
@@ -64,6 +67,8 @@ CREATE TABLE `transaksi` (
 
 -- --------------------------------------------------------
 
+insert into transaksi (id_transaksi, id_user, tanggal_transaksi) values (1, 1, NOW());
+
 --
 -- Struktur dari tabel `transaksi_item`
 --
@@ -77,6 +82,12 @@ CREATE TABLE `transaksi_item` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
+
+INSERT INTO transaksi_item (id, id_transaksi, id_product, jumlah, harga)
+VALUES (1, 1, 1, 3, (SELECT price_product FROM product WHERE id_product = 1));
+
+INSERT INTO transaksi_item (id, id_transaksi, id_product, jumlah, harga)
+VALUES (2, 1, 2, 4, (SELECT price_product FROM product WHERE id_product = 2));
 
 --
 -- Struktur dari tabel `user`
@@ -92,6 +103,9 @@ CREATE TABLE `user` (
   `NUMBER_PHONE` varchar(255) DEFAULT NULL,
   `SALDO` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+insert into user (id_user, nama_user, email_user, username_user, password_user, address, number_phone, saldo) values (1, 'Albert', 'albertna16@gmail.com', 'alberttnaa', 'yayaya', 'Mojokerto', '0895366968783', '250000');
+insert into user (id_user, nama_user, email_user, username_user, password_user, address, number_phone, saldo) values (2, 'Putri', 'putrina16@gmail.com', 'putrinaac', 'yeyeye', 'Blora', '0895366968782', '340000');
 
 --
 -- Indexes for dumped tables
