@@ -129,10 +129,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </p>
         </div>
         <div class="kategori">
-            <a href="view more product/atomizer.html"><img src="image/product1.png" alt=""></a>
-            <a href=""><img src="image/product2.png" alt=""></a>
-            <a href=""><img src="image/product3.png" alt=""></a>
-            <a href=""><img src="image/product4.png" alt=""></a>
+            <a href="../view more product/atomizer.php"><img src="image/product1.png" alt=""></a>
+            <a href="../view more product/mod.php"><img src="image/product2.png" alt=""></a>
+            <a href="../view more product/liquid.php"><img src="image/product3.png" alt=""></a>
+            <a href="../view more product/baterai.php"><img src="image/product4.png" alt=""></a>
         </div>
         <div class="view-more">
             <a href="">View More</a>
