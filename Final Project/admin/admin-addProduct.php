@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $query->bindParam(':GAMBAR_PRODUCT',  $namaGambarBaru);
 
         if ($query->execute()) {
-            
+
             move_uploaded_file($tmpGambar, '../resource/product/img/' . $namaGambarBaru);
             $status = 'ok';
             header('location: admin-product.php?status=' . $status);
@@ -82,12 +82,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class="add-gambar-konfr">
                         <div class="add-gambar">
                             <label for="inputGambar">
-                            <i class="fa-regular fa-image"></i>
-                            <p>Tambah gambar produk</p>
+                                <i id="iconGambar" class="fa-regular fa-image"></i>
+                                <img id="gambarPreview" src="#" alt="Preview Gambar" style="display: none;">
+                                <p id="gambarNama">Tambah gambar produk</p>
                             </label>
-                            <input type="file" name="gambar_produk" id="inputGambar" accept="image/*">
+                            <input type="file" name="gambar_produk" id="inputGambar" onchange="previewGambar()" accept="image/*">
                         </div>
-                        <div class="button-choice" >
+                        <div class="button-choice">
                             <button type="submit">Add Produk</button>
                         </div>
                     </div>
@@ -113,6 +114,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
 
     <script src="https://kit.fontawesome.com/73bcd336f4.js" crossorigin="anonymous"></script>
+
+    <script>
+        function previewGambar() {
+            var gambarInput = document.getElementById('inputGambar');
+            var gambarPreview = document.getElementById('gambarPreview');
+            var gambarNama = document.getElementById('gambarNama');
+            var icon = document.getElementById('iconGambar');
+
+            var fileGambar = gambarInput.files[0];
+            var namaGambar = fileGambar.name;
+
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                icon.style.display = 'none';
+                gambarPreview.src = e.target.result;
+                gambarPreview.style.display = 'block';
+                gambarNama.textContent = 'Nama Gambar: ' + namaGambar;
+            }
+            reader.readAsDataURL(fileGambar);
+        }
+    </script>
 </body>
 
 </html>

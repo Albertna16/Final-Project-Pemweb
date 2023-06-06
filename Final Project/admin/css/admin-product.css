@@ -153,11 +153,15 @@ body {
     height: 180px;
     text-align: center;
     border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .list-product .product .product-img img{
-    padding-top: 40px;
-    height: 60%;
+    max-width: 80%;
+    max-height: 80%;
 }
 
 .list-product .product .product-info{
@@ -191,5 +195,22 @@ body {
 }
 
 .list-product .product .product-action a:hover{
+    color: #a1a1a1;
+}
+
+.list-product .product .product-action button{
+    color: #FFFFFF;
+    text-decoration: none;
+    background-color: #0C697A;
+    height: 30px;
+    width: 70px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    border: none;
+}
+
+.list-product .product .product-action button:hover{
     color: #a1a1a1;
 }

@@ -1,4 +1,4 @@
-<?php 
+<?php
 include('../connections.php');
 if (isset($_GET['status'])) {
     $status = $_GET['status'];
@@ -41,8 +41,14 @@ if (isset($_GET['status'])) {
             <?php
             if ($status == 'ok') {
                 echo '<b>Berhasil ditambahkan</b>';
-            } elseif ($status == 'ok_daftar') {
-                echo '<b>gagal ditambahkan</b>';
+            } elseif ($status == 'ok_hapus') {
+                echo '<b>Berhasil Dihapus</b>';
+            } elseif ($status == 'err_hapus') {
+                echo '<b>Gagal Dihapus/Produk masih ada di transaksi</b>';
+            }elseif ($status == 'ok_update') {
+                echo '<b>Berhasil DiUpdate</b>';
+            }elseif ($status == 'err') {
+                echo '<b>Gagal</b>';
             }
             ?>
             <div class="add-product">
@@ -51,24 +57,27 @@ if (isset($_GET['status'])) {
             <div class="list-product">
                 <?php $query = "SELECT * FROM product";
                 $result = $connection->query($query);
-                $i = 1;
+
                 ?>
                 <?php while ($data = $result->fetch(PDO::FETCH_ASSOC)) : ?>
-                <div class="product">
-                    <div class="product-img">
-                        <img src="../resource/product/img/<?php echo $data['GAMBAR_PRODUCT']; ?>" alt="">
+                    <div class="product">
+                        <div class="product-img">
+                            <img src="../resource/product/img/<?php echo $data['GAMBAR_PRODUCT']; ?>" alt="">
+                        </div>
+                        <div class="product-info">
+                            <h2><?php echo $data['NAME_PRODUCT']; ?></h2>
+                            <p>Rp. <?php echo $data['PRICE_PRODUCT']; ?></p>
+                        </div>
+                        <div class="product-action">
+                            <form action="admin-deleteProduct.php" method="post">
+                                <input type="hidden" name="id_product" value="<?php echo $data['ID_PRODUCT']; ?>">
+                                <button type="submit" onclick="return confirm('Anda yakin ingin menghapus produk ini?')">Delete</button >
+                            </form>
+                            <a href="admin-updateProduct.php?id=<?php echo $data['ID_PRODUCT']; ?>">Edit</a>
+                        </div>
                     </div>
-                    <div class="product-info">
-                        <h2><?php echo $data['NAME_PRODUCT']; ?></h2>
-                        <p>Rp. <?php echo $data['PRICE_PRODUCT']; ?></p>
-                    </div>
-                    <div class="product-action">
-                        <a href="">Delete</a>
-                        <a href="">Edit</a>
-                    </div>
-                </div>
                 <?php endwhile ?>
-                
+
             </div>
         </div>
     </div>
