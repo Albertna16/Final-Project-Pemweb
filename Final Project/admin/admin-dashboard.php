@@ -2,6 +2,13 @@
 
 include("../connections.php");
 
+// Mengambil data usernmae_admin dari tabel admin
+$query = "SELECT USERNAME_ADMIN FROM admin LIMIT 1";
+$stmt = $connection->prepare($query);
+$stmt->execute();
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
+$usernameAdmin = $result['USERNAME_ADMIN'];
+
 // Mengambil data jumlah produk dari tabel product
 $query = "SELECT COUNT(*) AS jumlah_produk FROM product";
 $stmt = $connection->prepare($query);
@@ -17,7 +24,7 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
 $totalPemasukan = $result['total_pemasukan'];
 
 // Mengambil total keuntungan dari tabel transaksi_item
-$query = "SELECT SUM((PRICE_PRODUCT * JUMLAH) * 0.1) AS total_keuntungan 
+$query = "SELECT SUM((PRICE_PRODUCT * 0.1) * JUMLAH) AS total_keuntungan 
           FROM transaksi_item 
           INNER JOIN product ON transaksi_item.ID_PRODUCT = product.ID_PRODUCT";
 $stmt = $connection->prepare($query);
@@ -58,7 +65,7 @@ $jumlahPesanan = $result['jumlah_pesanan'];
             <div class="logo"><img src="img/Vape.png" alt=""></div>
             <div class="profile-preview">
                 <img src="img/userprofile.jpg" alt="">
-                <h3>Jonathan Roy</h3>
+                <h3><?php echo $usernameAdmin; ?></h3>
                 <p>Admin</p>
             </div>
             <div class="list-link">
