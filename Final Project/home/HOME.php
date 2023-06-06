@@ -36,7 +36,7 @@
             <a href="#product">PRODUCT</a>
             <a href="#report">REPORT</a>
             <div class="tombol1">
-                <a href=""><i class="fa-solid fa-user"></i></a>
+                <a href="../user/user-profil.php"><i class="fa-solid fa-user"></i></a>
             </div>
             <div class="tombol2">
                 <a href=""><i class="fa-solid fa-right-from-bracket"></i></a>

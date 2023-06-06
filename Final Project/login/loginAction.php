@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
             if ($password == $result['PASSWORD_USER']) {
                 $_SESSION["login"]= true;
 				$_SESSION["userId"]= $result["ID_USER"];
-                header('location: ../home/index.html');
+                header('location: ../home/home.php');
 				exit;
             }
         }

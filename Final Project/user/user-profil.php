@@ -1,5 +1,12 @@
 <?php
 include('conn.php');
+session_start();
+if (!$_SESSION['login']==1 && !isset($_SESSION['userId'])) {
+    header('location: ../login/login_user.php');
+	exit;
+}
+
+
 ?>
 
 <?php
@@ -58,11 +65,11 @@ $data_pesanan = $result_pesanan->fetch(PDO::FETCH_ASSOC);
                 </div>
             </center>
             <div class="navigation">
-                <a href="#" class="navigation-item">
+                <a href="../home/home.php" class="navigation-item">
                     <i class="fas fa-home navigation-icon"></i>
                     <span>Home</span>
                 </a> &nbsp
-                <a href="#" class="navigation-item">
+                <a href="../login/logout.php" class="navigation-item">
                     <i class="fas fa-sign-out-alt navigation-icon"></i>
                     <span>Logout</span>
                 </a>
