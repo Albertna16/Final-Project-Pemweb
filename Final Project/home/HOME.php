@@ -16,6 +16,11 @@ try {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    session_start();
+    if (!$_SESSION['login'] == 1 && !isset($_SESSION['userId'])) {
+        header('location: ../login/login_user.php');
+        exit;
+    }
     $nama = $_POST['FN'];
     $email = $_POST['email'];
     $deskripsi = $_POST['issue'];
