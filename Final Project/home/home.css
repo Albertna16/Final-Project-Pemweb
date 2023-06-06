@@ -12,12 +12,12 @@ header{
     height: 70px;
     font-family: 'Inter', sans-serif;
     color: white;
-    font-size: 24px;
     text-align: center;
 }
 
 header p{
     padding: 20px;
+    font-size: 24px;
 }
 
 .bar{
@@ -26,6 +26,7 @@ header p{
     position: sticky;
     top: 0;
     background-color: white;
+    border-bottom: 1px solid black;
 }
 
 .bar .gambar{
@@ -37,8 +38,8 @@ header p{
 .bar .gambar img {
     width: 100px;
     height: auto;
-    margin: 13px;
-    margin-left: 15%;
+    margin-top: 10px;
+    margin-left: 50px;
 }
 
 .bar .tombol{
@@ -58,7 +59,7 @@ header p{
 }
 
 .bar .tombol a:hover{
-    color: yellow;
+    color: #b5b0b0;
 }
 
 .jumbotron img{
@@ -139,10 +140,11 @@ header p{
 .product .kategori img{
     width: 230px;
     margin: 20px;
+    margin-bottom: 30px;
 }
 
 .product .view-more{
-    background-color: #B5B0B0;
+    background-color: rgba(181, 176, 176, 0.7);
     text-align: center;
     height: 35px;
     margin-left: 42%;
@@ -176,8 +178,8 @@ header p{
 }
 
 .report .box2 .box2-1{
-    margin: 30px;
-    width: 40%;
+    margin: 100px 30px;
+    width: 30%;
 }
 
 .report .box2 .box2-1 h2{
@@ -190,7 +192,7 @@ header p{
 .report .box2 .box2-1 p{
     text-align: justify;
     font-family: 'inter', sans-serif;
-    font-size: 21px;
+    font-size: 19px;
     margin-left: 30px;
     margin-right: 20px;
 }
@@ -200,6 +202,10 @@ header p{
     flex-direction: column;
     width: 80%;
     height: auto;
+}
+
+.report .box2 .box2-2{
+    margin: 40px 0;
 }
 
 .report .box2 .box2-2 .nama{
@@ -253,7 +259,7 @@ header p{
     border-radius: 10px;
     margin: 10px;
     width: 90%;
-    height: 30%;
+    height: 150px;
 }
 
 .report .box2 .box2-2 .desc textarea{
@@ -265,13 +271,17 @@ header p{
     outline: none;
 }
 
+.report .box2 .box2-2 .send{
+    margin-bottom: 40px;
+}
+
 .report .box2 .box2-2 .send a{
     display: flex;
     justify-content: center;
     align-items: center;
     height: 40px;
     width: 91%;
-    border-radius: 5px;
+    border-radius: 10px;
     margin: 10px;
     background-color: #0C697A;
     text-decoration: none;
@@ -318,6 +328,16 @@ header p{
     margin-top: 15px;
     gap: 5%;
 }
+
+.bgfooter .box4 .sosmed a{
+    text-decoration: none;
+    color: white;
+}
+
+.bgfooter .box4 .sosmed a:hover{
+    color: #b5b0b0;
+}
+
 
 footer{
     padding-right: 20px;
