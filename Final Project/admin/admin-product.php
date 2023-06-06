@@ -7,8 +7,6 @@ if (isset($_GET['status'])) {
 }
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +16,6 @@ if (isset($_GET['status'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ADMIN PRODUCT</title>
     <link rel="stylesheet" href="css/admin-product.css">
-    
 </head>
 
 <body>
@@ -55,10 +52,8 @@ if (isset($_GET['status'])) {
                 <?php $query = "SELECT * FROM product";
                 $result = $connection->query($query);
                 $i = 1;
-
                 ?>
                 <?php while ($data = $result->fetch(PDO::FETCH_ASSOC)) : ?>
-                    
                 <div class="product">
                     <div class="product-img">
                         <img src="../resource/product/img/<?php echo $data['GAMBAR_PRODUCT']; ?>" alt="">

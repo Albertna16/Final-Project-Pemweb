@@ -1,3 +1,21 @@
+<?php
+
+// membuat koneksi ke system
+$dbServer = 'localhost';
+$dbUser = 'root';
+$dbPass = '';
+$dbName = "pemwebvape";
+
+try {
+    //membuat object PDO untuk koneksi ke database
+    $connection = new PDO("mysql:host=$dbServer;dbname=$dbName", $dbUser, $dbPass);
+    // setting ERROR mode PDO: ada tiga mode error mode silent, warning, exception
+    $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $err) {
+    echo "Failed Connect to Database Server : " . $err->getMessage();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,6 +25,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Report</title>
     <link rel="stylesheet" href="../admin/css/admin-report.css">
+    <script src="https://kit.fontawesome.com/73bcd336f4.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -31,53 +50,33 @@
 
         <div class="container-main">
             <h1>Report from user</h1>
-            <div class="report1">
-                <div class="data-report">
-                    <img src="foto/1639402921675.jpeg" alt="">
-                    <div class="nama-report">
-                        <h3>Muhammad Albert</h3>
-                        <p>gunaguna15@gmail.com</p>
+            <?php
+            $query = "SELECT user.NAMA_USER, user.EMAIL_USER, report.DESK_REPORT
+                      FROM report
+                      INNER JOIN user ON report.ID_USER = user.ID_USER";
+            $stmt = $connection->prepare($query);
+            $stmt->execute();
+            $reports = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            foreach ($reports as $report) {
+                $namaUser = $report['NAMA_USER'];
+                $emailUser = $report['EMAIL_USER'];
+                $deskReport = $report['DESK_REPORT'];
+            ?>
+                <div class="report1">
+                    <div class="data-report">
+                    <img src="img/user-solid.svg" alt="">
+                        <div class="nama-report">
+                            <h3><?php echo $namaUser; ?></h3>
+                            <p><?php echo $emailUser; ?></p>
+                        </div>
+                    </div>
+
+                    <div class="isi-report">
+                        <p><?php echo $deskReport; ?></p>
                     </div>
                 </div>
-
-                <div class="isi-report">
-                    <p>Sebagai seorang pengguna, saya ingin memberikan ulasan tentang website Vape yang
-                        saya temui. Website ini sangat informatif dan mudah digunakan bagi penggemar
-                        vaping seperti saya. Halaman utamanya memiliki tampilan yang menarik dengan
-                        navigasi yang jelas, memungkinkan saya untuk dengan mudah menemukan produk
-                        yang saya cari. Selain itu, terdapat juga informasi yang lengkap tentang berbagai
-                        jenis vape, aksesori, dan e-liquid yang tersedia.</p>
-                </div>
-            </div>
-
-            <div class="report1">
-                <div class="data-report">
-                    <img src="foto/1639402921675.jpeg" alt="">
-                    <div class="nama-report">
-                        <h3>Sakinah De Jong</h3>
-                        <p>sakinahDjong@gmail.com</p>
-                    </div>
-                </div>
-
-                <div class="isi-report">
-                    <p>Sebagai seorang pengguna, saya ingin memberikan ulasan lain tentang website Vape
-                        yang saya telusuri. Website ini benar-benar menjadi sumber daya yang komprehensif
-                        bagi semua hal terkait vaping. Desainnya yang intuitif dan responsif membuat
-                        navigasi menjadi sangat mudah dan menyenangkan. Dari halaman produk hingga forum
-                        komunitas, semuanya tersedia di satu tempat yang terorganisir dengan baik. Selain itu,
-                        website ini juga menawarkan ulasan pengguna yang membantu saya dalam memilih produk
-                        yang tepat untuk kebutuhan saya. Fitur "pembanding produk" sangat berguna untuk
-                        membandingkan spesifikasi dan fitur dari berbagai merek dan model vape. Saya juga
-                        mengapresiasi adanya blog yang terus diperbarui dengan konten menarik tentang tren
-                        terbaru, keamanan, dan inovasi dalam dunia vaping. Secara keseluruhan, website Vape
-                        ini merupakan sumber informasi yang sangat berharga bagi pengguna seperti saya yang
-                        ingin menjelajahi dunia vaping dengan lebih baik.</p>
-                </div>
-            </div>
+            <?php } ?>
         </div>
     </div>
-
-    <script src="https://kit.fontawesome.com/73bcd336f4.js" crossorigin="anonymous"></script>
-</body>
-
-</html>
+    .

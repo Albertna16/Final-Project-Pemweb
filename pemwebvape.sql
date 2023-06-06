@@ -107,6 +107,26 @@ CREATE TABLE `user` (
 insert into user (id_user, nama_user, email_user, username_user, password_user, address, number_phone, saldo) values (1, 'Albert', 'albertna16@gmail.com', 'alberttnaa', 'yayaya', 'Mojokerto', '0895366968783', '250000');
 insert into user (id_user, nama_user, email_user, username_user, password_user, address, number_phone, saldo) values (2, 'Putri', 'putrina16@gmail.com', 'putrinaac', 'yeyeye', 'Blora', '0895366968782', '340000');
 
+DROP TABLE REPORT;
+
+CREATE TABLE `report` (
+  `ID_REPORT` int(11) NOT NULL,
+  `ID_USER` int(11) DEFAULT NULL,
+  `DESK_REPORT` varchar(5000) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+ALTER TABLE `report`
+  ADD PRIMARY KEY (`ID_REPORT`);
+
+ALTER TABLE `report`
+  MODIFY `ID_REPORT` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `report`
+  ADD CONSTRAINT `FK_RELATIONSHIP_8` FOREIGN KEY (`ID_USER`) REFERENCES `user` (`ID_USER`);
+
+insert into report (id_report, id_user, desk_report) values (1, 1, 'Sebagai seorang pengguna, saya ingin memberikan ulasan tentang website Vape yang saya temui. Website ini sangat informatif dan mudah digunakan bagi penggemar vaping seperti saya. Halaman utamanya memiliki tampilan yang menarik dengan navigasi yang jelas, memungkinkan saya untuk dengan mudah menemukan produk yang saya cari. Selain itu, terdapat juga informasi yang lengkap tentang berbagai jenis vape, aksesori, dan e-liquid yang tersedia');
+insert into report (id_report, id_user, desk_report) values (2, 2, 'Sebagai seorang pengguna, saya ingin memberikan ulasan lain tentang website Vape yang saya telusuri. Website ini benar-benar menjadi sumber daya yang komprehensif bagi semua hal terkait vaping. Desainnya yang intuitif dan responsif membuat navigasi menjadi sangat mudah dan menyenangkan. Dari halaman produk hingga forum komunitas, semuanya tersedia di satu tempat yang terorganisir dengan baik. Selain itu, website ini juga menawarkan ulasan pengguna yang membantu saya dalam memilih produk yang tepat untuk kebutuhan saya. Fitur "pembanding produk" sangat berguna untuk membandingkan spesifikasi dan fitur dari berbagai merek dan model vape. Saya juga mengapresiasi adanya blog yang terus diperbarui dengan konten menarik tentang tren terbaru, keamanan, dan inovasi dalam dunia vaping. Secara keseluruhan, website Vape ini merupakan sumber informasi yang sangat berharga bagi pengguna seperti saya yang ingin menjelajahi dunia vaping dengan lebih baik.');
+
 --
 -- Indexes for dumped tables
 --
@@ -202,6 +222,13 @@ ALTER TABLE `transaksi_item`
   ADD CONSTRAINT `FK_RELATIONSHIP_6` FOREIGN KEY (`ID_TRANSAKSI`) REFERENCES `transaksi` (`ID_TRANSAKSI`),
   ADD CONSTRAINT `FK_RELATIONSHIP_7` FOREIGN KEY (`ID_PRODUCT`) REFERENCES `product` (`ID_PRODUCT`);
 COMMIT;
+
+
+SELECT transaksi_item.ID, user.NAMA_USER, product.NAME_PRODUCT, transaksi_item.JUMLAH, transaksi_item.HARGA, transaksi.tanggal_transaksi
+          FROM transaksi_item
+          INNER JOIN transaksi ON transaksi_item.id_transaksi = transaksi.id_transaksi
+          INNER JOIN user ON transaksi.id_user = user.id_user
+          INNER JOIN product ON transaksi_item.id_product = product.id_product;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
