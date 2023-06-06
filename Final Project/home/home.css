@@ -1,0 +1,327 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.bgheader{
+    background-color: black;
+}
+
+header{
+    background-image: url('image/header.png');
+    height: 70px;
+    font-family: 'Inter', sans-serif;
+    color: white;
+    font-size: 24px;
+    text-align: center;
+}
+
+header p{
+    padding: 20px;
+}
+
+.bar{
+    display: flex;
+    flex-direction: row;
+    position: sticky;
+    top: 0;
+    background-color: white;
+}
+
+.bar .gambar{
+    display: flex;
+    float: left;
+    width: 100%;
+}
+
+.bar .gambar img {
+    width: 100px;
+    height: auto;
+    margin: 13px;
+    margin-left: 15%;
+}
+
+.bar .tombol{
+    display: flex;
+    float: right;
+    width: 100%;
+    gap: 30px;
+    font-size: 18px;
+    margin: 20px;
+    margin-left: 17%;
+    font-family: 'Inter', sans-serif;
+}
+
+.bar .tombol a{
+    text-decoration: none;
+    color: black;
+}
+
+.bar .tombol a:hover{
+    color: yellow;
+}
+
+.jumbotron img{
+    width: 100%;
+    height: auto;
+}
+
+.aboutus {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 7%;
+    padding-top: 3%;
+}
+
+.aboutus .box1 {
+    width: 50%;
+}
+
+.aboutus .box1 img{
+    width: 450px;
+    height: auto;
+    margin-top: 10%;
+    margin-left: 15%;
+}
+
+.aboutus .box2 {
+    width: 50%;
+    padding-top: 5%;
+    padding-left: 5%;
+    padding-right: 7%;
+}
+
+.aboutus .box2 h2{
+    font-family: 'inter', sans-serif;
+    font-size: 40px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.aboutus .box2 p{
+    font-family: 'inter', sans-serif;
+    text-align: justify;
+    font-size: 22px;
+}
+
+.product {
+    background-image: url('image/product.png');
+    background-color: black;
+    color: white;
+    text-align: justify;
+    padding: 50px;
+    padding-top: 7%;
+}
+
+.product .kalimat_kategori h2{
+    text-align: center;
+    font-family: 'inter', sans-serif;
+    font-size: 35px;
+    margin-bottom: 20px;
+}
+
+.product .kalimat_kategori p{
+    text-align: center;
+    font-family: 'inter', sans-serif;
+    font-size: 19px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.product .kategori {
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+    margin-top: 20px;
+    margin-left: 4%;
+}
+
+.product .kategori img{
+    width: 230px;
+    margin: 20px;
+}
+
+.product .view-more{
+    background-color: #B5B0B0;
+    text-align: center;
+    height: 35px;
+    margin-left: 42%;
+    margin-right: 42%;
+    border-radius: 15px;
+    font-family: 'inter', sans-serif;
+    font-size: 22px;
+    padding-top: 10px;
+}
+
+.product .view-more a{
+    text-decoration: none;
+    color: white;
+}
+
+.product .view-more a:hover{
+    color: black;
+}
+
+.report{
+    display: flex;
+}
+
+.report .box2 {
+    display: flex;
+    flex-direction: row;
+    margin: 100px 100px;
+    border: 2px solid black;
+    border-radius: 20px;
+    height: auto;
+}
+
+.report .box2 .box2-1{
+    margin: 30px;
+    width: 40%;
+}
+
+.report .box2 .box2-1 h2{
+    text-align: center;
+    font-family: 'inter', sans-serif;
+    font-size: 35px;
+    margin-bottom: 20px;
+}
+
+.report .box2 .box2-1 p{
+    text-align: justify;
+    font-family: 'inter', sans-serif;
+    font-size: 21px;
+    margin-left: 30px;
+    margin-right: 20px;
+}
+
+.report .box2 .box2-2{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: auto;
+}
+
+.report .box2 .box2-2 .nama{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.report .box2 .box2-2 .nama .nama1{
+    display: flex;
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    margin: 10px;
+    margin-top: 30px;
+    width: 43%;
+}
+
+.report .box2 .box2-2 .nama .nama1 i{
+    margin: 15px;
+}
+
+.report .box2 .box2-2 .nama .nama1 input{
+    border: none;
+    font-size: 15px;
+    width: 82%;
+    outline: none;
+}
+
+.report .box2 .box2-2 .email{
+    display: flex;
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    margin: 10px;
+    width: 90%;
+}
+
+.report .box2 .box2-2 .email i{
+    margin: 15px;
+}
+
+.report .box2 .box2-2 .email input{
+    border: none;
+    font-size: 15px;
+    width: 91%;
+    outline: none;
+}
+
+.report .box2 .box2-2 .desc{
+    display: flex;
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    margin: 10px;
+    width: 90%;
+    height: 30%;
+}
+
+.report .box2 .box2-2 .desc textarea{
+    border: none;
+    font-size: 15px;
+    width: 98%;
+    margin-left: 10px;
+    margin-top: 10px;
+    outline: none;
+}
+
+.report .box2 .box2-2 .send a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 91%;
+    border-radius: 5px;
+    margin: 10px;
+    background-color: #0C697A;
+    text-decoration: none;
+    color: white;
+    transition: 0.2s;
+    font-family: 'inter', sans-serif;
+    font-size: 15px;
+}
+
+.report .box2 .box2-2 .send a:hover{
+    background-color: black;
+    color: white;
+}
+
+.bgfooter{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    background-image: url('image/backgroundfooter.png');
+    background-color: black;
+}
+
+.bgfooter .box3{
+    display: flex;
+    width: 100%;
+}
+.bgfooter .box3 img{
+    width: 100px;
+    height: auto;
+    margin: 28px;
+    margin-left: 75%;
+}
+
+.bgfooter .box4{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    color: white;
+    padding-top: 20px;
+}
+
+.bgfooter .box4 .sosmed{
+    display: flex;
+    flex-direction: row;
+    margin-top: 15px;
+    gap: 5%;
+}
+
+footer{
+    padding-right: 20px;
+    text-align: center;
+    margin: 20px;
+}
