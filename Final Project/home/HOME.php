@@ -135,7 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <a href="../view more product/baterai.php"><img src="image/product4.png" alt=""></a>
         </div>
         <div class="view-more">
-            <a href="">View More</a>
+            <a href="../view more product/all.php">View More</a>
         </div>
     </div>
 
