@@ -7,6 +7,16 @@
     <title>HOME</title>
 
     <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="reset.css">
+
+    <!--import gfonts-->
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap');
+    </style>
+
+    <!--link font awesome-->
+    <script src="https://kit.fontawesome.com/ad6991be8a.js" crossorigin="anonymous"></script>
+
 
 </head>
 <body>
@@ -18,18 +28,18 @@
 
     <div class="bar">
         <div class="gambar">
-            <img src="image/logovapehitam.png" alt="">
+            <a href="#"><img src="image/logovapehitam.png" alt=""></a>
         </div>
         <div class="tombol">
             <a href="#home">HOME</a>
             <a href="#aboutus">ABOUT US</a>
             <a href="#product">PRODUCT</a>
             <a href="#report">REPORT</a>
-            <div class="profile">
-                <i class="fa-solid fa-user"><a href=""></a></i>
+            <div class="tombol1">
+                <a href=""><i class="fa-solid fa-user"></i></a>
             </div>
-            <div class="logout">
-                <i class="fa-solid fa-right-from-bracket"><a href=""></a></i>
+            <div class="tombol2">
+                <a href=""><i class="fa-solid fa-right-from-bracket"></i></a>
             </div>
         </div>
     </div>
@@ -117,9 +127,9 @@
         <div class="box4">
             <p>Follow us on</p>
             <div class="sosmed">
-                <i class="fa-brands fa-facebook"></i>
-                <i class="fa-brands fa-instagram"></i>
-                <i class="fa-brands fa-whatsapp"></i>
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
             </div>
         </div>
     </div>
