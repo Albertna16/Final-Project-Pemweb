@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (!$_SESSION['login']==1 && !isset($_SESSION['adminId'])) {
+    header('location: ../login/login_user.php');
+	exit;
+}
 
 // membuat koneksi ke system
 $dbServer = 'localhost';

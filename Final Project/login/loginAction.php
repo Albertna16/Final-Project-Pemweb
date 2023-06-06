@@ -1,5 +1,6 @@
 <?php
 include('../connections.php');
+session_start();
 
 var_dump($_POST);
 if ($_SERVER['REQUEST_METHOD']=='POST') {
@@ -15,6 +16,8 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($result) {
             if ($password == $result['PASSWORD_USER']) {
+                $_SESSION["login"]= true;
+				$_SESSION["userId"]= $result["ID_USER"];
                 header('location: ../home/index.html');
 				exit;
             }
@@ -28,6 +31,8 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($result) {
             if ($password == $result['PASSWORD_ADMIN']) {
+                $_SESSION["login"]= true;
+				$_SESSION["adminId"]= $result["ID_ADMIN"];
                 header('location: ../admin/admin-dashboard.php');
 				exit;
             }

@@ -1,6 +1,11 @@
 <?php
 
 include("../connections.php");
+session_start();
+if (!$_SESSION['login']==1 && !isset($_SESSION['adminId'])) {
+    header('location: ../login/login_user.php');
+	exit;
+}
 
 // Mengambil data usernmae_admin dari tabel admin
 $query = "SELECT USERNAME_ADMIN FROM admin LIMIT 1";
@@ -76,7 +81,7 @@ $jumlahPesanan = $result['jumlah_pesanan'];
                     <li class=""><i class="fa-solid fa-flag"></i><a href="admin-report.php">Report</a></li>
                 </ul>
             </div>
-            <div class="logout"><a href=""><i class="fa-solid fa-right-from-bracket"></i> Log Out</a></div>
+            <div class="logout"><a href="../login/logout.php"><i class="fa-solid fa-right-from-bracket"></i> Log Out</a></div>
         </div>
         <div class="container-main">
             <div class="section1">

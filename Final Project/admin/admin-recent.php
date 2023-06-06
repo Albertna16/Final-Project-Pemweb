@@ -1,5 +1,10 @@
 <?php
 include("../connections.php");
+session_start();
+if (!$_SESSION['login']==1 && !isset($_SESSION['adminId'])) {
+    header('location: ../login/login_user.php');
+	exit;
+}
 
 // Mengambil data dari tabel transaksi_item
 $query = "SELECT transaksi_item.ID, user.NAMA_USER, product.NAME_PRODUCT, transaksi_item.JUMLAH, transaksi_item.HARGA, (transaksi_item.JUMLAH * transaksi_item.HARGA) AS TOTAL_HARGA, transaksi.TANGGAL_TRANSAKSI

@@ -1,5 +1,10 @@
 <?php
 include('../connections.php');
+session_start();
+if (!$_SESSION['login']==1 && !isset($_SESSION['adminId'])) {
+    header('location: ../login/login_user.php');
+	exit;
+}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $idProduct = $_POST['id_product'];
