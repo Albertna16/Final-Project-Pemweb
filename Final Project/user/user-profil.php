@@ -1,22 +1,32 @@
 <?php
-include('conn.php');
 session_start();
-if (!$_SESSION['login']==1 && !isset($_SESSION['userId'])) {
-    header('location: ../login/login_user.php');
-	exit;
+
+// membuat konekesi ke database system
+$dbServer = 'localhost';
+$dbUser = 'root';
+$dbPass = '';
+$dbName = "pemwebvape";
+
+try {
+    //membuat object PDO untuk koneksi ke database
+    $conn = new PDO("mysql:host=$dbServer;dbname=$dbName", $dbUser, $dbPass);
+    // setting ERROR mode PDO: ada tiga mode error mode silent, warning, exception
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $err) {
+    echo "Failed Connect to Database Server : " . $err->getMessage();
 }
 
+if (!isset($_SESSION['login']) || $_SESSION['login'] != 1 || !isset($_SESSION['userId'])) {
+    header('location: ../login/login_user.php');
+    exit;
+}
 
-?>
+$query = "SELECT * FROM user WHERE id_user = :userId";
+$stmt = $conn->prepare($query);
+$stmt->bindParam(':userId', $_SESSION['userId']);
+$stmt->execute();
+$data = $stmt->fetch(PDO::FETCH_ASSOC);
 
-<?php
-$query = "SELECT * FROM user";
-// data user
-$result = $conn->query($query);
-$data = $result->fetch(PDO::FETCH_ASSOC);
-?>
-
-<?php
 $query_pesanan = "SELECT 
     product.name_product, 
     transaksi.id_transaksi, 
@@ -28,11 +38,14 @@ $query_pesanan = "SELECT
     JOIN 
         transaksi_item ON product.id_product = transaksi_item.id_product
     JOIN 
-        transaksi ON transaksi.id_transaksi = transaksi_item.id_transaksi;";
+        transaksi ON transaksi.id_transaksi = transaksi_item.id_transaksi
+    WHERE
+        transaksi.id_user = :userId;";
 
-// data pesanan-user
-$result_pesanan = $conn->query($query_pesanan);
-$data_pesanan = $result_pesanan->fetch(PDO::FETCH_ASSOC);
+$stmt_pesanan = $conn->prepare($query_pesanan);
+$stmt_pesanan->bindParam(':userId', $_SESSION['userId']);
+$stmt_pesanan->execute();
+$data_pesanan = $stmt_pesanan->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -48,62 +61,60 @@ $data_pesanan = $result_pesanan->fetch(PDO::FETCH_ASSOC);
 </head>
 
 <body>
-    <?php if (!empty($result)) : ?>
-        <div class="sidebar">
-            <div class="logo">
-                <img src="image/Vape.png" alt="">
+    <div class="sidebar">
+        <div class="logo">
+            <img src="image/Vape.png" alt="">
+        </div>
+        <center>
+            <img class="user-photo" src="../user/image/user.svg">
+            <div class="name">
+                <p><?php echo $data['USERNAME_USER']; ?></p>
             </div>
-            <center>
-                <img class="user-photo" src="../user/image/user.svg">
-                <div class="name">
-                    <p><?php echo $data['USERNAME_USER'];  ?></p>
-                </div>
-                <div class="balance">
-                    <i class="fas fa-wallet balance-icon"></i>
-                    <span>Saldo</span>
-                    <span class="balance-amount">Rp<?php echo $data['SALDO'];  ?></span>
-                </div>
-            </center>
-            <div class="navigation">
-                <a href="../home/home.php" class="navigation-item">
-                    <i class="fas fa-home navigation-icon"></i>
-                    <span>Home</span>
-                </a> &nbsp
-                <a href="../login/logout.php" class="navigation-item">
-                    <i class="fas fa-sign-out-alt navigation-icon"></i>
-                    <span>Logout</span>
-                </a>
+            <div class="balance">
+                <i class="fas fa-wallet balance-icon"></i>
+                <span>Saldo</span>
+                <span class="balance-amount">Rp<?php echo $data['SALDO']; ?></span>
+            </div>
+        </center>
+        <div class="navigation">
+            <a href="../home/home.php" class="navigation-item">
+                <i class="fas fa-home navigation-icon"></i>
+                <span>Home</span>
+            </a> &nbsp
+            <a href="../login/logout.php" class="navigation-item">
+                <i class="fas fa-sign-out-alt navigation-icon"></i>
+                <span>Logout</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="content">
+        <h1 class="welcome-text">Hello, Welcome <?php echo $data['USERNAME_USER']; ?></h1>
+
+        <div class="box">
+            <div class="box-row">
+                <h2 class="box-title">Akun Saya</h2>
+                <button class="box-button" onclick="openPopup('popup-akun')">Ubah</button>
+            </div>
+            <div class="box-content">
+                <p class="box-text"><?php echo $data['USERNAME_USER']; ?></p>
+                <p class="box-text"><?php echo $data['EMAIL_USER']; ?></p>
             </div>
         </div>
 
-        <div class="content">
-            <h1 class="welcome-text">Hello, Welcome <?php echo $data['USERNAME_USER'];  ?></h1>
-
-            <div class="box">
-                <div class="box-row">
-                    <h2 class="box-title">Akun Saya</h2>
-                    <button class="box-button" onclick="openPopup('popup-akun')">Ubah</button>
-                </div>
-                <div class="box-content">
-                    <p class="box-text"><?php echo $data['USERNAME_USER'];  ?></p>
-                    <p class="box-text"><?php echo $data['EMAIL_USER'];  ?></p>
-                </div>
+        <div class="box">
+            <div class="box-row">
+                <h2 class="box-title">Alamat Saya</h2>
+                <button class="box-button" onclick="openPopup('popup-alamat')">Ubah</button>
             </div>
-
-            <div class="box">
-                <div class="box-row">
-                    <h2 class="box-title">Alamat Saya</h2>
-                    <button class="box-button" onclick="openPopup('popup-alamat')">Ubah</button>
-                </div>
-                <div class="box-content">
-                    <p class="box-text"><?php echo $data['NAMA_USER'];  ?></p>
-                    <p class="box-text"><?php echo $data['ADDRESS'];  ?></p>
-                    <p class="box-text"><?php echo $data['NUMBER_PHONE'];  ?></p>
-                </div>
+            <div class="box-content">
+                <p class="box-text"><?php echo $data['NAMA_USER']; ?></p>
+                <p class="box-text"><?php echo $data['ADDRESS']; ?></p>
+                <p class="box-text"><?php echo $data['NUMBER_PHONE']; ?></p>
             </div>
-        <?php endif; ?>
+        </div>
 
-        <?php if (!empty($result_pesanan)) : ?>
+        <?php if (!empty($data_pesanan)) : ?>
             <div class="box">
                 <h2 class="box-title">Pesanan Saya</h2>
                 <div class="box-content">
@@ -118,13 +129,15 @@ $data_pesanan = $result_pesanan->fetch(PDO::FETCH_ASSOC);
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td><?php echo $data_pesanan['id_transaksi'];  ?></td>
-                                <td><?php echo $data_pesanan['tanggal_transaksi'];  ?></td>
-                                <td><?php echo $data_pesanan['name_product'];  ?></td>
-                                <td><?php echo $data_pesanan['jumlah'];  ?></td>
-                                <td><?php echo $data_pesanan['harga'];  ?></td>
-                            </tr>
+                            <?php foreach ($data_pesanan as $pesanan) : ?>
+                                <tr>
+                                    <td><?php echo $pesanan['id_transaksi']; ?></td>
+                                    <td><?php echo $pesanan['tanggal_transaksi']; ?></td>
+                                    <td><?php echo $pesanan['name_product']; ?></td>
+                                    <td><?php echo $pesanan['jumlah']; ?></td>
+                                    <td><?php echo $pesanan['harga']; ?></td>
+                                </tr>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
@@ -133,22 +146,19 @@ $data_pesanan = $result_pesanan->fetch(PDO::FETCH_ASSOC);
 
         <?php include('pop-up-akun.php'); ?>
         <?php include('pop-up-alamat.php'); ?>
+    </div>
 
-        </div>
+    <script>
+        function openPopup(popupId) {
+            var popup = document.getElementById(popupId);
+            popup.style.display = "block";
+        }
 
-        <script>
-            function openPopup(popupId) {
-                var popup = document.getElementById(popupId);
-                popup.style.display = "block";
-            }
-
-            function closePopup(popupId) {
-                var popup = document.getElementById(popupId);
-                popup.style.display = "none";
-            }
-        </script>
-
-
+        function closePopup(popupId) {
+            var popup = document.getElementById(popupId);
+            popup.style.display = "none";
+        }
+    </script>
 </body>
 
 </html>
