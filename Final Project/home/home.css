@@ -168,6 +168,11 @@ header p{
     display: flex;
 }
 
+.report{
+    display: flex;
+    justify-content: center;
+}
+
 .report .box2 {
     display: flex;
     flex-direction: row;
@@ -175,24 +180,26 @@ header p{
     border: 2px solid black;
     border-radius: 20px;
     height: auto;
+    width: 68%;
+    
 }
 
 .report .box2 .box2-1{
-    margin: 100px 30px;
-    width: 30%;
+    margin: 110px 70px;
+    width: 40%;
 }
 
 .report .box2 .box2-1 h2{
     text-align: center;
     font-family: 'inter', sans-serif;
-    font-size: 35px;
+    font-size: 33px;
     margin-bottom: 20px;
 }
 
 .report .box2 .box2-1 p{
     text-align: justify;
     font-family: 'inter', sans-serif;
-    font-size: 19px;
+    font-size: 18px;
     margin-left: 30px;
     margin-right: 20px;
 }
@@ -200,12 +207,12 @@ header p{
 .report .box2 .box2-2{
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 75%;
     height: auto;
 }
 
 .report .box2 .box2-2{
-    margin: 40px 0;
+    margin: 60px 0;
 }
 
 .report .box2 .box2-2 .nama{
@@ -214,23 +221,23 @@ header p{
     width: 100%;
 }
 
-.report .box2 .box2-2 .nama .nama1{
+.report .box2 .box2-2 .nama{
     display: flex;
     border: 2px solid rgba(0, 0, 0, 0.5);
     border-radius: 10px;
-    margin: 10px;
+    margin: 15px;
     margin-top: 30px;
-    width: 43%;
+    width: 75%;
 }
 
-.report .box2 .box2-2 .nama .nama1 i{
+.report .box2 .box2-2 .nama i{
     margin: 15px;
 }
 
-.report .box2 .box2-2 .nama .nama1 input{
+.report .box2 .box2-2 .nama input{
     border: none;
     font-size: 15px;
-    width: 82%;
+    width: 80%;
     outline: none;
 }
 
@@ -238,8 +245,8 @@ header p{
     display: flex;
     border: 2px solid rgba(0, 0, 0, 0.5);
     border-radius: 10px;
-    margin: 10px;
-    width: 90%;
+    margin: 15px;
+    width: 75%;
 }
 
 .report .box2 .box2-2 .email i{
@@ -249,7 +256,7 @@ header p{
 .report .box2 .box2-2 .email input{
     border: none;
     font-size: 15px;
-    width: 91%;
+    width: 75%;
     outline: none;
 }
 
@@ -257,43 +264,35 @@ header p{
     display: flex;
     border: 2px solid rgba(0, 0, 0, 0.5);
     border-radius: 10px;
-    margin: 10px;
-    width: 90%;
+    margin: 15px;
+    width: 75%;
     height: 150px;
 }
 
 .report .box2 .box2-2 .desc textarea{
     border: none;
     font-size: 15px;
-    width: 98%;
+    width: 75%;
     margin-left: 10px;
-    margin-top: 10px;
+    margin-top: 15px;
     outline: none;
 }
 
-.report .box2 .box2-2 .send{
-    margin-bottom: 40px;
-}
-
-.report .box2 .box2-2 .send a{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 40px;
-    width: 91%;
-    border-radius: 10px;
-    margin: 10px;
+.report .box2 .box2-2 button{
+    width: 75%;
+    margin-left: 12px;
     background-color: #0C697A;
-    text-decoration: none;
+    border-style: none;
+    border-radius: 10px;
+    height: 40px;
+    font-size: 18px;
     color: white;
-    transition: 0.2s;
-    font-family: 'inter', sans-serif;
-    font-size: 15px;
+    margin-top: 15px;
 }
 
-.report .box2 .box2-2 .send a:hover{
-    background-color: black;
-    color: white;
+.report .box2 .box2-2 button:hover{
+    background-color: #b5b0b0;
+    color: black;
 }
 
 .bgfooter{
@@ -343,4 +342,8 @@ footer{
     padding-right: 20px;
     text-align: center;
     margin: 20px;
+}
+
+footer p{
+    font-size: 20px;
 }

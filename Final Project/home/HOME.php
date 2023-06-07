@@ -1,44 +1,50 @@
 <?php
+session_start();
 
-// membuat koneksi ke system
+// membuat koneksi ke database
 $dbServer = 'localhost';
 $dbUser = 'root';
 $dbPass = '';
 $dbName = "pemwebvape";
 
 try {
-    //membuat object PDO untuk koneksi ke database
+    //membuat objek PDO untuk koneksi ke database
     $connection = new PDO("mysql:host=$dbServer;dbname=$dbName", $dbUser, $dbPass);
-    // setting ERROR mode PDO: ada tiga mode error mode silent, warning, exception
+    // setting mode error PDO: ada tiga mode yaitu silent, warning, exception
     $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $err) {
-    echo "Failed Connect to Database Server : " . $err->getMessage();
+    echo "Failed to connect to Database Server: " . $err->getMessage();
 }
 
+$nama_user = '';
+$email_user = '';
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    session_start();
-    if (!$_SESSION['login'] == 1 && !isset($_SESSION['userId'])) {
+    if (!isset($_SESSION['login']) || $_SESSION['login'] != 1 || !isset($_SESSION['userId'])) {
         header('location: ../login/login_user.php');
         exit;
     }
-    $nama = $_POST['FN'];
-    $email = $_POST['email'];
+    $userId = $_SESSION['userId'];
     $deskripsi = $_POST['issue'];
 
-    // Mencari ID_USER berdasarkan email yang diinputkan
-    $query = "SELECT ID_USER FROM user WHERE EMAIL_USER = :email";
+    // Mencari data nama_user dan email_user berdasarkan ID_USER yang diambil dari session
+    $query = "SELECT NAMA_USER, EMAIL_USER FROM user WHERE ID_USER = :userId";
     $statement = $connection->prepare($query);
-    $statement->bindValue(':email', $email);
+    $statement->bindValue(':userId', $userId);
     $statement->execute();
     $result = $statement->fetch(PDO::FETCH_ASSOC);
 
-    if ($result && isset($result['ID_USER'])) {
-        $id_user = $result['ID_USER'];
+    $nama_user = $result['NAMA_USER'];
+    $email_user = $result['EMAIL_USER'];
+
+    if ($result) {
+        $nama_user = $result['NAMA_USER'];
+        $email_user = $result['EMAIL_USER'];
 
         // Menyimpan data ke tabel report
-        $query = "INSERT INTO report (ID_USER, DESK_REPORT) VALUES (:id_user, :deskripsi)";
+        $query = "INSERT INTO report (ID_USER, DESK_REPORT) VALUES (:userId, :deskripsi)";
         $statement = $connection->prepare($query);
-        $statement->bindValue(':id_user', $id_user);
+        $statement->bindValue(':userId', $userId);
         $statement->bindValue(':deskripsi', $deskripsi);
         $statement->execute();
 
@@ -47,9 +53,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         echo "User not found!";
     }
+} else {
+    // Jika belum melakukan POST (misalnya saat pertama kali masuk ke halaman)
+    // Mencari data nama_user dan email_user berdasarkan ID_USER yang diambil dari session
+    if (isset($_SESSION['login']) && $_SESSION['login'] == 1 && isset($_SESSION['userId'])) {
+        $userId = $_SESSION['userId'];
+
+        $query = "SELECT NAMA_USER, EMAIL_USER FROM user WHERE ID_USER = :userId";
+        $statement = $connection->prepare($query);
+        $statement->bindValue(':userId', $userId);
+        $statement->execute();
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+
+        if ($result) {
+            $nama_user = $result['NAMA_USER'];
+            $email_user = $result['EMAIL_USER'];
+        }
+    }
 }
-
-
 ?>
 
 <!DOCTYPE html>
@@ -142,7 +163,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="report" id="report">
         <div class="box2">
             <div class="box2-1">
-                <h2>Report</h1>
+                <h2>Report</h2>
                     <p>Kami menghargai setiap saran dan kritik yang Anda miliki untuk meningkatkan pengalaman Anda
                         di Vape Store. Jika Anda ingin melaporkan, jangan ragu untuk. Tim kami siap menjadi
                         penghubung dan merespons setiap umpan balik yang Anda berikan.
@@ -151,43 +172,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="box2-2">
                 <form action="" method="POST">
                     <div class="nama">
-                        <div class="nama1">
-                            <i class="fa-regular fa-user"></i>
-                            <input type="text" name="FN" placeholder="Name">
-                        </div>
+                        <i class="fa-regular fa-user"></i>
+                        <input type="text" name="FN" placeholder="Name" value="<?php echo $nama_user; ?>" readonly>
                     </div>
                     <div class="email">
                         <i class="fa-regular fa-envelope"></i>
-                        <input type="text" name="email" placeholder="email">
+                        <input type="text" name="email" at the end of the chat placeholder="Email" value="<?php echo $email_user; ?>" readonly>
                     </div>
                     <div class="desc">
-                        <textarea type="text" name="issue" placeholder="Describe your issue"></textarea>
+                        <textarea name="issue" rows="4" placeholder="Please describe your issue" required></textarea>
                     </div>
-                    <div class="send">
-                        <button type="submit">Send</button>
+                    <div class="button">
+                        <button type="submit">Submit</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+</body>
 
-    <div class="bgfooter">
-        <div class="box3">
-            <img src="image/logo.png" alt="">
-        </div>
-        <div class="box4">
-            <p>Follow us on</p>
-            <div class="sosmed">
-                <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
-            </div>
+</html>
+</div>
+</div>
+
+<div class="bgfooter">
+    <div class="box3">
+        <img src="image/logo.png" alt="">
+    </div>
+    <div class="box4">
+        <p>Follow us on</p>
+        <div class="sosmed">
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
         </div>
     </div>
+</div>
 
-    <footer>Copyright 2023 © VAP.COM</footer>
+<footer><p>Copyright 2023 © VAP.COM</p></footer>
 
-    <script src="https://kit.fontawesome.com/73bcd336f4.js"></script>
+<script src="https://kit.fontawesome.com/73bcd336f4.js"></script>
 
 </body>
 
