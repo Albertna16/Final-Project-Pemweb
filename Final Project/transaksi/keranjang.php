@@ -1,3 +1,9 @@
+<?php
+include('../connections.php');
+session_start();
+$totalPrice = 0;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,48 +43,32 @@
         <form action="" method="post">
             <div class="keranjang">
                 <h2>Keranjang Belanja</h2>
+                <?php foreach ($_SESSION["cart_item"] as $item) : ?>
+                    <div class="item">
+                        <div class="checkItem">
+                            <input type="checkbox" name="item[]" id="">
+                        </div>
 
-                <div class="item">
-                    <div class="checkItem">
-                        <input type="checkbox" name="item[]" id="">
+                        <div class="namaItem">
+                            <img src="../resource/product/img/<?php echo $item["image"]; ?>" alt="">
+                            <p><?php echo $item["name"]; ?></p>
+                        </div>
+                        <div class="hargaItem">
+                            <p>Rp. <span class="harga"><?php echo $item["price"]; ?></span></p>
+                        </div>
+                        <div class="jumlahItem">
+                            <button type="button" class="buttonMin" disabled><i class="bi bi-dash"></i></button>
+                            <span class="quantity"><?php echo $item["quantity"]; ?></span>
+                            <button type="button" class="buttonPlus"><i class="bi bi-plus"></i></button>
+                        </div>
+                        <div class="totalItem">
+                            <p>Rp. <span class="hargaTotal"><?php echo $item["quantity"] * $item["price"] ?></span></p>
+                        </div>
                     </div>
 
-                    <div class="namaItem">
-                        <img src="../resource/product/img/647db4ac276d8.png" alt="">
-                        <p>Produk A</p>
-                    </div>
-                    <div class="hargaItem">
-                        <p>Rp. <span class="harga">30000</span></p>
-                    </div>
-                    <div class="jumlahItem">
-                        <button type="button" class="buttonMin" disabled><i class="bi bi-dash"></i></button>
-                        <span class="quantity">1</span>
-                        <button type="button" class="buttonPlus"><i class="bi bi-plus"></i></button>
-                    </div>
-                    <div class="totalItem">
-                        <p>Rp. <span class="hargaTotal">30000</span></p>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="checkItem">
-                        <input type="checkbox" name="item[]" id="">
-                    </div>
-                    <div class="namaItem">
-                        <img src="../resource/product/img/647db4ac276d8.png" alt="">
-                        <p>Produk A hhytedsfdt kdsfji</p>
-                    </div>
-                    <div class="hargaItem">
-                        <p>Rp. <span class="harga">30000</span></p>
-                    </div>
-                    <div class="jumlahItem">
-                        <button type="button" class="buttonMin" disabled><i class="bi bi-dash"></i></button>
-                        <span class="quantity">1</span>
-                        <button type="button" class="buttonPlus"><i class="bi bi-plus"></i></button>
-                    </div>
-                    <div class="totalItem">
-                        <p>Rp. <span class="hargaTotal">30000</span></p>
-                    </div>
-                </div>
+                <?php
+                $totalPrice += $item["quantity"] * $item["price"]; 
+                endforeach; ?>
             </div>
             <div class="pembayaran">
 
@@ -89,7 +79,7 @@
                 </div>
                 <div class="totalBayar">
                     <h3>Total</h3>
-                    <p>Rp. <span class="totalSemua"></span></p>
+                    <p>Rp. <span class="totalSemua"><?php echo $totalPrice; ?></span></p>
                 </div>
                 <div class="button-choice">
                     <button type="submit">Bayar</button>
@@ -133,16 +123,16 @@
             const newHargaTotal = newNumber * harga;
             hargaTotalContainer.textContent = newHargaTotal;
             const totalSemuaElements = document.querySelectorAll('.item input[type="checkbox"]:checked');
-                let totalSemua = 0;
+            let totalSemua = 0;
 
-                totalSemuaElements.forEach((checkbox) => {
-                    const parentItem = checkbox.closest('.item');
-                    const hargaTotal = parentItem.querySelector('.hargaTotal');
-                    totalSemua += parseInt(hargaTotal.textContent);
-                });
+            totalSemuaElements.forEach((checkbox) => {
+                const parentItem = checkbox.closest('.item');
+                const hargaTotal = parentItem.querySelector('.hargaTotal');
+                totalSemua += parseInt(hargaTotal.textContent);
+            });
 
-                const totalSemuaContainer = document.querySelector(".totalSemua");
-                totalSemuaContainer.textContent = totalSemua;
+            const totalSemuaContainer = document.querySelector(".totalSemua");
+            totalSemuaContainer.textContent = totalSemua;
         })
     })
 </script>
