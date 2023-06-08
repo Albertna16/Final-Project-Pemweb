@@ -116,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <a href="../user/user-profil.php"><i class="fa-solid fa-user"></i></a>
             </div>
             <div class="tombol2">
-                <a href=""><i class="fa-solid fa-right-from-bracket"></i></a>
+                <a href="../login/login_user.php"><i class="fa-solid fa-right-from-bracket"></i></a>
             </div>
         </div>
     </div>
