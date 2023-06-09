@@ -1,6 +1,6 @@
-<?php 
-include('../connections.php')
-
+<?php
+include('../connections.php');
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -24,6 +24,7 @@ $query = "SELECT * FROM product";
 $stmt = $connection->prepare($query);
 $stmt->execute();
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$itemCount = count($_SESSION["cart_item"]);
 ?>
 
 <body>
@@ -32,11 +33,29 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <p>Welcome to Vape. salah satu online vape shop terbaik di Indonesia</p>
         </header>
     </div>
-
     <div class="bar">
         <div class="gambar">
-            <a href="../home/home.php"><img src="image/logovapehitam.png" alt=""></a>
+            <a href="#"><img src="image/logovapehitam.png" alt=""></a>
         </div>
+        <div class="tombol">
+            <a href="#home">HOME</a>
+            <a href="#aboutus">ABOUT US</a>
+            <a href="#product">PRODUCT</a>
+            <a href="#report">REPORT</a>
+            <div class="tombol1">
+                <a href="../transaksi/keranjang.php"><i class="fa-solid fa-cart-shopping"><?php echo $itemCount; ?></i></a>
+            </div>
+
+            <div class="tombol1">
+                <a href="../user/user-profil.php"><i class="fa-solid fa-user"></i></a>
+            </div>
+            <div class="tombol2">
+                <a href=""><i class="fa-solid fa-right-from-bracket"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="bar">
         <div class="button-choice">
             <a class="nav-link active" href="all.php">All</a>
             <a href="atomizer.php">Atomizer</a>
@@ -57,9 +76,10 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <h4><?php echo $data['NAME_PRODUCT']; ?></h4>
                         <p><?php echo $data['PRICE_PRODUCT']; ?></p>
                     </div>
-                    <button>
-                        <a href="#">beli</a>
-                    </button>
+                    <div class="link">
+                        <a href="../transaksi/addToCart.php?action=plus&id=<?php echo $data['ID_PRODUCT']; ?>&link=product">Beli</a>
+                    </div>
+
                 </div>
             </div>
         <?php endforeach; ?>

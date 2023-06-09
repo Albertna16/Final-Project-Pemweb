@@ -72,7 +72,7 @@ if (isset($_GET['action'])) {
         header('location: keranjang.php');
         exit;
     }if ($_GET['link']=='product') {
-        header('location: dumpProduct.php');
+        header('location: ../view more product/all.php');
         exit;
     }
 
