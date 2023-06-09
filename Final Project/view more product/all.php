@@ -12,6 +12,16 @@
     <!--link font awesome-->
     <script src="https://kit.fontawesome.com/ad6991be8a.js" crossorigin="anonymous"></script>
 </head>
+
+<?php 
+$query = "SELECT * FROM product";
+$stmt = $connection->prepare($query);
+$stmt->execute();
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+?>    
+    
 <body>
     <div class="bgheader">
         <header>
@@ -161,6 +171,20 @@
         </div>
     </div>
 
+    <?php foreach ($result as $data):?>
+
+    <div class="card rounded-4" style="background-color: #b5b0b0;">
+        <div class="img-box">
+            <img src="../resource/product/img/<?php echo $data['GAMBAR_PRODUCT']; ?>" class="card-img-top" alt="...">
+        </div>
+        <div class="card-body">
+            <h5 class="card-title"><?php echo $data['NAME_PRODUCT']; ?></h5>
+            <p class="card-text"><?php echo $data['PRICE_PRODUCT']; ?></p>
+            <a href="#" class="btn btn-primary w-100">beli</a>
+        </div>
+    </div>
+    <?php endforeach;?>
+    
     <div class="bgfooter">
         <div class="box3">
             <img src="image/logo.png" alt="">
