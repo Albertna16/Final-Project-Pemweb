@@ -1,17 +1,16 @@
 <?php
 include("../connections.php");
 session_start();
-if (!$_SESSION['login']==1 && !isset($_SESSION['adminId'])) {
+if (!$_SESSION['login'] == 1 && !isset($_SESSION['adminId'])) {
     header('location: ../login/login_user.php');
-	exit;
+    exit;
 }
 
-// Mengambil data dari tabel transaksi_item
-$query = "SELECT transaksi_item.ID, user.NAMA_USER, product.NAME_PRODUCT, transaksi_item.JUMLAH, transaksi_item.HARGA, (transaksi_item.JUMLAH * transaksi_item.HARGA) AS TOTAL_HARGA, transaksi.TANGGAL_TRANSAKSI
-FROM transaksi_item
-INNER JOIN transaksi ON transaksi_item.id_transaksi = transaksi.id_transaksi
-INNER JOIN user ON transaksi.id_user = user.id_user
-INNER JOIN product ON transaksi_item.id_product = product.id_product";
+// Mengambil data dari tabel transaksi
+$query = "SELECT transaksi.ID_TRANSAKSI, user.NAMA_USER, product.NAME_PRODUCT, transaksi.JUMLAH, transaksi.HARGA, (transaksi.JUMLAH * transaksi.HARGA) AS TOTAL_HARGA, transaksi.TANGGAL_TRANSAKSI
+FROM transaksi
+INNER JOIN user ON transaksi.ID_USER = user.ID_USER
+INNER JOIN product ON transaksi.ID_PRODUCT = product.ID_PRODUCT";
 
 $results = []; // Inisialisasi variabel $results dengan array kosong
 
@@ -25,6 +24,8 @@ try {
     echo "Failed to retrieve data: " . $err->getMessage();
 }
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -54,7 +55,7 @@ try {
                     <li class=""><i class="fa-solid fa-flag"></i><a href="admin-report.php">Report</a></li>
                 </ul>
             </div>
-            <div class="logout"><a href=""><i class="fa-solid fa-right-from-bracket"></i> Log Out</a></div>
+            <div class="logout"><a href="../login/login_user.php"><i class="fa-solid fa-right-from-bracket"></i> Log Out</a></div>
         </div>
         <div class="container-main">
             <table>
@@ -71,7 +72,7 @@ try {
                 <tbody>
                     <?php foreach ($results as $row) : ?>
                         <tr>
-                            <td><?php echo $row['ID']; ?></td>
+                            <td><?php echo $row['ID_TRANSAKSI']; ?></td>
                             <td><?php echo $row['NAMA_USER']; ?></td>
                             <td><?php echo $row['NAME_PRODUCT']; ?></td>
                             <td><?php echo $row['JUMLAH']; ?></td>

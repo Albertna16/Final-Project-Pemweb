@@ -2,9 +2,9 @@
 
 include("../connections.php");
 session_start();
-if (!$_SESSION['login']==1 && !isset($_SESSION['adminId'])) {
+if (!$_SESSION['login'] == 1 && !isset($_SESSION['adminId'])) {
     header('location: ../login/login_user.php');
-	exit;
+    exit;
 }
 
 // Mengambil data usernmae_admin dari tabel admin
@@ -22,7 +22,7 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
 $jumlahProduk = $result['jumlah_produk'];
 
 // Mengambil total pemasukan dari tabel transaksi_item
-$query = "SELECT SUM(HARGA * JUMLAH) AS total_pemasukan FROM transaksi_item";
+$query = "SELECT SUM(HARGA * JUMLAH) AS total_pemasukan FROM transaksi";
 $stmt = $connection->prepare($query);
 $stmt->execute();
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -30,8 +30,8 @@ $totalPemasukan = $result['total_pemasukan'];
 
 // Mengambil total keuntungan dari tabel transaksi_item
 $query = "SELECT SUM((PRICE_PRODUCT * 0.1) * JUMLAH) AS total_keuntungan 
-          FROM transaksi_item 
-          INNER JOIN product ON transaksi_item.ID_PRODUCT = product.ID_PRODUCT";
+          FROM transaksi 
+          INNER JOIN product ON transaksi.ID_PRODUCT = product.ID_PRODUCT";
 $stmt = $connection->prepare($query);
 $stmt->execute();
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -44,7 +44,7 @@ $stmt->execute();
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
 $jumlahPengguna = $result['jumlah_pengguna'];
 
-// Mengambil jumlah pesanan dari tabel transaksi_item
+// Mengambil jumlah pesanan dari tabel transaksi
 $query = "SELECT COUNT(*) AS jumlah_pesanan FROM transaksi";
 $stmt = $connection->prepare($query);
 $stmt->execute();
@@ -52,6 +52,7 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
 $jumlahPesanan = $result['jumlah_pesanan'];
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -81,7 +82,7 @@ $jumlahPesanan = $result['jumlah_pesanan'];
                     <li class=""><i class="fa-solid fa-flag"></i><a href="admin-report.php">Report</a></li>
                 </ul>
             </div>
-            <div class="logout"><a href="../login/logout.php"><i class="fa-solid fa-right-from-bracket"></i> Log Out</a></div>
+            <div class="logout"><a href="../login/login_user.php"><i class="fa-solid fa-right-from-bracket"></i> Log Out</a></div>
         </div>
         <div class="container-main">
             <div class="section1">

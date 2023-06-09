@@ -3,6 +3,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,15 +17,13 @@
     <script src="https://kit.fontawesome.com/ad6991be8a.js" crossorigin="anonymous"></script>
 </head>
 
-<?php 
+<?php
 $query = "SELECT * FROM product";
 $stmt = $connection->prepare($query);
 $stmt->execute();
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
 
-
-?>    
-    
 <body>
     <div class="bgheader">
         <header>
@@ -45,149 +44,25 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </div>
 
-    <div class="container-main">
-        <div class="box">
-            <div class="card" style="background-color: #b5b0b0;">
-                <div class="image">
-                    <img src="image/card1.png" class="card-img-top" alt="...">
+    <?php foreach ($result as $data) : ?>
+        <div class="container-main">
+            <div class="box">
+                <div class="card" style="background-color: #b5b0b0;">
+                    <div class="image">
+                        <img src="../resource/product/img/<?php echo $data['GAMBAR_PRODUCT']; ?>" class="card-img-top" alt="...">
+                    </div>
+                    <div class="text">
+                        <h4><?php echo $data['NAME_PRODUCT']; ?></h4>
+                        <p><?php echo $data['PRICE_PRODUCT']; ?></p>
+                    </div>
+                    <button>
+                        <a href="#">beli</a>
+                    </button>
                 </div>
-                <div class="text">
-                    <h4>RDA Druga 24mm</h4>
-                    <p>Rp.115.000</p>
-                </div>
-                <button>
-                    <a href="#">beli</a>
-                </button>
             </div>
         </div>
-        <div class="box">
-            <div class="card" style="background-color: #b5b0b0;">
-                <div class="image">
-                    <img src="image/card1.png" class="card-img-top" alt="...">
-                </div>
-                <div class="text">
-                    <h4>RDA Druga 24mm</h4>
-                    <p>Rp.115.000</p>
-                </div>
-                <button>
-                    <a href="#">beli</a>
-                </button>
-            </div>
-        </div>
-        <div class="box">
-            <div class="card" style="background-color: #b5b0b0;">
-                <div class="image">
-                    <img src="image/card1.png" class="card-img-top" alt="...">
-                </div>
-                <div class="text">
-                    <h4>RDA Druga 24mm</h4>
-                    <p>Rp.115.000</p>
-                </div>
-                <button>
-                    <a href="#">beli</a>
-                </button>
-            </div>
-        </div>
-        <div class="box">
-            <div class="card" style="background-color: #b5b0b0;">
-                <div class="image">
-                    <img src="image/card1.png" class="card-img-top" alt="...">
-                </div>
-                <div class="text">
-                    <h4>RDA Druga 24mm</h4>
-                    <p>Rp.115.000</p>
-                </div>
-                <button>
-                    <a href="#">beli</a>
-                </button>
-            </div>
-        </div>
-        <div class="box">
-            <div class="card" style="background-color: #b5b0b0;">
-                <div class="image">
-                    <img src="image/card1.png" class="card-img-top" alt="...">
-                </div>
-                <div class="text">
-                    <h4>RDA Druga 24mm</h4>
-                    <p>Rp.115.000</p>
-                </div>
-                <button>
-                    <a href="#">beli</a>
-                </button>
-            </div>
-        </div>
-        <div class="box">
-            <div class="card" style="background-color: #b5b0b0;">
-                <div class="image">
-                    <img src="image/card1.png" class="card-img-top" alt="...">
-                </div>
-                <div class="text">
-                    <h4>RDA Druga 24mm</h4>
-                    <p>Rp.115.000</p>
-                </div>
-                <button>
-                    <a href="#">beli</a>
-                </button>
-            </div>
-        </div>
-        <div class="box">
-            <div class="card" style="background-color: #b5b0b0;">
-                <div class="image">
-                    <img src="image/card1.png" class="card-img-top" alt="...">
-                </div>
-                <div class="text">
-                    <h4>RDA Druga 24mm</h4>
-                    <p>Rp.115.000</p>
-                </div>
-                <button>
-                    <a href="#">beli</a>
-                </button>
-            </div>
-        </div>
-        <div class="box">
-            <div class="card" style="background-color: #b5b0b0;">
-                <div class="image">
-                    <img src="image/card1.png" class="card-img-top" alt="...">
-                </div>
-                <div class="text">
-                    <h4>RDA Druga 24mm</h4>
-                    <p>Rp.115.000</p>
-                </div>
-                <button>
-                    <a href="#">beli</a>
-                </button>
-            </div>
-        </div>
-        <div class="box">
-            <div class="card" style="background-color: #b5b0b0;">
-                <div class="image">
-                    <img src="image/card1.png" class="card-img-top" alt="...">
-                </div>
-                <div class="text">
-                    <h4>RDA Druga 24mm</h4>
-                    <p>Rp.115.000</p>
-                </div>
-                <button>
-                    <a href="#">beli</a>
-                </button>
-            </div>
-        </div>
-    </div>
+    <?php endforeach; ?>
 
-    <?php foreach ($result as $data):?>
-
-    <div class="card rounded-4" style="background-color: #b5b0b0;">
-        <div class="img-box">
-            <img src="../resource/product/img/<?php echo $data['GAMBAR_PRODUCT']; ?>" class="card-img-top" alt="...">
-        </div>
-        <div class="card-body">
-            <h5 class="card-title"><?php echo $data['NAME_PRODUCT']; ?></h5>
-            <p class="card-text"><?php echo $data['PRICE_PRODUCT']; ?></p>
-            <a href="#" class="btn btn-primary w-100">beli</a>
-        </div>
-    </div>
-    <?php endforeach;?>
-    
     <div class="bgfooter">
         <div class="box3">
             <img src="image/logo.png" alt="">
@@ -202,6 +77,9 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </div>
 
-    <footer><p>Copyright 2023 © VAP.COM</p></footer>
+    <footer>
+        <p>Copyright 2023 © VAP.COM</p>
+    </footer>
 </body>
+
 </html>
