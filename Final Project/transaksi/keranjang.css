@@ -64,17 +64,17 @@ header p{
 
 
 /* keranjang */
-.container form {
+.container {
     display: flex;
 }
-.container form .keranjang {
+.container .keranjang {
     width: 75%;
     display: flex;
     flex-direction: column;
     
 }
 
-.container form .keranjang .item{
+.container .keranjang .item{
     display: flex;
     justify-content: space-evenly;
     flex-direction: row;
@@ -83,39 +83,39 @@ header p{
     border-bottom: 0.5px solid rgba(0, 0, 0, 0.3);
     margin: 0 50px;
 }
-.container form .keranjang .item .checkItem{
+.container .keranjang .item .checkItem{
     width: 5%;
 }
-.container form .keranjang .item .namaItem{
+.container .keranjang .item .namaItem{
     display: flex;
     align-items: center;
     width: 45%;
 }
-.container form .keranjang .item .namaItem img{
+.container .keranjang .item .namaItem img{
     height: 60px;
     width: 60px;
     overflow: hidden;
     margin-right: 20px;
 }
-.container form .keranjang .item .namaItem p{
+.container .keranjang .item .namaItem p{
     font-size: 18px;
     font-weight: bold;
 }
 
-.container form .keranjang .item .hargaItem {
+.container .keranjang .item .hargaItem {
     width: 15%;
 }
-.container form .keranjang .item .jumlahItem{
+.container .keranjang .item .jumlahItem{
     width: 20%;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 20px;
 }
-.container form .keranjang .item .jumlahItem span{
+.container .keranjang .item .jumlahItem span{
     margin: 8px;
 }
-.container form .keranjang .item .jumlahItem button{
+.container .keranjang .item .jumlahItem a{
     height: 30px;
     width: 30px;
     border-radius: 50%;
@@ -126,14 +126,20 @@ header p{
     justify-content: center;
     background-color: #ffffff;
 }
-.container form .keranjang .item .jumlahItem button:hover{
+.container .keranjang .item .jumlahItem a:hover{
     background-color: #6aa1ff;
 }
-.container form .keranjang .item .jumlahItem button i{
+.container .keranjang .item .jumlahItem a i{
     margin: 0;
+    color: #004ac9;
+}
+.disabled{
+    pointer-events: none;
+    color: gray;
+    text-decoration: none;
 }
 
-.container form .keranjang .item .totalItem{
+.container .keranjang .item .totalItem{
     width: 15%;
 }
 
@@ -148,27 +154,27 @@ h3{
     text-align: left;
     margin: 5px;
 }
-.container form .pembayaran{
+.container .pembayaran{
     display: flex;
     flex-direction: column;
     width: 25%;
 }
 
 
-.container form .pembayaran .alamat{
+.container .pembayaran .alamat{
     display: flex;
     flex-direction: column;
     margin: 30px ;
     border: 1px solid rgba(0, 0, 0, 0.3);
     border-radius: 5px;
 }
-.container form .pembayaran .alamat p{
+.container .pembayaran .alamat p{
     text-align: right;
     padding: 15px 5px;
     border-top: 1px solid rgba(0, 0, 0, 0.3);
 }
 
-.container form .pembayaran .totalBayar{
+.container .pembayaran .totalBayar{
     display: flex;
     flex-direction: row;
     margin: 30px 30px 0 30px ;
@@ -176,7 +182,7 @@ h3{
     align-items: center;
     justify-content: space-between;
 }
-.container form .pembayaran .totalBayar p{
+.container .pembayaran .totalBayar p{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -185,11 +191,11 @@ h3{
 
 
 
-.container form .pembayaran .button-choice{
+.container .pembayaran .button-choice{
     display: flex;
     justify-content: center;
 }
-.container form .pembayaran .button-choice button{
+.container .pembayaran .button-choice button{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -205,7 +211,7 @@ h3{
     margin-top: 30px;
 }
 
-.container form .pembayaran .button-choice button:hover{
+.container .pembayaran .button-choice button:hover{
     background-color: white;
     color: black;
 }

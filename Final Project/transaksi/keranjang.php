@@ -1,6 +1,10 @@
 <?php
 include('../connections.php');
 session_start();
+if (!$_SESSION['login'] == 1 && !isset($_SESSION['userId'])) {
+    header('location: ../login/login_user.php');
+    exit;
+}
 $totalPrice = 0;
 ?>
 
@@ -32,6 +36,10 @@ $totalPrice = 0;
             <a href="#product">PRODUCT</a>
             <a href="#report">REPORT</a>
             <div class="tombol1">
+                <a href="keranjang.php"><i class="bi bi-cart-plus-fill"></i></a>
+            </div>
+            
+            <div class="tombol1">
                 <a href="../user/user-profil.php"><i class="fa-solid fa-user"></i></a>
             </div>
             <div class="tombol2">
@@ -40,13 +48,14 @@ $totalPrice = 0;
         </div>
     </div>
     <div class="container">
-        <form action="" method="post">
-            <div class="keranjang">
-                <h2>Keranjang Belanja</h2>
-                <?php foreach ($_SESSION["cart_item"] as $item) : ?>
+        <div class="keranjang">
+            <h2>Keranjang Belanja</h2>
+            <?php if (isset($_SESSION["cart_item"])) {
+                foreach ($_SESSION["cart_item"] as $item) : ?>
                     <div class="item">
                         <div class="checkItem">
-                            <input type="checkbox" name="item[]" id="">
+                            <a href="addToCart.php?action=remove&codeProduct=<?php echo $item["id"] . '-' . $item['name']; ?>&link=keranjang"><i class="bi bi-x-lg"></i></a>
+
                         </div>
 
                         <div class="namaItem">
@@ -57,84 +66,67 @@ $totalPrice = 0;
                             <p>Rp. <span class="harga"><?php echo $item["price"]; ?></span></p>
                         </div>
                         <div class="jumlahItem">
-                            <button type="button" class="buttonMin" disabled><i class="bi bi-dash"></i></button>
+                            <a href="addToCart.php?action=min&id=<?php echo $item["id"]; ?>&link=keranjang" class="<?php echo $item['quantity'] == 1 ? 'disabled' : '' ?>">
+                                <i class="bi bi-dash"></i>
+                            </a>
+
                             <span class="quantity"><?php echo $item["quantity"]; ?></span>
-                            <button type="button" class="buttonPlus"><i class="bi bi-plus"></i></button>
+
+
+                            <a href="addToCart.php?action=plus&id=<?php echo $item["id"]; ?>&link=keranjang" class="<?php echo $item['quantity'] == 10 ? 'disabled' : '' ?>">
+                                <i class="bi bi-plus"></i>
+
+                            </a>
                         </div>
                         <div class="totalItem">
                             <p>Rp. <span class="hargaTotal"><?php echo $item["quantity"] * $item["price"] ?></span></p>
                         </div>
                     </div>
 
-                <?php
-                $totalPrice += $item["quantity"] * $item["price"]; 
-                endforeach; ?>
-            </div>
-            <div class="pembayaran">
+            <?php
+                    $totalPrice += $item["quantity"] * $item["price"];
+                endforeach;
+            } else {
+                echo "Belum ada produk yang ditambahkan";
+            }
 
-                <h2>Pembayaran</h2>
-                <div class="alamat">
-                    <h3>Alamat</h3>
-                    <p>Bumi suko indah b123</p>
-                </div>
-                <div class="totalBayar">
-                    <h3>Total</h3>
-                    <p>Rp. <span class="totalSemua"><?php echo $totalPrice; ?></span></p>
-                </div>
-                <div class="button-choice">
-                    <button type="submit">Bayar</button>
-                </div>
+            ?>
+        </div>
+        <?php
+        $idUser = $_SESSION['userId'];
+        $query = "SELECT * FROM user where ID_USER = :id";
+        $stmt = $connection->prepare($query);
+        $stmt->bindParam(':id', $idUser);
+        $stmt->execute();
+        $info = $stmt->fetch(PDO::FETCH_ASSOC);
+        ?>
+        <div class="pembayaran">
+
+            <h2>Pembayaran</h2>
+            <div class="alamat">
+                <h3>Nama</h3>
+                <p><?php echo $info["NAMA_USER"] ?></p>
+                <h3>Alamat</h3>
+                <p><?php echo $info["ADDRESS"] ?></p>
+                <h3>Kontak</h3>
+                <p><?php echo $info["NUMBER_PHONE"] ?></p>
             </div>
-        </form>
+            <a href="../user/user-profil.php">Ubah Data</a>
+            <div class="totalBayar">
+                <h3>Total</h3>
+                <p>Rp. <span class="totalSemua"><?php echo $totalPrice; ?></span></p>
+            </div>
+            <div class="button-choice">
+                <form action="transaksi.php" method="post">
+                    <input type="hidden" name="totalBayar" value="<?php echo $totalPrice ?>">
+                    <button type="submit">Bayar</button>
+                </form>
+            </div>
+        </div>
+
     </div>
     <script src="https://kit.fontawesome.com/73bcd336f4.js" crossorigin="anonymous"></script>
 </body>
-<script>
-    const buttons = document.querySelectorAll("button");
-    const minValue = 1;
-    const maxValue = 10;
 
-    buttons.forEach((button) => {
-        button.addEventListener("click", (event) => {
-            const element = event.currentTarget;
-            const parent = element.parentNode;
-            const numberContainer = parent.querySelector(".quantity");
-            const hargaContainer = parent.parentNode.querySelector(".harga");
-            const hargaTotalContainer = parent.parentNode.querySelector(".hargaTotal");
-            const harga = parseInt(hargaContainer.textContent);
-            const number = parseInt(numberContainer.textContent);
-            const increment = parent.querySelector(".buttonPlus");
-            const decrement = parent.querySelector(".buttonMin");
-            const newNumber = element.classList.contains("buttonPlus") ? number + 1 : number - 1;
-            numberContainer.textContent = newNumber;
-            console.log(newNumber);
-            if (newNumber === minValue) {
-                decrement.disabled = true;
-                numberContainer.classList.add("dim");
-                element.blur();
-            } else if (newNumber > minValue && newNumber < maxValue) {
-                decrement.disabled = false;
-                increment.disabled = false;
-                numberContainer.classList.remove("dim");
-            } else if (newNumber === maxValue) {
-                increment.disabled = true;
-                element.blur();
-            }
-            const newHargaTotal = newNumber * harga;
-            hargaTotalContainer.textContent = newHargaTotal;
-            const totalSemuaElements = document.querySelectorAll('.item input[type="checkbox"]:checked');
-            let totalSemua = 0;
-
-            totalSemuaElements.forEach((checkbox) => {
-                const parentItem = checkbox.closest('.item');
-                const hargaTotal = parentItem.querySelector('.hargaTotal');
-                totalSemua += parseInt(hargaTotal.textContent);
-            });
-
-            const totalSemuaContainer = document.querySelector(".totalSemua");
-            totalSemuaContainer.textContent = totalSemua;
-        })
-    })
-</script>
 
 </html>
