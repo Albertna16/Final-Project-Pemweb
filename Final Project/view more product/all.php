@@ -1,4 +1,6 @@
-<?php include('../connections.php')
+<?php 
+include('../connections.php')
+
 ?>
 
 <!DOCTYPE html>
@@ -44,8 +46,8 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </div>
 
-    <?php foreach ($result as $data) : ?>
-        <div class="container-main">
+    <div class="container-main">
+        <?php foreach ($result as $data) : ?>
             <div class="box">
                 <div class="card" style="background-color: #b5b0b0;">
                     <div class="image">
@@ -60,8 +62,8 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </button>
                 </div>
             </div>
-        </div>
-    <?php endforeach; ?>
+        <?php endforeach; ?>
+    </div>
 
     <div class="bgfooter">
         <div class="box3">

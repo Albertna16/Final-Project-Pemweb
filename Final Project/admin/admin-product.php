@@ -1,9 +1,9 @@
 <?php
 include('../connections.php');
 session_start();
-if (!$_SESSION['login']==1 && !isset($_SESSION['adminId'])) {
+if (!$_SESSION['login'] == 1 && !isset($_SESSION['adminId'])) {
     header('location: ../login/login_user.php');
-	exit;
+    exit;
 }
 if (isset($_GET['status'])) {
     $status = $_GET['status'];
@@ -11,6 +11,12 @@ if (isset($_GET['status'])) {
     $status = '';
 }
 
+// Mengambil data usernmae_admin dari tabel admin
+$query = "SELECT USERNAME_ADMIN FROM admin LIMIT 1";
+$stmt = $connection->prepare($query);
+$stmt->execute();
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
+$usernameAdmin = $result['USERNAME_ADMIN'];
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +36,7 @@ if (isset($_GET['status'])) {
             <div class="logo"><img src="img/Vape.png" alt=""></div>
             <div class="profile-preview">
                 <img src="img/userprofile.jpg" alt="">
-                <h3>Jonathan Roy</h3>
+                <h3><?php echo $usernameAdmin; ?></h3>
                 <p>Admin</p>
             </div>
             <div class="list-link">
@@ -51,9 +57,9 @@ if (isset($_GET['status'])) {
                 echo '<b>Berhasil Dihapus</b>';
             } elseif ($status == 'err_hapus') {
                 echo '<b>Gagal Dihapus/Produk masih ada di transaksi</b>';
-            }elseif ($status == 'ok_update') {
+            } elseif ($status == 'ok_update') {
                 echo '<b>Berhasil DiUpdate</b>';
-            }elseif ($status == 'err') {
+            } elseif ($status == 'err') {
                 echo '<b>Gagal</b>';
             }
             ?>
@@ -77,7 +83,7 @@ if (isset($_GET['status'])) {
                         <div class="product-action">
                             <form action="admin-deleteProduct.php" method="post">
                                 <input type="hidden" name="id_product" value="<?php echo $data['ID_PRODUCT']; ?>">
-                                <button type="submit" onclick="return confirm('Anda yakin ingin menghapus produk ini?')">Delete</button >
+                                <button type="submit" onclick="return confirm('Anda yakin ingin menghapus produk ini?')">Delete</button>
                             </form>
                             <a href="admin-updateProduct.php?id=<?php echo $data['ID_PRODUCT']; ?>">Edit</a>
                         </div>

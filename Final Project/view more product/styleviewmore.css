@@ -104,8 +104,8 @@ a.nav-link.active {
     padding-top: 20px;
 }
 
-.container-main .card .image img{
-    width: 100px;
+.container-main .card img{
+    width: 80%;
 }
 
 .text h4{

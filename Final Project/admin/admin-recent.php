@@ -1,16 +1,17 @@
 <?php
 include("../connections.php");
 session_start();
-if (!$_SESSION['login'] == 1 && !isset($_SESSION['adminId'])) {
+if (!isset($_SESSION['login']) || !isset($_SESSION['adminId'])) {
     header('location: ../login/login_user.php');
     exit;
 }
 
-// Mengambil data dari tabel transaksi
-$query = "SELECT transaksi.ID_TRANSAKSI, user.NAMA_USER, product.NAME_PRODUCT, transaksi.JUMLAH, transaksi.HARGA, (transaksi.JUMLAH * transaksi.HARGA) AS TOTAL_HARGA, transaksi.TANGGAL_TRANSAKSI
-FROM transaksi
+// Mengambil data dari tabel transaksi_item
+$query = "SELECT transaksi_item.ID, user.NAMA_USER, product.NAME_PRODUCT, transaksi_item.JUMLAH, transaksi_item.HARGA, (transaksi_item.JUMLAH * transaksi_item.HARGA) AS TOTAL_HARGA, transaksi.TANGGAL_TRANSAKSI
+FROM transaksi_item
+INNER JOIN transaksi ON transaksi_item.ID_TRANSAKSI = transaksi.ID_TRANSAKSI
 INNER JOIN user ON transaksi.ID_USER = user.ID_USER
-INNER JOIN product ON transaksi.ID_PRODUCT = product.ID_PRODUCT";
+INNER JOIN product ON transaksi_item.ID_PRODUCT = product.ID_PRODUCT";
 
 $results = []; // Inisialisasi variabel $results dengan array kosong
 
@@ -23,8 +24,14 @@ try {
 } catch (PDOException $err) {
     echo "Failed to retrieve data: " . $err->getMessage();
 }
-?>
 
+// Mengambil data usernmae_admin dari tabel admin
+$query = "SELECT USERNAME_ADMIN FROM admin LIMIT 1";
+$stmt = $connection->prepare($query);
+$stmt->execute();
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
+$usernameAdmin = $result['USERNAME_ADMIN'];
+?>
 
 
 <!DOCTYPE html>
@@ -44,7 +51,7 @@ try {
             <div class="logo"><img src="img/Vape.png" alt=""></div>
             <div class="profile-preview">
                 <img src="img/userprofile.jpg" alt="">
-                <h3>Jonathan Roy</h3>
+                <h3><?php echo $usernameAdmin; ?></h3>
                 <p>Admin</p>
             </div>
             <div class="list-link">
@@ -72,7 +79,7 @@ try {
                 <tbody>
                     <?php foreach ($results as $row) : ?>
                         <tr>
-                            <td><?php echo $row['ID_TRANSAKSI']; ?></td>
+                            <td><?php echo $row['ID']; ?></td>
                             <td><?php echo $row['NAMA_USER']; ?></td>
                             <td><?php echo $row['NAME_PRODUCT']; ?></td>
                             <td><?php echo $row['JUMLAH']; ?></td>

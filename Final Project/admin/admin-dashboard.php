@@ -1,5 +1,4 @@
 <?php
-
 include("../connections.php");
 session_start();
 if (!$_SESSION['login'] == 1 && !isset($_SESSION['adminId'])) {
@@ -22,7 +21,7 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
 $jumlahProduk = $result['jumlah_produk'];
 
 // Mengambil total pemasukan dari tabel transaksi_item
-$query = "SELECT SUM(HARGA * JUMLAH) AS total_pemasukan FROM transaksi";
+$query = "SELECT SUM(HARGA * JUMLAH) AS total_pemasukan FROM transaksi_item";
 $stmt = $connection->prepare($query);
 $stmt->execute();
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -30,8 +29,8 @@ $totalPemasukan = $result['total_pemasukan'];
 
 // Mengambil total keuntungan dari tabel transaksi_item
 $query = "SELECT SUM((PRICE_PRODUCT * 0.1) * JUMLAH) AS total_keuntungan 
-          FROM transaksi 
-          INNER JOIN product ON transaksi.ID_PRODUCT = product.ID_PRODUCT";
+          FROM transaksi_item 
+          INNER JOIN product ON transaksi_item.ID_PRODUCT = product.ID_PRODUCT";
 $stmt = $connection->prepare($query);
 $stmt->execute();
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -44,7 +43,7 @@ $stmt->execute();
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
 $jumlahPengguna = $result['jumlah_pengguna'];
 
-// Mengambil jumlah pesanan dari tabel transaksi
+// Mengambil jumlah pesanan dari tabel transaksi_item
 $query = "SELECT COUNT(*) AS jumlah_pesanan FROM transaksi";
 $stmt = $connection->prepare($query);
 $stmt->execute();

@@ -14,7 +14,7 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `admin` (`ID_ADMIN`, `NAMA_ADMIN`, `EMAIL_ADMIN`, `USERNAME_ADMIN`, `PASSWORD_ADMIN`) VALUES
-(1, 'Albert', 'albertna16@gmail.com', 'alberttnaa', 'yagaga');
+(1, 'Juan', 'juanmata@gmail.com', 'juanmata', 'yagaga');
 
 CREATE TABLE `product` (
   `ID_PRODUCT` int(11) NOT NULL,
@@ -26,7 +26,7 @@ CREATE TABLE `product` (
   `GAMBAR_PRODUCT` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `product` (`ID_PRODUCT`, `ID_ADMIN`, `NAME_PRODUCT`, `PRICE_PRODUCT`,`KATEGORI_PRODUCT` , `DESK_PRODUCT`, `GAMBAR_PRODUCT`) VALUES
+INSERT INTO `product` (`ID_PRODUCT`, `ID_ADMIN`, `NAME_PRODUCT`, `PRICE_PRODUCT`, `KATEGORI_PRODUCT`, `DESK_PRODUCT`, `GAMBAR_PRODUCT`) VALUES
 (1, NULL, 'tes1Update1', '90000', 'Atomizer','tes', '647eb3933946c.png'),
 (2, NULL, 'tes2Update2', '20000', 'Mod','tes2', '647eb3a2db76d.jpeg'),
 (3, NULL, 'tes3Update3', '90000', 'Baterai','tes3', '647eb3bd965d8.png');
@@ -44,17 +44,23 @@ INSERT INTO `report` (`ID_REPORT`, `ID_USER`, `DESK_REPORT`) VALUES
 CREATE TABLE `transaksi` (
   `ID_TRANSAKSI` int(11) NOT NULL,
   `ID_USER` int(11) DEFAULT NULL,
+  `TANGGAL_TRANSAKSI` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `transaksi` (`ID_TRANSAKSI`, `ID_USER`, `TANGGAL_TRANSAKSI`) VALUES
+(1, 1, NOW());
+
+CREATE TABLE `transaksi_item` (
+  `ID` int(11) NOT NULL,
+  `ID_TRANSAKSI` int(11) DEFAULT NULL,
   `ID_PRODUCT` int(11) DEFAULT NULL,
-  `TANGGAL_TRANSAKSI` datetime NOT NULL,
   `JUMLAH` decimal(10,0) DEFAULT NULL,
   `HARGA` decimal(8,0) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `transaksi` (`ID_TRANSAKSI`, `ID_USER`, `ID_PRODUCT`, `TANGGAL_TRANSAKSI`, `JUMLAH`, `HARGA`) VALUES 
-(1, 1, 1, NOW(), '3', (SELECT price_product FROM product WHERE id_product = 1)),
-(2, 1, 2, NOW(), '4', (SELECT price_product FROM product WHERE id_product = 2)),
-(3, 2, 3, NOW(), '5', (SELECT price_product FROM product WHERE id_product = 3)),
-(4, 2, 2, NOW(), '2', (SELECT price_product FROM product WHERE id_product = 2));
+INSERT INTO `transaksi_item` (`ID`, `ID_TRANSAKSI`, `ID_PRODUCT`, `JUMLAH`, `HARGA`) VALUES
+(1, 1, 1, '3', (SELECT price_product FROM product WHERE id_product = 1)),
+(2, 1, 2, '4', (SELECT price_product FROM product WHERE id_product = 2));
 
 CREATE TABLE `user` (
   `ID_USER` int(11) NOT NULL,
@@ -68,8 +74,8 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `user` (`ID_USER`, `NAMA_USER`, `EMAIL_USER`, `USERNAME_USER`, `PASSWORD_USER`, `ADDRESS`, `NUMBER_PHONE`, `SALDO`) VALUES
-(1, 'Albert', 'albertna16@gmail.com', 'alberttnaa', 'yayaya', 'Mojokerto', '0895366968783', '250000'),
-(2, 'Anton', 'anton16@gmail.com', 'antonya', 'yeyeye', 'Surabaya', '0895366968782', '340000');
+(1, 'Lionel Messi', 'Messi10@gmail.com', 'lionelmessi', 'yayaya', 'Nganjuk', '0895366968783', '2500000'),
+(2, 'Jordi Alba', 'alba17@gmail.com', 'jordialba', 'yeyeye', 'Banyuwangi', '0895366968782', '3400000');
 
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`ID_ADMIN`);
@@ -84,7 +90,11 @@ ALTER TABLE `report`
 
 ALTER TABLE `transaksi`
   ADD PRIMARY KEY (`ID_TRANSAKSI`),
-  ADD KEY `FK_RELATIONSHIP_5` (`ID_USER`),
+  ADD KEY `FK_RELATIONSHIP_5` (`ID_USER`);
+
+ALTER TABLE `transaksi_item`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `FK_RELATIONSHIP_6` (`ID_TRANSAKSI`),
   ADD KEY `FK_RELATIONSHIP_7` (`ID_PRODUCT`);
 
 ALTER TABLE `user`
@@ -100,7 +110,10 @@ ALTER TABLE `report`
   MODIFY `ID_REPORT` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 ALTER TABLE `transaksi`
-  MODIFY `ID_TRANSAKSI` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID_TRANSAKSI` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+ALTER TABLE `transaksi_item`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 ALTER TABLE `user`
   MODIFY `ID_USER` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
@@ -112,6 +125,9 @@ ALTER TABLE `report`
   ADD CONSTRAINT `FK_RELATIONSHIP_8` FOREIGN KEY (`ID_USER`) REFERENCES `user` (`ID_USER`);
 
 ALTER TABLE `transaksi`
-  ADD CONSTRAINT `FK_RELATIONSHIP_5` FOREIGN KEY (`ID_USER`) REFERENCES `user` (`ID_USER`),
+  ADD CONSTRAINT `FK_RELATIONSHIP_5` FOREIGN KEY (`ID_USER`) REFERENCES `user` (`ID_USER`);
+
+ALTER TABLE `transaksi_item`
+  ADD CONSTRAINT `FK_RELATIONSHIP_6` FOREIGN KEY (`ID_TRANSAKSI`) REFERENCES `transaksi` (`ID_TRANSAKSI`),
   ADD CONSTRAINT `FK_RELATIONSHIP_7` FOREIGN KEY (`ID_PRODUCT`) REFERENCES `product` (`ID_PRODUCT`);
 COMMIT;

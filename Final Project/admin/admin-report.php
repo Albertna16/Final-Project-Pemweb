@@ -1,24 +1,12 @@
 <?php
-session_start();
-if (!$_SESSION['login']==1 && !isset($_SESSION['adminId'])) {
-    header('location: ../login/login_user.php');
-	exit;
-}
+include("../connections.php");
 
-// membuat koneksi ke system
-$dbServer = 'localhost';
-$dbUser = 'root';
-$dbPass = '';
-$dbName = "pemwebvape";
-
-try {
-    //membuat object PDO untuk koneksi ke database
-    $connection = new PDO("mysql:host=$dbServer;dbname=$dbName", $dbUser, $dbPass);
-    // setting ERROR mode PDO: ada tiga mode error mode silent, warning, exception
-    $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $err) {
-    echo "Failed Connect to Database Server : " . $err->getMessage();
-}
+// Mengambil data usernmae_admin dari tabel admin
+$query = "SELECT USERNAME_ADMIN FROM admin LIMIT 1";
+$stmt = $connection->prepare($query);
+$stmt->execute();
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
+$usernameAdmin = $result['USERNAME_ADMIN'];
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +18,6 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Report</title>
     <link rel="stylesheet" href="../admin/css/admin-report.css">
-    <script src="https://kit.fontawesome.com/73bcd336f4.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -39,7 +26,7 @@ try {
             <div class="logo"><img src="img/Vape.png" alt=""></div>
             <div class="profile-preview">
                 <img src="img/userprofile.jpg" alt="">
-                <h3>Jonathan Roy</h3>
+                <h3><?php echo $usernameAdmin; ?></h3>
                 <p>Admin</p>
             </div>
             <div class="list-link">
@@ -47,7 +34,7 @@ try {
                     <li class=""><i class="fa-solid fa-house"></i><a href="admin-dashboard.php">Dashboard</a></li>
                     <li class=""><i class="fa-solid fa-bag-shopping"></i><a href="admin-product.php"> Product</a></li>
                     <li class=""><i class="fa-solid fa-stopwatch"></i><a href="admin-recent.php"> Recent Activity</a></li>
-                    <li class="active"><i class="fa-solid fa-flag"></i><a href="#">Report</a></li>
+                    <li class="active"><i class="fa-solid fa-flag"></i><a href="admin-report.php">Report</a></li>
                 </ul>
             </div>
             <div class="logout"><a href="../login/login_user.php"><i class="fa-solid fa-right-from-bracket"></i> Log Out</a></div>
@@ -62,7 +49,6 @@ try {
             $stmt = $connection->prepare($query);
             $stmt->execute();
             $reports = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
             foreach ($reports as $report) {
                 $namaUser = $report['NAMA_USER'];
                 $emailUser = $report['EMAIL_USER'];
@@ -70,13 +56,12 @@ try {
             ?>
                 <div class="report1">
                     <div class="data-report">
-                    <img src="img/user-solid.svg" alt="">
+                        <img src="img/user-solid.svg" alt="">
                         <div class="nama-report">
                             <h3><?php echo $namaUser; ?></h3>
                             <p><?php echo $emailUser; ?></p>
                         </div>
                     </div>
-
                     <div class="isi-report">
                         <p><?php echo $deskReport; ?></p>
                     </div>
@@ -84,4 +69,7 @@ try {
             <?php } ?>
         </div>
     </div>
-    .
+    <script src="https://kit.fontawesome.com/73bcd336f4.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,20 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Add Product</title>
-    <link rel="stylesheet" href="css/admin-addProduct.css">
-</head>
-
 <?php
 include('../connections.php');
 session_start();
-if (!$_SESSION['login']==1 && !isset($_SESSION['adminId'])) {
+if (!$_SESSION['login'] == 1 && !isset($_SESSION['adminId'])) {
     header('location: ../login/login_user.php');
-	exit;
+    exit;
 }
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nameProduct = $_POST['nama_produk'];
@@ -56,17 +45,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
+// Mengambil data usernmae_admin dari tabel admin
+$query = "SELECT USERNAME_ADMIN FROM admin LIMIT 1";
+$stmt = $connection->prepare($query);
+$stmt->execute();
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
+$usernameAdmin = $result['USERNAME_ADMIN'];
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
 
-
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Add Product</title>
+    <link rel="stylesheet" href="css/admin-addProduct.css">
+</head>
 <body>
     <div class="container">
         <div class="sidebar">
             <div class="logo"><img src="img/Vape.png" alt=""></div>
             <div class="profile-preview">
                 <img src="img/userprofile.jpg" alt="">
-                <h3>Jonathan Roy</h3>
+                <h3><?php echo $usernameAdmin; ?></h3>
                 <p>Admin</p>
             </div>
             <div class="list-link">

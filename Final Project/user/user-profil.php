@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// membuat koneksi ke database system
+// membuat konekesi ke database system
 $dbServer = 'localhost';
 $dbUser = 'root';
 $dbPass = '';
@@ -21,31 +21,32 @@ if (!isset($_SESSION['login']) || $_SESSION['login'] != 1 || !isset($_SESSION['u
     exit;
 }
 
-$query = "SELECT * FROM user WHERE ID_USER = :userId";
+$query = "SELECT * FROM user WHERE id_user = :userId";
 $stmt = $conn->prepare($query);
 $stmt->bindParam(':userId', $_SESSION['userId']);
 $stmt->execute();
 $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
 $query_pesanan = "SELECT 
-    product.NAME_PRODUCT, 
-    transaksi.ID_TRANSAKSI, 
-    transaksi.TANGGAL_TRANSAKSI, 
-    transaksi.JUMLAH, 
-    transaksi.HARGA
+    product.name_product, 
+    transaksi.id_transaksi, 
+    transaksi.tanggal_transaksi, 
+    transaksi_item.jumlah, 
+    transaksi_item.harga
     FROM 
         product
     JOIN 
-        transaksi ON product.ID_PRODUCT = transaksi.ID_PRODUCT
+        transaksi_item ON product.id_product = transaksi_item.id_product
+    JOIN 
+        transaksi ON transaksi.id_transaksi = transaksi_item.id_transaksi
     WHERE
-        transaksi.ID_USER = :userId";
+        transaksi.id_user = :userId;";
 
 $stmt_pesanan = $conn->prepare($query_pesanan);
 $stmt_pesanan->bindParam(':userId', $_SESSION['userId']);
 $stmt_pesanan->execute();
 $data_pesanan = $stmt_pesanan->fetchAll(PDO::FETCH_ASSOC);
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -130,11 +131,11 @@ $data_pesanan = $stmt_pesanan->fetchAll(PDO::FETCH_ASSOC);
                         <tbody>
                             <?php foreach ($data_pesanan as $pesanan) : ?>
                                 <tr>
-                                    <td><?php echo $pesanan['ID_TRANSAKSI']; ?></td>
-                                    <td><?php echo $pesanan['TANGGAL_TRANSAKSI']; ?></td>
-                                    <td><?php echo $pesanan['NAME_PRODUCT']; ?></td>
-                                    <td><?php echo $pesanan['JUMLAH']; ?></td>
-                                    <td><?php echo $pesanan['HARGA']; ?></td>
+                                    <td><?php echo $pesanan['id_transaksi']; ?></td>
+                                    <td><?php echo $pesanan['tanggal_transaksi']; ?></td>
+                                    <td><?php echo $pesanan['name_product']; ?></td>
+                                    <td><?php echo $pesanan['jumlah']; ?></td>
+                                    <td><?php echo $pesanan['harga']; ?></td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
