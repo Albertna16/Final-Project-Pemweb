@@ -1,7 +1,7 @@
 <?php
 //memanggil file conn.php yang berisi koneski ke database
 //dengan include, semua kode dalam file conn.php dapat digunakan pada file index.php
-include('connection/connections.php');
+include('../connections.php');
 if (isset($_GET['status'])) {
     $status = $_GET['status'];
 } else {

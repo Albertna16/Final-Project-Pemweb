@@ -1,6 +1,17 @@
 <?php
 include('../connections.php');
 session_start();
+
+$query = "SELECT * FROM product";
+$stmt = $connection->prepare($query);
+$stmt->execute();
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$itemCount = 0; // Inisialisasi itemCount dengan nilai awal 0
+
+if (isset($_SESSION["cart_item"]) && is_array($_SESSION["cart_item"])) {
+    // Memeriksa apakah $_SESSION["cart_item"] sudah ada dan merupakan array
+    $itemCount = count($_SESSION["cart_item"]);
+}
 ?>
 
 <!DOCTYPE html>
@@ -18,14 +29,6 @@ session_start();
     <!--link font awesome-->
     <script src="https://kit.fontawesome.com/ad6991be8a.js" crossorigin="anonymous"></script>
 </head>
-
-<?php
-$query = "SELECT * FROM product";
-$stmt = $connection->prepare($query);
-$stmt->execute();
-$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-$itemCount = count($_SESSION["cart_item"]);
-?>
 
 <body>
     <div class="bgheader">

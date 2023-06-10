@@ -28,7 +28,7 @@ $totalPrice = 0;
     </div>
     <div class="bar">
         <div class="gambar">
-            <a href="#"><img src="image/logovapehitam.png" alt=""></a>
+            <a href="../home/HOME.php"><img src="../view more product/image/logovapehitam.png" alt=""></a>
         </div>
         <div class="tombol">
             <a href="#home">HOME</a>
@@ -36,14 +36,14 @@ $totalPrice = 0;
             <a href="#product">PRODUCT</a>
             <a href="#report">REPORT</a>
             <div class="tombol1">
-                <a href="keranjang.php"><i class="bi bi-cart-plus-fill"></i></a>
+                <a href="../view more product/all.php"><i class="bi bi-cart-plus-fill"></i></a>
             </div>
-            
+
             <div class="tombol1">
                 <a href="../user/user-profil.php"><i class="fa-solid fa-user"></i></a>
             </div>
             <div class="tombol2">
-                <a href=""><i class="fa-solid fa-right-from-bracket"></i></a>
+                <a href="../login/logout.php"><i class="fa-solid fa-right-from-bracket"></i></a>
             </div>
         </div>
     </div>
@@ -55,7 +55,6 @@ $totalPrice = 0;
                     <div class="item">
                         <div class="checkItem">
                             <a href="addToCart.php?action=remove&codeProduct=<?php echo $item["id"] . '-' . $item['name']; ?>&link=keranjang"><i class="bi bi-x-lg"></i></a>
-
                         </div>
 
                         <div class="namaItem">
@@ -69,20 +68,15 @@ $totalPrice = 0;
                             <a href="addToCart.php?action=min&id=<?php echo $item["id"]; ?>&link=keranjang" class="<?php echo $item['quantity'] == 1 ? 'disabled' : '' ?>">
                                 <i class="bi bi-dash"></i>
                             </a>
-
                             <span class="quantity"><?php echo $item["quantity"]; ?></span>
-
-
                             <a href="addToCart.php?action=plus&id=<?php echo $item["id"]; ?>&link=keranjang" class="<?php echo $item['quantity'] == 10 ? 'disabled' : '' ?>">
                                 <i class="bi bi-plus"></i>
-
                             </a>
                         </div>
                         <div class="totalItem">
                             <p>Rp. <span class="hargaTotal"><?php echo $item["quantity"] * $item["price"] ?></span></p>
                         </div>
                     </div>
-
             <?php
                     $totalPrice += $item["quantity"] * $item["price"];
                 endforeach;
@@ -108,8 +102,8 @@ $totalPrice = 0;
                 <p><?php echo $info["NAMA_USER"] ?></p>
                 <h3>Alamat</h3>
                 <p><?php echo $info["ADDRESS"] ?></p>
-                <h3>Kontak</h3>
-                <p><?php echo $info["NUMBER_PHONE"] ?></p>
+                <h3>Saldo</h3>
+                <p>Rp. <?php echo $info["SALDO"] ?></p>
             </div>
             <a href="../user/user-profil.php">Ubah Data</a>
             <div class="totalBayar">

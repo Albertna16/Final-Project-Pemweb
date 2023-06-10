@@ -16,10 +16,6 @@ if ($totalBayar > $result['SALDO']) {
     exit;
 }
 
-
-
-
-
 $query = "INSERT INTO transaksi (ID_USER, TANGGAL_TRANSAKSI) VALUES (:ID_USER, :TANGGAL_TRANSAKSI)";
 $stmt = $connection->prepare($query);
 $stmt->bindParam(':ID_USER', $userId);

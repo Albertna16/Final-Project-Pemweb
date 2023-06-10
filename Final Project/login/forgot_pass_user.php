@@ -1,16 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forgot password user</title>
-    <link rel="stylesheet" href="../login/css/forgot_pass_user.css">
-</head>
 <?php 
-
-include('connection/connections.php');
+include('../connections.php');
 $status = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email_user = $_POST["email"];
@@ -42,12 +31,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     var_dump($result_email);
     var_dump($status);
-
-   
 }
-
-
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot password user</title>
+    <link rel="stylesheet" href="../login/css/forgot_pass_user.css">
+</head>
 
 <body>
     <div class="background-image"></div>

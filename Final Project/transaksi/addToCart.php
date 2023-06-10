@@ -67,7 +67,6 @@ if (isset($_GET['action'])) {
 		}
     }
 
-
     if ($_GET['link']=='keranjang') {
         header('location: keranjang.php');
         exit;
@@ -75,9 +74,6 @@ if (isset($_GET['action'])) {
         header('location: ../view more product/all.php');
         exit;
     }
-
-
-    
 }
 var_dump($_SESSION);
 

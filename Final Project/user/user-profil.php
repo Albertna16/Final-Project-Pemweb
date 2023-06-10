@@ -1,20 +1,6 @@
 <?php
+include('../connections.php');
 session_start();
-
-// membuat konekesi ke database system
-$dbServer = 'localhost';
-$dbUser = 'root';
-$dbPass = '';
-$dbName = "pemwebvape";
-
-try {
-    //membuat object PDO untuk koneksi ke database
-    $conn = new PDO("mysql:host=$dbServer;dbname=$dbName", $dbUser, $dbPass);
-    // setting ERROR mode PDO: ada tiga mode error mode silent, warning, exception
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $err) {
-    echo "Failed Connect to Database Server : " . $err->getMessage();
-}
 
 if (!isset($_SESSION['login']) || $_SESSION['login'] != 1 || !isset($_SESSION['userId'])) {
     header('location: ../login/login_user.php');
@@ -22,7 +8,7 @@ if (!isset($_SESSION['login']) || $_SESSION['login'] != 1 || !isset($_SESSION['u
 }
 
 $query = "SELECT * FROM user WHERE id_user = :userId";
-$stmt = $conn->prepare($query);
+$stmt = $connection->prepare($query);
 $stmt->bindParam(':userId', $_SESSION['userId']);
 $stmt->execute();
 $data = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -42,7 +28,7 @@ $query_pesanan = "SELECT
     WHERE
         transaksi.id_user = :userId;";
 
-$stmt_pesanan = $conn->prepare($query_pesanan);
+$stmt_pesanan = $connection->prepare($query_pesanan);
 $stmt_pesanan->bindParam(':userId', $_SESSION['userId']);
 $stmt_pesanan->execute();
 $data_pesanan = $stmt_pesanan->fetchAll(PDO::FETCH_ASSOC);
@@ -73,8 +59,9 @@ $data_pesanan = $stmt_pesanan->fetchAll(PDO::FETCH_ASSOC);
             <div class="balance">
                 <i class="fas fa-wallet balance-icon"></i>
                 <span>Saldo</span>
-                <span class="balance-amount">Rp<?php echo $data['SALDO']; ?></span>
+                <span class="balance-amount">Rp<?php echo number_format($data['SALDO'], 0, ',', '.'); ?></span>
             </div>
+
         </center>
         <div class="navigation">
             <a href="../home/home.php" class="navigation-item">

@@ -1,7 +1,7 @@
 <?php
 //memanggil file conn.php yang berisi koneksi ke database
 //dengan include, semua kode dalam file conn.php dapat digunakan pada file index.php
-include('connection/connections.php');
+include('../connections.php');
 
 $status = '';
 
