@@ -125,7 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <img src="image/home.png" alt="">
     </div>
 
-    <div class="aboutus" id="aboutus">
+    <div id="aboutus" class="aboutus">
         <div class="box1">
             <img src="image/pod.png" alt="">
         </div>
@@ -141,7 +141,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </div>
 
-    <div class="product" id="product">
+    <div id="product" class="product">
         <div class="kalimat_kategori">
             <h2>Product Categories</h2>
             <p>Kami bangga menyajikan beragam produk vape berkualitas tinggi di VapeStore.com. Dari rokok
@@ -160,7 +160,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </div>
 
-    <div class="report" id="report">
+    <div id="report" class="report">
         <div class="box2">
             <div class="box2-1">
                 <h2>Report</h2>
