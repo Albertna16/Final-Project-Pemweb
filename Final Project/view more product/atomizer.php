@@ -1,10 +1,27 @@
+<?php
+include('../connections.php');
+session_start();
+
+$query = "SELECT * FROM product";
+$stmt = $connection->prepare($query);
+$stmt->execute();
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$itemCount = 0; // Inisialisasi itemCount dengan nilai awal 0
+
+if (isset($_SESSION["cart_item"]) && is_array($_SESSION["cart_item"])) {
+    // Memeriksa apakah $_SESSION["cart_item"] sudah ada dan merupakan array
+    $itemCount = count($_SESSION["cart_item"]);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ATOMIZER</title>
+    <title>ALL</title>
 
     <link rel="stylesheet" href="styleviewmore.css">
     <link rel="stylesheet" href="reset.css">
@@ -12,17 +29,36 @@
     <!--link font awesome-->
     <script src="https://kit.fontawesome.com/ad6991be8a.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
     <div class="bgheader">
         <header>
             <p>Welcome to Vape. salah satu online vape shop terbaik di Indonesia</p>
         </header>
     </div>
-
     <div class="bar">
         <div class="gambar">
-            <a href="../home/home.php"><img src="image/logovapehitam.png" alt=""></a>
+            <a href="../home/HOME.php"><img src="image/logovapehitam.png" alt=""></a>
         </div>
+        <div class="tombol">
+            <a href="../home/HOME.php #home">HOME</a>
+            <a href="../home/HOME.php #aboutus">ABOUT US</a>
+            <a href="../home/Home.php #product">PRODUCT</a>
+            <a href="../home/Home.php #report">REPORT</a>
+            <div class="tombol1">
+                <a href="../transaksi/keranjang.php"><i class="fa-solid fa-cart-shopping"><?php echo $itemCount; ?></i></a>
+            </div>
+
+            <div class="tombol1">
+                <a href="../user/user-profil.php"><i class="fa-solid fa-user"></i></a>
+            </div>
+            <div class="tombol2">
+                <a href=""><i class="fa-solid fa-right-from-bracket"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="bars">
         <div class="button-choice">
             <a href="all.php">All</a>
             <a class="nav-link active" href="atomizer.php">Atomizer</a>
@@ -33,132 +69,23 @@
     </div>
 
     <div class="container-main">
-        <div class="box">
-            <div class="card" style="background-color: #b5b0b0;">
-                <div class="image">
-                    <img src="image/card1.png" class="card-img-top" alt="...">
+        <?php foreach ($result as $data) : ?>
+            <div class="box">
+                <div class="card" style="background-color: #b5b0b0;">
+                    <div class="image">
+                        <img src="../resource/product/img/<?php echo $data['GAMBAR_PRODUCT']; ?>" alt="...">
+                    </div>
+                    <div class="text">
+                        <h4><?php echo $data['NAME_PRODUCT']; ?></h4>
+                        <p><?php echo $data['PRICE_PRODUCT']; ?></p>
+                    </div>
+                    <div class="link">
+                        <a href="../transaksi/addToCart.php?action=plus&id=<?php echo $data['ID_PRODUCT']; ?>&link=product">Beli</a>
+                    </div>
+
                 </div>
-                <div class="text">
-                    <h4>RDA Druga 24mm</h4>
-                    <p>Rp.115.000</p>
-                </div>
-                <button>
-                    <a href="#">beli</a>
-                </button>
             </div>
-        </div>
-        <div class="box">
-            <div class="card" style="background-color: #b5b0b0;">
-                <div class="image">
-                    <img src="image/card1.png" class="card-img-top" alt="...">
-                </div>
-                <div class="text">
-                    <h4>RDA Druga 24mm</h4>
-                    <p>Rp.115.000</p>
-                </div>
-                <button>
-                    <a href="#">beli</a>
-                </button>
-            </div>
-        </div>
-        <div class="box">
-            <div class="card" style="background-color: #b5b0b0;">
-                <div class="image">
-                    <img src="image/card1.png" class="card-img-top" alt="...">
-                </div>
-                <div class="text">
-                    <h4>RDA Druga 24mm</h4>
-                    <p>Rp.115.000</p>
-                </div>
-                <button>
-                    <a href="#">beli</a>
-                </button>
-            </div>
-        </div>
-        <div class="box">
-            <div class="card" style="background-color: #b5b0b0;">
-                <div class="image">
-                    <img src="image/card1.png" class="card-img-top" alt="...">
-                </div>
-                <div class="text">
-                    <h4>RDA Druga 24mm</h4>
-                    <p>Rp.115.000</p>
-                </div>
-                <button>
-                    <a href="#">beli</a>
-                </button>
-            </div>
-        </div>
-        <div class="box">
-            <div class="card" style="background-color: #b5b0b0;">
-                <div class="image">
-                    <img src="image/card1.png" class="card-img-top" alt="...">
-                </div>
-                <div class="text">
-                    <h4>RDA Druga 24mm</h4>
-                    <p>Rp.115.000</p>
-                </div>
-                <button>
-                    <a href="#">beli</a>
-                </button>
-            </div>
-        </div>
-        <div class="box">
-            <div class="card" style="background-color: #b5b0b0;">
-                <div class="image">
-                    <img src="image/card1.png" class="card-img-top" alt="...">
-                </div>
-                <div class="text">
-                    <h4>RDA Druga 24mm</h4>
-                    <p>Rp.115.000</p>
-                </div>
-                <button>
-                    <a href="#">beli</a>
-                </button>
-            </div>
-        </div>
-        <div class="box">
-            <div class="card" style="background-color: #b5b0b0;">
-                <div class="image">
-                    <img src="image/card1.png" class="card-img-top" alt="...">
-                </div>
-                <div class="text">
-                    <h4>RDA Druga 24mm</h4>
-                    <p>Rp.115.000</p>
-                </div>
-                <button>
-                    <a href="#">beli</a>
-                </button>
-            </div>
-        </div>
-        <div class="box">
-            <div class="card" style="background-color: #b5b0b0;">
-                <div class="image">
-                    <img src="image/card1.png" class="card-img-top" alt="...">
-                </div>
-                <div class="text">
-                    <h4>RDA Druga 24mm</h4>
-                    <p>Rp.115.000</p>
-                </div>
-                <button>
-                    <a href="#">beli</a>
-                </button>
-            </div>
-        </div>
-        <div class="box">
-            <div class="card" style="background-color: #b5b0b0;">
-                <div class="image">
-                    <img src="image/card1.png" class="card-img-top" alt="...">
-                </div>
-                <div class="text">
-                    <h4>RDA Druga 24mm</h4>
-                    <p>Rp.115.000</p>
-                </div>
-                <button>
-                    <a href="#">beli</a>
-                </button>
-            </div>
-        </div>
+        <?php endforeach; ?>
     </div>
 
     <div class="bgfooter">
@@ -175,6 +102,9 @@
         </div>
     </div>
 
-    <footer><p>Copyright 2023 © VAP.COM</p></footer>
+    <footer>
+        <p>Copyright 2023 © VAP.COM</p>
+    </footer>
 </body>
+
 </html>
