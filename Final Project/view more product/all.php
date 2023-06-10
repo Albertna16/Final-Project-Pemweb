@@ -38,13 +38,13 @@ if (isset($_SESSION["cart_item"]) && is_array($_SESSION["cart_item"])) {
     </div>
     <div class="bar">
         <div class="gambar">
-            <a href="#"><img src="image/logovapehitam.png" alt=""></a>
+            <a href="../home/HOME.php"><img src="image/logovapehitam.png" alt=""></a>
         </div>
         <div class="tombol">
-            <a href="#home">HOME</a>
-            <a href="#aboutus">ABOUT US</a>
-            <a href="#product">PRODUCT</a>
-            <a href="#report">REPORT</a>
+            <a href="../home/HOME.php #home">HOME</a>
+            <a href="../home/HOME.php #aboutus">ABOUT US</a>
+            <a href="../home/Home.php #product">PRODUCT</a>
+            <a href="../home/Home.php #report">REPORT</a>
             <div class="tombol1">
                 <a href="../transaksi/keranjang.php"><i class="fa-solid fa-cart-shopping"><?php echo $itemCount; ?></i></a>
             </div>
@@ -58,7 +58,7 @@ if (isset($_SESSION["cart_item"]) && is_array($_SESSION["cart_item"])) {
         </div>
     </div>
 
-    <div class="bar">
+    <div class="bars">
         <div class="button-choice">
             <a class="nav-link active" href="all.php">All</a>
             <a href="atomizer.php">Atomizer</a>
@@ -73,7 +73,7 @@ if (isset($_SESSION["cart_item"]) && is_array($_SESSION["cart_item"])) {
             <div class="box">
                 <div class="card" style="background-color: #b5b0b0;">
                     <div class="image">
-                        <img src="../resource/product/img/<?php echo $data['GAMBAR_PRODUCT']; ?>" class="card-img-top" alt="...">
+                        <img src="../resource/product/img/<?php echo $data['GAMBAR_PRODUCT']; ?>" alt="...">
                     </div>
                     <div class="text">
                         <h4><?php echo $data['NAME_PRODUCT']; ?></h4>
