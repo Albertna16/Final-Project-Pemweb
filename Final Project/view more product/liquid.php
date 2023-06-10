@@ -2,7 +2,7 @@
 include('../connections.php');
 session_start();
 
-$query = "SELECT * FROM product";
+$query = "SELECT * FROM product WHERE kategori_product = 'liquid'";
 $stmt = $connection->prepare($query);
 $stmt->execute();
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
