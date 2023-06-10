@@ -19,6 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $idProduk = $_POST['id_produk'];
     $namaProduk = $_POST['nama_produk'];
     $hargaProduk = $_POST['harga_produk'];
+    $kategoriProduct = $_POST['kategori_produk'];
     $deskProduk = $_POST['deskripsi_produk'];
     $gambarLama = $_POST['gambarLama'];
 
@@ -37,11 +38,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         unlink($pathLama);
     }
 
-    $query = $connection->prepare("UPDATE product SET name_product = :NAME_PRODUCT, price_product =:PRICE_PRODUCT , desk_product = :DESK_PRODUCT, gambar_product = :GAMBAR_PRODUCT where ID_PRODUCT = :ID_PRODUCT");
+    $query = $connection->prepare("UPDATE product SET name_product = :NAME_PRODUCT, price_product = :PRICE_PRODUCT, kategori_product = :KATEGORI_PRODUCT, desk_product = :DESK_PRODUCT, gambar_product = :GAMBAR_PRODUCT WHERE ID_PRODUCT = :ID_PRODUCT");
 
     //binding data
     $query->bindParam(':NAME_PRODUCT', $namaProduk);
     $query->bindParam(':PRICE_PRODUCT', $hargaProduk);
+    $query->bindParam(':KATEGORI_PRODUCT', $kategoriProduct);
     $query->bindParam(':DESK_PRODUCT',  $deskProduk);
     $query->bindParam(':GAMBAR_PRODUCT',  $namaGambarBaru);
     $query->bindParam(':ID_PRODUCT', $idProduk);
@@ -120,6 +122,16 @@ $usernameAdmin = $result['USERNAME_ADMIN'];
                             <i class="fa-solid fa-pen"></i>
                             <p>Rp.</p>
                             <input type="text" class="form-control" name="harga_produk" id="harga_produk" placeholder="Harga produk" value="<?php echo $data['PRICE_PRODUCT']; ?>">
+                        </div>
+                        <div class="add2">
+                            <i class="fa-solid fa-pen"></i>
+                            <select class="form-control" name="kategori_produk" id="kategori_produk">
+                                <option value="" selected disabled>Kategori Produk</option>
+                                <option value="Atomizer">Atomizer</option>
+                                <option value="Mod">Mod</option>
+                                <option value="Liquid">Liquid</option>
+                                <option value="Baterai">Baterai</option>
+                            </select>
                         </div>
                         <div class="add3">
                             <i class="fa-solid fa-pen"></i>
