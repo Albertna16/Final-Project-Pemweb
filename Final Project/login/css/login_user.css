@@ -76,11 +76,23 @@ body {
 .user-type-container .user-type.user {
     /* background-color: rgba(255, 0, 0, 0.5); */
     box-shadow: rgba(0, 0, 0, 0.2) 0px 7px 29px 0px;
+    transition: 0.2s;
+}
+
+.user-type-container .user-type.user:hover {
+    background-color: #540F4D;
+    color: white;
 }
 
 .user-type-container .user-type.admin {
     /* background-color: rgba(255, 255, 0, 0.5); */
     box-shadow: rgba(0, 0, 0, 0.2) 0px 7px 29px 0px;
+    transition: 0.2s;
+}
+
+.user-type-container .user-type.admin:hover {
+    background-color: #0F5E71;
+    color: white;
 }
 
 .user-type-container .user-type.user.clicked {
@@ -104,7 +116,7 @@ body {
 
 .login-button {
     padding: 10px 20px;
-    background-color: #540F4D;
+    background-color: black;
     color: white;
     border: none;
     cursor: pointer;
@@ -112,6 +124,12 @@ body {
     width: 120px;
     height: 40px;
     margin: 10px auto;
+    transition: 0.2s;
+}
+
+.login-button:hover{
+    background-color: #B5B0B0;
+    color: black;
 }
 
 .account-text {
