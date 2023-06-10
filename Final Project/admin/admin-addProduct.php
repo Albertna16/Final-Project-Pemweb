@@ -8,6 +8,7 @@ if (!$_SESSION['login'] == 1 && !isset($_SESSION['adminId'])) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nameProduct = $_POST['nama_produk'];
     $priceProduct = $_POST['harga_produk'];
+    $kategoriProduct = $_POST['kategori_produk'];
     $deskProduct = $_POST['deskripsi_produk'];
 
 
@@ -19,11 +20,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $namaGambarBaru = uniqid() . '.' . $ekstensiGambar;
 
     if ($errorGambar === 0) {
-        $query = $connection->prepare("INSERT INTO product (name_product, price_product, desk_product, gambar_product) VALUES(:NAME_PRODUCT, :PRICE_PRODUCT, :DESK_PRODUCT , :GAMBAR_PRODUCT)");
+        $query = $connection->prepare("INSERT INTO product (name_product, price_product, kategori_product, desk_product, gambar_product) VALUES(:NAME_PRODUCT, :PRICE_PRODUCT, :KATEGORI_PRODUCT, :DESK_PRODUCT , :GAMBAR_PRODUCT)");
 
         //binding data
         $query->bindParam(':NAME_PRODUCT', $nameProduct);
         $query->bindParam(':PRICE_PRODUCT', $priceProduct);
+        $query->bindParam(':KATEGORI_PRODUCT', $kategoriProduct);
         $query->bindParam(':DESK_PRODUCT',  $deskProduct);
         $query->bindParam(':GAMBAR_PRODUCT',  $namaGambarBaru);
 
@@ -109,6 +111,16 @@ $usernameAdmin = $result['USERNAME_ADMIN'];
                         <div class="add2">
                             <i class="fa-solid fa-pen"></i>
                             <input type="text" class="form-control" name="harga_produk" id="harga_produk" placeholder="Harga produk">
+                        </div>
+                        <div class="add2">
+                            <i class="fa-solid fa-pen"></i>
+                            <select class="form-control" name="kategori_produk" id="kategori_produk">
+                                <option value="" selected disabled>Kategori Produk</option>
+                                <option value="Atomizer">Atomizer</option>
+                                <option value="Mod">Mod</option>
+                                <option value="Liquid">Liquid</option>
+                                <option value="Baterai">Baterai</option>
+                            </select>
                         </div>
                         <div class="add3">
                             <i class="fa-solid fa-pen"></i>
