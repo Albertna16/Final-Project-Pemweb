@@ -24,39 +24,15 @@ header p{
     display: flex;
     flex-direction: row;
     position: sticky;
-    height: 70px;
     top: 0;
     background-color: white;
     border-bottom: 1px solid black;
 }
 
-.bar .tombol{
-    display: flex;
-    width: 100%;
-    gap: 30px;
-    font-size: 18px;
-    /* /* margin: 20px; */
-    margin-left: 30%; 
-    align-items: center;
-    font-family: 'Inter', sans-serif;
-}
-
-.bar .tombol a{
-    text-decoration: none;
-    color: black;
-}
-
-.bar .tombol a:hover{
-    color: #b5b0b0;
-}
-
-
 .bar .gambar{
     display: flex;
     float: left;
-    justify-content: center;
-    width: 10%;
-    padding-top: 10px;
+    width: 100%;
 }
 
 .bar .gambar img {
@@ -66,12 +42,38 @@ header p{
     margin-left: 50px;
 }
 
+.bar .tombol{
+    display: flex;
+    float: right;
+    width: 100%;
+    gap: 30px;
+    font-size: 18px;
+    margin: 20px;
+    margin-left: 10%;
+    font-family: 'Inter', sans-serif;
+}
+
+.bar .tombol a{
+    text-decoration: none;
+    color: black;
+    transition: 0.3s;
+}
+
+.bar .tombol a:hover{
+    color: #b5b0b0;
+}
+
+.bars{
+    display: flex;
+    justify-content: center;
+}
+
 .button-choice {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 80px 0 150px;
+    padding: 15px 80px 30px 80px;
 }
 
 .button-choice a{
@@ -84,7 +86,7 @@ header p{
     border-style: solid;
     border-radius: 10px;
     color: black;
-    transition: 0.2s;
+    transition: 0.3s;
 }
 
 .button-choice a:hover {
@@ -98,9 +100,8 @@ a.nav-link.active {
 }
 
 .container-main{
-    display: grid;
-    grid-template-areas: "box box box box";
-    grid-template-columns: 0.25fr 0.25fr 0.25 o.25fr;
+    display: flex;
+    flex-wrap: wrap;
     width: 100%;
     min-height: 100vh;
 }
@@ -108,10 +109,10 @@ a.nav-link.active {
 .box{
     width: 80%;
     display: grid;
-    grid-template-columns: auto auto auto auto;
     justify-content: center;
     padding: 30px 30px;
     border-radius: 20px;
+    flex-basis: 20%;
 }
 
 .container-main .card{
@@ -127,7 +128,6 @@ a.nav-link.active {
 }
 
 .container-main .image{
-    background-color: #0C697A;
     width: 180px;
     height: 180px;
     text-align: center;
@@ -147,19 +147,20 @@ a.nav-link.active {
     text-align: left;
 }
 .text h4{
-    padding-top: 10px;
+    padding-top: 15px;
     font-size: 18px;
 }
 
 .text p{
     padding-top: 5px;
-    font-size: 14px;
+    font-size: 15px;
 }
 .card .link{
     width: 80%;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding-top: 20px;
 }
 
 .card .link a{
@@ -174,6 +175,7 @@ a.nav-link.active {
     text-decoration: none;
     font-size: 16px;
     border-radius: 15px;
+    transition: 0.3s;
 }
 
 .card .link a:hover{
@@ -216,6 +218,7 @@ a.nav-link.active {
 .bgfooter .box4 .sosmed a{
     text-decoration: none;
     color: white;
+    transition: 0.3s;
 }
 
 .bgfooter .box4 .sosmed a:hover{
