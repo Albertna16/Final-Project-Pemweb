@@ -127,10 +127,10 @@ $usernameAdmin = $result['USERNAME_ADMIN'];
                             <i class="fa-solid fa-pen"></i>
                             <select class="form-control" name="kategori_produk" id="kategori_produk">
                                 <option value="" selected disabled>Kategori Produk</option>
-                                <option value="Atomizer">Atomizer</option>
-                                <option value="Mod">Mod</option>
-                                <option value="Liquid">Liquid</option>
-                                <option value="Baterai">Baterai</option>
+                                <option value="Atomizer" <?php if ($data['KATEGORI_PRODUCT'] == 'Atomizer') echo 'selected'; ?>>Atomizer</option>
+                                <option value="Mod" <?php if ($data['KATEGORI_PRODUCT'] == 'Mod') echo 'selected'; ?>>Mod</option>
+                                <option value="Liquid" <?php if ($data['KATEGORI_PRODUCT'] == 'Liquid') echo 'selected'; ?>>Liquid</option>
+                                <option value="Baterai" <?php if ($data['KATEGORI_PRODUCT'] == 'Baterai') echo 'selected'; ?>>Baterai</option>
                             </select>
                         </div>
                         <div class="add3">
