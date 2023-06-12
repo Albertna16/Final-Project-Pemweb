@@ -31,10 +31,10 @@ $totalPrice = 0;
             <a href="../home/HOME.php"><img src="../view more product/image/logovapehitam.png" alt=""></a>
         </div>
         <div class="tombol">
-            <a href="#home">HOME</a>
-            <a href="#aboutus">ABOUT US</a>
-            <a href="#product">PRODUCT</a>
-            <a href="#report">REPORT</a>
+            <a href="../home/HOME.php #home">HOME</a>
+            <a href="../home/HOME.php #aboutus">ABOUT US</a>
+            <a href="../home/HOME.php #product">PRODUCT</a>
+            <a href="../home/HOME.php #report">REPORT</a>
             <div class="tombol1">
                 <a href="../view more product/all.php"><i class="bi bi-cart-plus-fill"></i></a>
             </div>
@@ -97,13 +97,19 @@ $totalPrice = 0;
         <div class="pembayaran">
 
             <h2>Pembayaran</h2>
-            <div class="alamat">
-                <h3>Nama</h3>
-                <p><?php echo $info["NAMA_USER"] ?></p>
-                <h3>Alamat</h3>
-                <p><?php echo $info["ADDRESS"] ?></p>
-                <h3>Saldo</h3>
-                <p>Rp. <?php echo $info["SALDO"] ?></p>
+            <div class="data">
+                <div class="nama">
+                    <h3>Nama</h3>
+                    <p><?php echo $info["NAMA_USER"] ?></p>
+                </div>
+                <div class="alamat">
+                    <h3>Alamat</h3>
+                    <p><?php echo $info["ADDRESS"] ?></p>
+                </div>
+                <div class="saldo">
+                    <h3>Saldo</h3>
+                    <p>Rp. <?php echo $info["SALDO"] ?></p>
+                </div>
             </div>
             <a href="../user/user-profil.php">Ubah Data</a>
             <div class="totalBayar">
