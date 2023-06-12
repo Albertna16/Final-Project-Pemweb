@@ -10,7 +10,6 @@
 header{
     background-image: url('image/header.png');
     height: 70px;
-    font-family: 'Inter', sans-serif;
     color: white;
     text-align: center;
 }
@@ -24,6 +23,7 @@ header p{
     display: flex;
     flex-direction: row;
     position: sticky;
+    width: 100%;
     top: 0;
     background-color: white;
     border-bottom: 1px solid black;
@@ -42,6 +42,7 @@ header p{
     margin-left: 50px;
 }
 
+
 .bar .tombol{
     display: flex;
     float: right;
@@ -49,13 +50,14 @@ header p{
     gap: 30px;
     font-size: 18px;
     margin: 20px;
-    margin-left: 17%;
+    margin-left: 10%;
     font-family: 'Inter', sans-serif;
 }
 
 .bar .tombol a{
     text-decoration: none;
     color: black;
+    transition: 0.3s;
 }
 
 .bar .tombol a:hover{
@@ -67,11 +69,13 @@ header p{
 .container {
     display: flex;
 }
+
 .container .keranjang {
-    width: 75%;
+    width: 70%;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    
+
 }
 
 .container .keranjang .item{
@@ -125,6 +129,7 @@ header p{
     align-items: center;
     justify-content: center;
     background-color: #ffffff;
+    transition: 0.3s
 }
 .container .keranjang .item .jumlahItem a:hover{
     background-color: #6aa1ff;
@@ -147,37 +152,77 @@ header p{
 
 h2{
     text-align: center;
-    padding: 30px;
-    margin: 10px;
+    padding: 40px 30px 50px 30px;
 }
-h3{
-    text-align: left;
-    margin: 5px;
-}
+
 .container .pembayaran{
     display: flex;
+    margin-left: 960px;
     flex-direction: column;
     width: 25%;
+    position: fixed;
+    top: 130px;
+    padding: 0 20px 0 20px;
+    height: 100%;
 }
 
 
-.container .pembayaran .alamat{
+.container .pembayaran .data{
     display: flex;
     flex-direction: column;
-    margin: 30px ;
-    border: 1px solid rgba(0, 0, 0, 0.3);
-    border-radius: 5px;
+    border: 1px solid black;
 }
-.container .pembayaran .alamat p{
+
+.container .pembayaran .data .nama{
+    border-bottom: 1px solid black;
+}
+
+.container .pembayaran .data .nama h3{
+    padding: 20px 0 0 20px;
+    height: 40px;
+}
+
+.container .pembayaran .data .nama p{
     text-align: right;
-    padding: 15px 5px;
-    border-top: 1px solid rgba(0, 0, 0, 0.3);
+    margin-top: -35px;
+    padding: 0 20px 20px 0;
+
+}
+
+.container .pembayaran .data .alamat{
+    border-bottom: 1px solid black;
+}
+
+.container .pembayaran .data .alamat h3{
+    padding: 20px 0 0 20px;
+    height: 40px;
+}
+
+.container .pembayaran .data .alamat p{
+    text-align: right;
+    margin-top: -35px;
+    padding: 0 20px 20px 0;
+}
+
+.container .pembayaran .data .saldo h3{
+    padding: 20px 0 0 20px;
+    height: 40px;
+}
+
+.container .pembayaran .data .saldo p{
+    text-align: right;
+    margin-top: -35px;
+    padding: 0 20px 20px 0;
+}
+
+.container .pembayaran a{
+    padding-top: 5px;
 }
 
 .container .pembayaran .totalBayar{
     display: flex;
     flex-direction: row;
-    margin: 30px 30px 0 30px ;
+    margin: 40px 30px 0 30px ;
     border-bottom: 1px solid rgba(0, 0, 0, 0.3);
     align-items: center;
     justify-content: space-between;
@@ -204,14 +249,13 @@ h3{
     width: 230px;
     border-radius: 10px;
     background-color: #0C697A;
-    border: 1px solid rgba(0, 0, 0, 0.3);
-    text-decoration: none;
+    border-style: none;
     color: white;
-    transition: 0.2s;
-    margin-top: 30px;
+    transition: 0.3s;
+    margin-top: 50px;
 }
 
 .container .pembayaran .button-choice button:hover{
-    background-color: white;
-    color: black;
+    background-color: black;
+    color: white;
 }
