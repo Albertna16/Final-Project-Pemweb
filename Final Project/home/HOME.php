@@ -1,11 +1,11 @@
 <?php
-session_start();
 
 // membuat koneksi ke database
 $dbServer = 'localhost';
 $dbUser = 'root';
 $dbPass = '';
 $dbName = "pemwebvape";
+session_start();
 
 try {
     //membuat objek PDO untuk koneksi ke database
@@ -97,29 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-    <div class="bgheader" id="home">
-        <header>
-            <p>Welcome to Vape. salah satu online vape shop terbaik di Indonesia</p>
-        </header>
-    </div>
-
-    <div class="bar">
-        <div class="gambar">
-            <a href="#"><img src="image/logovapehitam.png" alt=""></a>
-        </div>
-        <div class="tombol">
-            <a href="#home">HOME</a>
-            <a href="#aboutus">ABOUT US</a>
-            <a href="#product">PRODUCT</a>
-            <a href="#report">REPORT</a>
-            <div class="tombol1">
-                <a href="../user/user-profil.php"><i class="fa-solid fa-user"></i></a>
-            </div>
-            <div class="tombol2">
-                <a href="../login/logout.php"><i class="fa-solid fa-right-from-bracket"></i></a>
-            </div>
-        </div>
-    </div>
+    <?php include('../template/navbar.php');?>
 
     <div class="jumbotron">
         <img src="image/home.png" alt="">
@@ -150,13 +128,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </p>
         </div>
         <div class="kategori">
-            <a href="../view more product/atomizer.php"><img src="image/product1.png" alt=""></a>
-            <a href="../view more product/mod.php"><img src="image/product2.png" alt=""></a>
-            <a href="../view more product/liquid.php"><img src="image/product3.png" alt=""></a>
-            <a href="../view more product/baterai.php"><img src="image/product4.png" alt=""></a>
+            <a href="../view-more-product/atomizer.php"><img src="image/product1.png" alt=""></a>
+            <a href="../view-more-product/mod.php"><img src="image/product2.png" alt=""></a>
+            <a href="../view-more-product/liquid.php"><img src="image/product3.png" alt=""></a>
+            <a href="../view-more-product/baterai.php"><img src="image/product4.png" alt=""></a>
         </div>
         <div class="view-more">
-            <a href="../view more product/all.php">View More</a>
+            <a href="../view-more-product/all.php">View More</a>
         </div>
     </div>
 
@@ -195,21 +173,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </div>
 </div>
 
-<div class="bgfooter">
-    <div class="box3">
-        <img src="image/logo.png" alt="">
-    </div>
-    <div class="box4">
-        <p>Follow us on</p>
-        <div class="sosmed">
-            <a href="#"><i class="fa-brands fa-facebook"></i></a>
-            <a href="#"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
-        </div>
-    </div>
-</div>
 
-<footer><p>Copyright 2023 © VAP.COM</p></footer>
+<?php include('../template/footer.php');?>
 
 <script src="https://kit.fontawesome.com/73bcd336f4.js"></script>
 

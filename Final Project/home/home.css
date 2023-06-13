@@ -9,7 +9,9 @@
 
 header{
     background-image: url('image/header.png');
-    height: 70px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
     font-family: 'Inter', sans-serif;
     color: white;
     text-align: center;
@@ -23,10 +25,12 @@ header p{
 .bar{
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     position: sticky;
     top: 0;
     background-color: white;
     border-bottom: 1px solid black;
+    padding: 0 40px;
 }
 
 .bar .gambar{
@@ -44,12 +48,13 @@ header p{
 
 .bar .tombol{
     display: flex;
+    justify-content: end;
     float: right;
     width: 100%;
     gap: 30px;
     font-size: 18px;
     margin: 20px;
-    margin-left: 17%;
+    /* margin-left: 17%; */
     font-family: 'Inter', sans-serif;
 }
 
@@ -65,31 +70,32 @@ header p{
 
 .jumbotron img{
     width: 100%;
-    height: 570px;
+    /* height: 570px; */
+    object-fit: cover; 
 }
 
 .aboutus {
     display: flex;
     flex-direction: row;
+    align-items: center;
     width: 100%;
-    height: 700px;
+    height: 100%;
     background-color: white;
+    padding: 80px 0;
 }
 
 .aboutus .box1 {
     width: 50%;
-    margin-top: 120px;
 }
 
 .aboutus .box1 img{
-    width: 450px;
+    width: 80%;
     height: auto;
     margin-left: 20%;
 }
 
 .aboutus .box2 {
     width: 50%;
-    padding-top: 220px;
     padding-left: 5%;
     padding-right: 10%;
 }
@@ -104,15 +110,19 @@ header p{
 .aboutus .box2 p{
     font-family: 'inter', sans-serif;
     text-align: justify;
-    font-size: 20px;
+    font-size: 18px;
 }
+
+
 
 .product {
     background-image: url('image/product.png');
     background-color: black;
     color: white;
     text-align: justify;
-    height: 600px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height:100%;
     padding: 50px;
 }
 
@@ -136,11 +146,12 @@ header p{
     display: flex;
     justify-content: center;
     flex-direction: row;
+    flex-wrap: wrap;
     margin: 20px 0 20px 0;
 }
 
 .product .kategori img{
-    width: 230px;
+    width: 70%;
     margin: 20px 40px 20px 40px;
     margin-bottom: 30px;
     transition: 0.3s;
@@ -154,13 +165,13 @@ header p{
 .product .view-more{
     background-color: rgba(181, 176, 176, 0.7);
     text-align: center;
-    height: 35px;
-    margin-left: 42%;
-    margin-right: 42%;
+    height: 100%;
+    width: 120px;
+    margin: auto;
     border-radius: 15px;
     font-family: 'inter', sans-serif;
     font-size: 22px;
-    padding-top: 10px;
+    padding: 10px;
 }
 
 .product .view-more a{
@@ -299,6 +310,8 @@ header p{
     flex-direction: row;
     width: 100%;
     background-image: url('image/backgroundfooter.png');
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .bgfooter .box3{

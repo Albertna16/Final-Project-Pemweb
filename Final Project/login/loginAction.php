@@ -21,6 +21,11 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
                 header('location: ../home/home.php');
 				exit;
             }
+            else {
+                $status = 'err';
+                header('Location: login_user.php?status=' . $status);
+                exit();
+            }
         }
     }elseif ($typeUser=='admin') {
         $query = "SELECT * FROM admin where EMAIL_ADMIN = :email or USERNAME_ADMIN = :username";
@@ -35,6 +40,11 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 				$_SESSION["adminId"]= $result["ID_ADMIN"];
                 header('location: ../admin/admin-dashboard.php');
 				exit;
+            }
+            else {
+                $status = 'err';
+                header('Location: login_user.php?status=' . $status);
+                exit();
             }
         }
     }

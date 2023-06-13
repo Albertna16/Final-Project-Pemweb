@@ -21,32 +21,7 @@ $totalPrice = 0;
 </head>
 
 <body>
-    <div class="bgheader" id="home">
-        <header>
-            <p>Welcome to Vape. salah satu online vape shop terbaik di Indonesia</p>
-        </header>
-    </div>
-    <div class="bar">
-        <div class="gambar">
-            <a href="../home/HOME.php"><img src="../view more product/image/logovapehitam.png" alt=""></a>
-        </div>
-        <div class="tombol">
-            <a href="../home/HOME.php #home">HOME</a>
-            <a href="../home/HOME.php #aboutus">ABOUT US</a>
-            <a href="../home/HOME.php #product">PRODUCT</a>
-            <a href="../home/HOME.php #report">REPORT</a>
-            <div class="tombol1">
-                <a href="../view more product/all.php"><i class="bi bi-cart-plus-fill"></i></a>
-            </div>
-
-            <div class="tombol1">
-                <a href="../user/user-profil.php"><i class="fa-solid fa-user"></i></a>
-            </div>
-            <div class="tombol2">
-                <a href="../login/logout.php"><i class="fa-solid fa-right-from-bracket"></i></a>
-            </div>
-        </div>
-    </div>
+<?php include('../template/navbar.php');?>
     <div class="container">
         <div class="keranjang">
             <h2>Keranjang Belanja</h2>
@@ -81,10 +56,12 @@ $totalPrice = 0;
                     $totalPrice += $item["quantity"] * $item["price"];
                 endforeach;
             } else {
-                echo "Belum ada produk yang ditambahkan";
+                echo "<h2>Belum ada produk yang ditambahkan<br>
+                <a href='../view-more-product/all.php'>Beli</a></h2>";
             }
 
             ?>
+            
         </div>
         <?php
         $idUser = $_SESSION['userId'];
@@ -125,6 +102,7 @@ $totalPrice = 0;
         </div>
 
     </div>
+    <?php include('../template/footer.php');?>
     <script src="https://kit.fontawesome.com/73bcd336f4.js" crossorigin="anonymous"></script>
 </body>
 
