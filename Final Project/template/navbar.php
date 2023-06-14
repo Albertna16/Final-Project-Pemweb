@@ -26,7 +26,7 @@ if (isset($_SESSION["cart_item"]) && is_array($_SESSION["cart_item"])) {
 
 <div class="bar">
     <div class="gambar">
-        <a href="#"><img src="image/logovapehitam.png" alt=""></a>
+        <a href="../home/HOME.php"><img src="image/logovapehitam.png" alt=""></a>
     </div>
     <div class="tombol">
         <a href="../home/HOME.php">HOME</a>
