@@ -63,6 +63,12 @@ $data_pesanan = $stmt_pesanan->fetchAll(PDO::FETCH_ASSOC);
                 <span class="balance-amount">Rp<?php echo number_format($data['SALDO'], 0, ',', '.'); ?></span>
             </div>
 
+            <div class="box">
+                <form action="tambah_saldo.php" method="POST">
+                    <input type="number" name="saldo" placeholder="Masukkan jumlah saldo" required>
+                    <button type="submit">Tambah Saldo</button>
+                </form>
+            </div>
         </center>
         <div class="navigation">
             <a href="../home/home.php" class="navigation-item">
@@ -147,6 +153,7 @@ $data_pesanan = $stmt_pesanan->fetchAll(PDO::FETCH_ASSOC);
             popup.style.display = "none";
         }
 
+        // untuk kembali ke halaman sebelumnya
         function goBack() {
             history.back();
         }

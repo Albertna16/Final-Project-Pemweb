@@ -27,20 +27,20 @@ CREATE TABLE `product` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `product` (`ID_PRODUCT`, `ID_ADMIN`, `NAME_PRODUCT`, `PRICE_PRODUCT`, `KATEGORI_PRODUCT`, `DESK_PRODUCT`, `GAMBAR_PRODUCT`) VALUES
-(1, NULL, 'RDA Druga 24mm', '115000', 'Atomizer', 'tes', '648456931f0ce.png'),
-(2, NULL, 'Centaurus M200', '580000', 'Mod', 'tes2', '6484579c4642a.png'),
-(3, NULL, 'AWT 18650', '13000', 'Baterai', 'tes3', '648457cfa8251.png'),
-(4, NULL, 'VGOD RDTA', '227500', 'Atomizer', 'tes4', '64845885e5fde.png'),
-(5, NULL, 'ZEUS X RTA 25mm', '410000', 'Atomizer', 'tes5', '64846609c73d7.png'),
-(6, NULL, 'CANDI DTA', '55000', 'Atomizer', 'tes6', '648471e79295a.png'),
-(7, NULL, 'Dovpo Panda', '490000', 'Mod', 'tes7', '64847357cf0fa.png'),
-(8, NULL, 'Mdura', '420000', 'Mod', 'tes8', '6484737202a50.png'),
-(9, NULL, 'Ijoy Jupiter', '300000', 'Mod', 'tes9', '6484738b8fd55.png'),
-(10, NULL, 'Sony VTC 5', '44100', 'Baterai', 'tes10', '648473f049c23.png'),
-(11, NULL, 'Kleporn 60ml', '130000', 'Liquid', 'tes11', '6484747d2c870.png'),
-(12, NULL, 'Iceland Mango 30ml', '110000', 'Liquid', 'tes12', '648474a0c01d7.png'),
-(13, NULL, 'Muffin & Xes', '130000', 'Liquid', 'tes13', '648474c6baacc.png'),
-(14, NULL, 'Hokkaido Strawberry', '130000', 'Liquid', 'tes14', '648474f8cbbfa.png');
+(1, 1, 'RDA Druga 24mm', '115000', 'Atomizer', 'tes', '648456931f0ce.png'),
+(2, 1, 'Centaurus M200', '580000', 'Mod', 'tes2', '6484579c4642a.png'),
+(3, 1, 'AWT 18650', '13000', 'Baterai', 'tes3', '648457cfa8251.png'),
+(4, 1, 'VGOD RDTA', '227500', 'Atomizer', 'tes4', '64845885e5fde.png'),
+(5, 1, 'ZEUS X RTA 25mm', '410000', 'Atomizer', 'tes5', '64846609c73d7.png'),
+(6, 1, 'CANDI DTA', '55000', 'Atomizer', 'tes6', '648471e79295a.png'),
+(7, 1, 'Dovpo Panda', '490000', 'Mod', 'tes7', '64847357cf0fa.png'),
+(8, 1, 'Mdura', '420000', 'Mod', 'tes8', '6484737202a50.png'),
+(9, 1, 'Ijoy Jupiter', '300000', 'Mod', 'tes9', '6484738b8fd55.png'),
+(10, 1, 'Sony VTC 5', '44100', 'Baterai', 'tes10', '648473f049c23.png'),
+(11, 1, 'Kleporn 60ml', '130000', 'Liquid', 'tes11', '6484747d2c870.png'),
+(12, 1, 'Iceland Mango 30ml', '110000', 'Liquid', 'tes12', '648474a0c01d7.png'),
+(13, 1, 'Muffin & Xes', '130000', 'Liquid', 'tes13', '648474c6baacc.png'),
+(14, 1, 'Hokkaido Strawberry', '130000', 'Liquid', 'tes14', '648474f8cbbfa.png');
 
 CREATE TABLE `report` (
   `ID_REPORT` int(11) NOT NULL,
