@@ -100,7 +100,7 @@ $totalPrice = 0;
                     <p>Rp. <?php echo $info["SALDO"] ?></p>
                 </div>
             </div>
-            <a href="../user/user-profil.php">Ubah Data</a>
+            
             <div class="totalBayar">
                 <h3>Total</h3>
                 <p>Rp. <span class="totalSemua"><?php echo $totalPrice; ?></span></p>
