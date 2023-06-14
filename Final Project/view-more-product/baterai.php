@@ -31,7 +31,7 @@ if (isset($_SESSION["cart_item"]) && is_array($_SESSION["cart_item"])) {
 </head>
 
 <body>
-<?php include('../template/navbar.php'); ?>
+    <?php include('../template/navbar.php'); ?>
 
     <div class="bars">
         <div class="button-choice">
@@ -45,21 +45,22 @@ if (isset($_SESSION["cart_item"]) && is_array($_SESSION["cart_item"])) {
 
     <div class="container-main">
         <?php foreach ($result as $data) : ?>
-            <div class="box">
-                <div class="card" style="background-color: #b5b0b0;">
-                    <div class="image">
-                        <img src="../resource/product/img/<?php echo $data['GAMBAR_PRODUCT']; ?>" alt="...">
+            <?php if ($data['KATEGORI_PRODUCT'] == 'Baterai') : ?>
+                <div class="box">
+                    <div class="card" style="background-color: #b5b0b0;">
+                        <div class="image">
+                            <img src="../resource/product/img/<?php echo $data['GAMBAR_PRODUCT']; ?>" alt="...">
+                        </div>
+                        <div class="text">
+                            <h4><?php echo $data['NAME_PRODUCT']; ?></h4>
+                            <p><?php echo $data['PRICE_PRODUCT']; ?></p>
+                        </div>
+                        <div class="link">
+                            <a href="../transaksi/addToCart.php?action=plus&id=<?php echo $data['ID_PRODUCT']; ?>&link=product">Beli</a>
+                        </div>
                     </div>
-                    <div class="text">
-                    <a href="../product/product_detail.php?id=<?php echo $data['ID_PRODUCT']; ?>"><h4><?php echo $data['NAME_PRODUCT']; ?></h4></a>
-                        <p><?php echo $data['PRICE_PRODUCT']; ?></p>
-                    </div>
-                    <div class="link">
-                        <a href="../transaksi/addToCart.php?action=plus&id=<?php echo $data['ID_PRODUCT']; ?>&link=product">Beli</a>
-                    </div>
-
                 </div>
-            </div>
+            <?php endif; ?>
         <?php endforeach; ?>
     </div>
 
