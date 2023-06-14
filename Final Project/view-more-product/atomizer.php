@@ -2,7 +2,7 @@
 include('../connections.php');
 session_start();
 
-$query = "SELECT * FROM product WHERE kategori_product = 'atomizer'";
+$query = "SELECT * FROM product WHERE KATEGORI_PRODUCT = 'Atomizer'";
 $stmt = $connection->prepare($query);
 $stmt->execute();
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -31,8 +31,7 @@ if (isset($_SESSION["cart_item"]) && is_array($_SESSION["cart_item"])) {
 </head>
 
 <body>
-<?php include('../template/navbar.php'); ?>
-
+    <?php include('../template/navbar.php'); ?>
     <div class="bars">
         <div class="button-choice">
             <a href="all.php">All</a>
@@ -57,7 +56,6 @@ if (isset($_SESSION["cart_item"]) && is_array($_SESSION["cart_item"])) {
                     <div class="link">
                         <a href="../transaksi/addToCart.php?action=plus&id=<?php echo $data['ID_PRODUCT']; ?>&link=product">Beli</a>
                     </div>
-
                 </div>
             </div>
         <?php endforeach; ?>

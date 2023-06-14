@@ -48,6 +48,7 @@ $data_pesanan = $stmt_pesanan->fetchAll(PDO::FETCH_ASSOC);
 
 <body>
     <div class="sidebar">
+        <button class="box-button" onclick="goBack()">Kembali</button>
         <div class="logo">
             <img src="image/Vape.png" alt="">
         </div>
@@ -144,6 +145,10 @@ $data_pesanan = $stmt_pesanan->fetchAll(PDO::FETCH_ASSOC);
         function closePopup(popupId) {
             var popup = document.getElementById(popupId);
             popup.style.display = "none";
+        }
+
+        function goBack() {
+            history.back();
         }
     </script>
 </body>
