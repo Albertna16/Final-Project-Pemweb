@@ -22,6 +22,22 @@ body {
     position: fixed;
 }
 
+.sidebar .button{
+    background-color: white;
+    color: black;
+    width: 100px;
+    height: 25px;
+    border-style: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-left: 80px;
+}
+
+.sidebar .button:hover{
+    background-color: #b5b0b0;
+    color: black;
+}
+
 .logo img{
     display: flex;
     justify-content: center;
@@ -62,21 +78,42 @@ body {
     margin-left: 80px;
 }
 
-.navigation {
-    margin: 200px 0px 0px 20px;
+.sidebar form{
+    background-color: rgba(120, 117, 117, 0.7);
+    margin-top: 30px;
+    border-radius: 25px;
+    width: 245px;
 }
 
-.navigation-item {
-    display: flex;
-    align-items: center;
-    color: white;
-    text-decoration: none;
-    margin-bottom: 10px;
+
+.sidebar form input{
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 5px;
+    height: 25px;
+    width: 200px;
+    background-color: white;
+    margin-top: 15px;
+    margin-bottom: 20px;
 }
 
-.navigation-icon {
-    margin-right: 15px;
-    font-size: 22px;
+.sidebar form input::placeholder{
+    color: rgba(120, 117, 117, 0.7);
+    text-align: center;
+}
+
+.sidebar form button{
+    background-color: #2F0331;
+    color: white;;
+    border-style: none;
+    font-size: 13px;
+    border-radius: 20px;
+    margin-bottom: 15px;
+    padding: 8px;
+    width: 120px;
+}
+
+.sidebar form button:hover{
+    background-color: black;
 }
 
 .content {
@@ -118,11 +155,15 @@ body {
     color: #fff;
     border: none;
     border-radius: 20px;
-    padding: 1px 10px;
+    padding: 5px 10px;
     font-family: "Poppins", sans-serif;
     font-weight:normal;
     margin-left: 25px;
     cursor: pointer;
+}
+
+.box-button:hover{
+    background-color: #b5b0b0;
 }
 
 .order-table {
