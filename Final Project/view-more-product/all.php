@@ -50,7 +50,7 @@ if (isset($_SESSION["cart_item"]) && is_array($_SESSION["cart_item"])) {
                         <img src="../resource/product/img/<?php echo $data['GAMBAR_PRODUCT']; ?>" alt="...">
                     </div>
                     <div class="text">
-                        <h4><?php echo $data['NAME_PRODUCT']; ?></h4>
+                        <a href="../product/product_detail.php?id=<?php echo $data['ID_PRODUCT']; ?>"><h4><?php echo $data['NAME_PRODUCT']; ?></h4></a>
                         <p><?php echo $data['PRICE_PRODUCT']; ?></p>
                     </div>
                     <div class="link">

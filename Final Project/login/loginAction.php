@@ -43,9 +43,13 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
             }
             else {
                 $status = 'err';
-                header('Location: login_user.php?status=' . $status);
+                header('Location: ../login/login_user.php?status=' . $status);
                 exit();
             }
+        }else {
+            $status = 'err';
+            header('Location: ../login/login_user.php?status=' . $status);
+            exit();
         }
     }
 }
