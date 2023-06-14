@@ -1,9 +1,10 @@
-<?php 
+<?php
 include('../connections.php');
 session_start();
-$userId = $_SESSION['userId']; 
-$datetime = date('Y-m-d H:i:s');  
+$userId = $_SESSION['userId'];
+$datetime = date('Y-m-d H:i:s');
 $totalBayar = $_POST['totalBayar'];
+$status = '';
 
 $query = "SELECT * FROM user where ID_USER = :id";
 $stmt = $connection->prepare($query);
@@ -12,7 +13,8 @@ $stmt->execute();
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if ($totalBayar > $result['SALDO']) {
-    header('location: keranjang.php');
+    $status = 'saldokurang';
+    header('location: keranjang.php?status=' . $status);
     exit;
 }
 
@@ -22,7 +24,7 @@ $stmt->bindParam(':ID_USER', $userId);
 $stmt->bindParam(':TANGGAL_TRANSAKSI', $datetime);
 $stmt->execute();
 
-$transaksiId = $connection->lastInsertId(); 
+$transaksiId = $connection->lastInsertId();
 if (!empty($_SESSION["cart_item"])) {
     foreach ($_SESSION["cart_item"] as $item) {
         $productId = $item['id'];
@@ -37,18 +39,17 @@ if (!empty($_SESSION["cart_item"])) {
         $stmt->bindParam(':HARGA', $totalHarga);
         $stmt->execute();
     }
-}
-$query = "UPDATE user set SALDO = (:saldo-:totalBayar) where ID_USER = :id";
-$stmt = $connection->prepare($query);
-$stmt->bindParam(':id', $userId);
-$stmt->bindParam(':saldo', $result['SALDO']);
-$stmt->bindParam(':totalBayar', $totalBayar);
-$stmt->execute();
+    $query = "UPDATE user set SALDO = (:saldo-:totalBayar) where ID_USER = :id";
+    $stmt = $connection->prepare($query);
+    $stmt->bindParam(':id', $userId);
+    $stmt->bindParam(':saldo', $result['SALDO']);
+    $stmt->bindParam(':totalBayar', $totalBayar);
+    $stmt->execute();
 
-unset($_SESSION['cart_item']);
-
-header('location: keranjang.php');
+    unset($_SESSION['cart_item']);
+    $status = 'ok';
+    header('location: keranjang.php?status=' . $status);
     exit;
-
-
-?>
+}
+header('location: keranjang.php');
+exit;

@@ -30,9 +30,9 @@ if (isset($_SESSION["cart_item"]) && is_array($_SESSION["cart_item"])) {
         </div>
         <div class="tombol">
             <a href="../home/HOME.php">HOME</a>
-            <a href="#aboutus">ABOUT US</a>
-            <a href="#product">PRODUCT</a>
-            <a href="#report">REPORT</a>
+            <a href="../home/HOME.php#aboutus">ABOUT US</a>
+            <a href="../home/HOME.php#product">PRODUCT</a>
+            <a href="../home/HOME.php#report">REPORT</a>
             <div class="tombol1">
                 <a href="../transaksi/keranjang.php"><i class="fa-solid fa-cart-shopping"><?php echo $itemCount; ?></i></a>
             </div>

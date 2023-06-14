@@ -58,7 +58,7 @@ if (isset($_SESSION["cart_item"]) && is_array($_SESSION["cart_item"])) {
   <div classc="container-main">
     <div class="product-container">
       <div class="product-box1">
-        <img src="../resource/product/img/<?php echo $data['NAME_PRODUCT']; ?>" alt="Gambar Produk" />
+        <img src="../resource/product/img/<?php echo $data['GAMBAR_PRODUCT']; ?>" alt="Gambar Produk" />
         <a href="../transaksi/addToCart.php?action=plus&id=<?php echo $data['ID_PRODUCT']; ?>&link=product"> Beli Sekarang </a>
       </div>
       <div class="product-box2">

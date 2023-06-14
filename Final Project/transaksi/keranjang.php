@@ -1,6 +1,11 @@
 <?php
 include('../connections.php');
 session_start();
+if (isset($_GET['status'])) {
+    $status = $_GET['status'];
+} else {
+    $status = '';
+}
 if (!$_SESSION['login'] == 1 && !isset($_SESSION['userId'])) {
     header('location: ../login/login_user.php');
     exit;
@@ -25,6 +30,13 @@ $totalPrice = 0;
     <div class="container">
         <div class="keranjang">
             <h2>Keranjang Belanja</h2>
+            <?php
+            if ($status == 'ok') {
+                echo '<h2>Transaksi Berhasil</h2>';
+            } elseif ($status == 'saldokurang') {
+                echo '<h2>Saldo Tidak cukup</h2>';
+            }
+            ?>
             <?php if (isset($_SESSION["cart_item"])) {
                 foreach ($_SESSION["cart_item"] as $item) : ?>
                     <div class="item">

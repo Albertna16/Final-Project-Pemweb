@@ -63,7 +63,7 @@ $data_pesanan = $stmt_pesanan->fetchAll(PDO::FETCH_ASSOC);
                 <span class="balance-amount">Rp<?php echo number_format($data['SALDO'], 0, ',', '.'); ?></span>
             </div>
 
-            <div class="box">
+            <div class="boxSaldo">
                 <form action="tambah_saldo.php" method="POST">
                     <input type="number" name="saldo" placeholder="Masukkan jumlah saldo" required>
                     <button type="submit">Tambah Saldo</button>
