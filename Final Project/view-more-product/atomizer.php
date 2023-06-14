@@ -2,14 +2,13 @@
 include('../connections.php');
 session_start();
 
-$query = "SELECT * FROM product WHERE KATEGORI_PRODUCT = 'Atomizer'";
+$query = "SELECT * FROM product";
 $stmt = $connection->prepare($query);
 $stmt->execute();
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-$itemCount = 0; // Inisialisasi itemCount dengan nilai awal 0
+$itemCount = 0;
 
 if (isset($_SESSION["cart_item"]) && is_array($_SESSION["cart_item"])) {
-    // Memeriksa apakah $_SESSION["cart_item"] sudah ada dan merupakan array
     $itemCount = count($_SESSION["cart_item"]);
 }
 ?>
@@ -32,6 +31,7 @@ if (isset($_SESSION["cart_item"]) && is_array($_SESSION["cart_item"])) {
 
 <body>
     <?php include('../template/navbar.php'); ?>
+
     <div class="bars">
         <div class="button-choice">
             <a href="all.php">All</a>
@@ -44,20 +44,22 @@ if (isset($_SESSION["cart_item"]) && is_array($_SESSION["cart_item"])) {
 
     <div class="container-main">
         <?php foreach ($result as $data) : ?>
-            <div class="box">
-                <div class="card" style="background-color: #b5b0b0;">
-                    <div class="image">
-                        <img src="../resource/product/img/<?php echo $data['GAMBAR_PRODUCT']; ?>" alt="...">
-                    </div>
-                    <div class="text">
-                        <h4><?php echo $data['NAME_PRODUCT']; ?></h4>
-                        <p><?php echo $data['PRICE_PRODUCT']; ?></p>
-                    </div>
-                    <div class="link">
-                        <a href="../transaksi/addToCart.php?action=plus&id=<?php echo $data['ID_PRODUCT']; ?>&link=product">Beli</a>
+            <?php if ($data['KATEGORI_PRODUCT'] == 'Atomizer') : ?>
+                <div class="box">
+                    <div class="card" style="background-color: #b5b0b0;">
+                        <div class="image">
+                            <img src="../resource/product/img/<?php echo $data['GAMBAR_PRODUCT']; ?>" alt="...">
+                        </div>
+                        <div class="text">
+                            <h4><?php echo $data['NAME_PRODUCT']; ?></h4>
+                            <p><?php echo $data['PRICE_PRODUCT']; ?></p>
+                        </div>
+                        <div class="link">
+                        <a href="../transaksi/addToCart.php?action=plus&id=<?php echo $data['ID_PRODUCT']; ?>&link=../view more product/atomizer.php">Beli</a>
+                        </div>
                     </div>
                 </div>
-            </div>
+            <?php endif; ?>
         <?php endforeach; ?>
     </div>
 
