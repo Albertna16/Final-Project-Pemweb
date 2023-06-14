@@ -56,13 +56,12 @@ if (isset($_SESSION["cart_item"]) && is_array($_SESSION["cart_item"])) {
                     <div class="link">
                         <a href="../transaksi/addToCart.php?action=plus&id=<?php echo $data['ID_PRODUCT']; ?>&link=product">Beli</a>
                     </div>
-
                 </div>
             </div>
         <?php endforeach; ?>
     </div>
 
-    <?php include('../template/footer.php');?>
+    <?php include('../template/footer.php'); ?>
 </body>
 
 </html>

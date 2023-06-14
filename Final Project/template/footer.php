@@ -1,4 +1,3 @@
-
 <head>
     <link rel="stylesheet" href="../template/footer.css">
     <script src="https://kit.fontawesome.com/ad6991be8a.js" crossorigin="anonymous"></script>
@@ -17,4 +16,6 @@
     </div>
 </div>
 
-<footer><p>Copyright 2023 © VAP.COM</p></footer>
+<footer>
+    <p>Copyright 2023 © VAP.COM</p>
+</footer>
