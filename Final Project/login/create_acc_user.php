@@ -27,10 +27,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $email_user = $_SESSION['email_user'];
         $username_user = $_SESSION['username_user'];
         $password_user = $_SESSION['password_user'];
-
         $address = ($_POST["address"]);
         $number_phone = ($_POST["number_phone"]);
-        $saldo = ($_POST["saldo"]);
+        $saldo = 0; // Set saldo ke 0 secara otomatis
 
         //query dengan PDO
         $query = $connection->prepare("INSERT INTO user (nama_user, email_user, username_user, password_user, address, number_phone, saldo) VALUES(:nama_user, :email_user, :username_user, :password_user, :address, :number_phone, :saldo)");
@@ -110,10 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <label for="number_phone">Number:</label>
                         <input type="text" id="number_phone" name="number_phone" placeholder="number phone">
                     </div>
-                    <div class="form-group">
-                        <label for="saldo">Saldo:</label>
-                        <input type="text" id="saldo" name="saldo" placeholder="saldo">
-                    </div>
+                    <!-- Tidak perlu mengisi kolom saldo -->
                     <button class="submit-button" name="slide2">Submit</button>
                 </form>
             <?php endif; ?>
